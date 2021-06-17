@@ -1,0 +1,43 @@
+p {
+    font-family: cursive;
+}
+
+h3,h4{
+    color: green;
+}
+
+h2 {
+    color:green;
+    font-size: 2em;
+}
+
+body {
+    background-color: rgb(14, 15, 14);  
+    font-size: 30px;
+}
+
+#description {
+    background-color: wheat;
+}
+
+#biodiversity, #animals {
+    background-color: wheat;
+}
+
+#descHead {
+    color: wheat;
+}
+
+.list-style {
+    background-color: wheat;
+    font-weight: bold;
+    font-style: italic;
+    line-height: 40px;   /* espaçamento entre as linhas   */
+    text-align: center;
+    text-decoration: underline;
+
+}
+
+#mainHead {
+    color: green
+}
