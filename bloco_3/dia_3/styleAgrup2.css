@@ -1,0 +1,30 @@
+ div:hover {
+    border:5px;
+    border-style: dotted;
+ }
+
+  .h1 {
+      color:black
+ }
+
+ .c2, h2 {
+     color:aqua
+ }
+
+ .c3 {
+     font-size: 100px;
+     color:brown
+     
+ }
+
+ .c4 {
+     color:blueviolet
+ }
+
+ .c5 {
+     color:aquamarine
+ }
+
+  h3 {
+      font-style: italic;
+  }
