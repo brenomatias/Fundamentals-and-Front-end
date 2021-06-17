@@ -1,0 +1,15 @@
+
+
+h1 , p {
+    text-align: center;
+ }
+
+ li:hover{
+    list-style: none;
+ }
+ 
+
+ li:active  {
+    list-style: none;
+ }
+
