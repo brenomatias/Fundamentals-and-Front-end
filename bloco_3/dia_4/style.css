@@ -86,11 +86,19 @@ aside {
     height: 550px;
 }
 
+.img3 {
+    width: 625px;
+    margin-left: 10px;
+    height: 470px;
+}
+
 .figCaption {
     font-size: 15px;
     text-align: center;
     margin-top: -10px;
     margin-bottom: 10px;
+    display: flex;
+    margin-left: 30px;
 }
 .paragrah {
     font-size: 30px;
