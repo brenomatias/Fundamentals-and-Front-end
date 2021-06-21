@@ -1,8 +1,14 @@
+
+body {
+    
+  
+}
+
 header {
     padding: 10px;
     border: 4px solid red;
     background-color: rgb(174, 240,172);
-    margin-bottom: 10px;
+    margin-bottom: 1px;
 }
 
 nav {
@@ -14,9 +20,10 @@ nav {
 main {    
     border: 4px solid rgb(3, 1, 5);
     background-color: rgb(29, 141, 29);
-    margin-top:10px;
+    margin-top:2px;
     width: 50%;
     height: 50%;
+    
 }
 
 #article {
@@ -24,7 +31,7 @@ main {
     background-color: aqua;
     width: 100%;
     margin-left: 0px;
-    height: 500px;
+    height: 700px;
     margin-top:50px;
 }
 
@@ -48,13 +55,17 @@ main {
 }
 
 aside {
-    width: 30%;
-    padding-left: 15px;
-    margin-left: 1400px;
-    height: 300px;
-   
-    font-style: italic;
-    background-color: lightgray;
+    background-color: gold;
+    height: 665px;
+    width: 50%;
+    margin-top: 1px;
+
+}
+
+#mainSection {
+    display: flex;
+    flex-direction: row;
+    margin-top:4px;
 }
 
 h1 {
@@ -63,4 +74,10 @@ h1 {
 
 h2 {
     font-size: 40 px;
+}
+
+#footer {
+    padding: 30px;
+    background-color: green;
+
 }
