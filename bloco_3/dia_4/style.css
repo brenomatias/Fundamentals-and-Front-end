@@ -62,6 +62,8 @@ aside {
 
 .paragrah {
     font-size: 30px;
+    margin-top: -30px;
+    
 }
 
 h1 {
@@ -74,15 +76,27 @@ h3 {
   font-size: 55px;
 }
 
-h4, h5, h6 {
+h4, h5  {
     font-size: 40px;
+}
+
+h6 {
+    font-size: 40px;
+    margin-top:60px;
+    margin-bottom: 60px;
 }
 
 .footer {
     padding: 30px;
     background-color: green;
-    margin-top: 70px;
-
+    font-size: 25px;
+    text-align: center;
 }
 
+.nav2 {
+    font-size: 30px;
+}
 
+.p2 {
+    font-size: 30px;
+}
