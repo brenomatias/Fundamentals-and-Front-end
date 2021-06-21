@@ -66,7 +66,48 @@ chessPiece = chessPiece.toLowerCase()
   if (chessPiece == "pawn" || chessPiece == "bishop" || chessPiece == "knight") {
       console.log("Peça válida");
   }else {
-      console.log("peça invalida")
+      console.log("peça invalida");
   }
   
-  
+let grade = 80;
+let percentage = (grade*100)/100;
+
+if (percentage >= 90){
+  console.log("A");
+} else if (percentage >= 80){
+  console.log("B");
+} else if (percentage >= 70){
+  console.log("C")
+} else if (percentage >=60) {
+  console.log ("D")
+} else if (percentage >=50){
+  console.log("E")
+} else {
+  console.log("F")
+}
+
+let num7 = 10;
+let num8 = 3;
+let num9 = 3;
+
+if (num7%2 == 0 || num8%2 == 0 || num9%2 == 0){
+  console.log("true")
+} else {
+  console.log("Não existe numero par.")
+}
+
+
+let quantidade = -10;
+let venda = 100;
+let vendaTotal = quantidade*venda;
+let custo = 80;
+let imposto = 1.2;
+let custoTotal = (custo*imposto)*quantidade
+let lucro = vendaTotal - custoTotal
+
+
+if (custo < 0 || venda < 0 || quantidade < 0){
+  console.log("Erro")
+} else {
+ console.log("O lucro é de " + lucro)
+}
