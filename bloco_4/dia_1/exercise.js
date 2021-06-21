@@ -111,3 +111,30 @@ if (custo < 0 || venda < 0 || quantidade < 0){
 } else {
  console.log("O lucro é de " + lucro)
 }
+
+let salarioBruto = ;
+let INSS8 = ;
+let INSS9 = ;
+let INSS11 = ;
+let INSS = ; 
+let IR0 = ;
+let IR1 = ;
+let IR2 = ;
+let IR3 = ;
+let IR4 = ;
+
+
+INSS 
+
+salarioBruto <= 1556.94 
+salarioBruto >= 1556.94 && salarioBruto <= 2594.92
+salarioBruto >= 2594.93 && salarioBruto <= 5189.82 
+salarioBruto > 5189.82
+
+IR 
+
+salarioBruto < 1903.98 
+salarioBruto >= 1903.99 && salarioBruto <= 2826.65 
+salarioBruto >= 2826.66 && salarioBruto <= 3751.05
+salarioBruto >= 3751.06 && salarioBruto <= 4664.68
+salarioBruto > 4664.68
