@@ -60,6 +60,12 @@ aside {
     margin-top: 1px;
 }
 
+.video {
+    font-size: 30px;
+    margin-left: 39px;
+    
+}
+
 .paragrah {
     font-size: 30px;
     margin-top: -30px;
@@ -99,4 +105,10 @@ h6 {
 
 .p2 {
     font-size: 30px;
+}
+
+.p3 {
+    font-size: 30px;
+    margin-left: 39px;
+    margin-top: 10px;
 }
