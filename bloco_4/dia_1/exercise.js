@@ -112,29 +112,54 @@ if (custo < 0 || venda < 0 || quantidade < 0){
  console.log("O lucro é de " + lucro)
 }
 
-let salarioBruto = ;
-let INSS8 = ;
-let INSS9 = ;
-let INSS11 = ;
-let INSS = ; 
-let IR0 = ;
-let IR1 = ;
-let IR2 = ;
-let IR3 = ;
-let IR4 = ;
+let salarioBruto = 100 ;
+let INSS8 = 0.08;
+let INSS9 = 0.09;
+let INSS11 = 0.11;
+let INSS570 = 570.88; 
+let IR075 = 0.075;
+let IR15 = 0.15;
+let IR22 = 0.225;
+let IR27 = 0.275;
+let salarioLiquido = salarioBruto - desconto
 
 
-INSS 
 
-salarioBruto <= 1556.94 
-salarioBruto >= 1556.94 && salarioBruto <= 2594.92
-salarioBruto >= 2594.93 && salarioBruto <= 5189.82 
-salarioBruto > 5189.82
+if (salarioBruto <= 1556.94){
+  let desconto = (salarioBruto*INSS8);
+  salarioLiquido = salarioBruto - desconto;
+  console.log("O salário líquido é " + salarioLiquido);
+} else if (salarioBruto >= 1556.94 && salarioBruto <= 2594.92 && salarioBruto >= 1903.99 && salarioBruto <= 2826.65 ){
+  let desconto = (salarioBruto*INSS9) + (salarioBruto*IR075);
+  salarioLiquido = salarioBruto - desconto;
+  console.log("O salário líquido é " + salarioLiquido);
+} else if (salarioBruto >= 2594.93 && salarioBruto <= 5189.82 && salarioBruto >= 2826.66 && salarioBruto <= 3751.05 ){
+  let desconto = (salarioBruto*INSS11) + (salarioBruto*IR15);
+  salarioLiquido = salarioBruto - desconto;
+  console.log("O salário líquido é " + salarioLiquido);
+} else if (salarioBruto > 5189.82 && salarioBruto >= 3751.06 && salarioBruto <= 4664.68){
+  let desconto = (salarioBruto*INSS570) + (salarioBruto*IR22);
+  salarioLiquido = salarioBruto - desconto;
+  console.log("O salário líquido é " + salarioLiquido);
+} else if (salarioBruto > 4664.68 && salarioBruto >= 2594.93 && salarioBruto <= 5189.82 ){
+  let desconto = (salarioBruto*INSS11) + (salarioBruto*IR27);
+  salarioLiquido = salarioBruto - desconto;
+  console.log("O salário líquido é " + salarioLiquido);
+}else {
+  
+}
+  
+   
 
-IR 
 
-salarioBruto < 1903.98 
-salarioBruto >= 1903.99 && salarioBruto <= 2826.65 
-salarioBruto >= 2826.66 && salarioBruto <= 3751.05
-salarioBruto >= 3751.06 && salarioBruto <= 4664.68
-salarioBruto > 4664.68
+
+//salarioBruto >= 1556.94 && salarioBruto <= 2594.92
+//salarioBruto >= 2594.93 && salarioBruto <= 5189.82 
+//salarioBruto > 5189.82
+
+//IR 
+
+//salarioBruto >= 1903.99 && salarioBruto <= 2826.65 
+//salarioBruto >= 2826.66 && salarioBruto <= 3751.05
+//salarioBruto >= 3751.06 && salarioBruto <= 4664.68
+//salarioBruto > 4664.68
