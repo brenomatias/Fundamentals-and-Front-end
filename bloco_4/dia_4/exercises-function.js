@@ -33,8 +33,7 @@ function indexMaxInArray(testArray) {                        //valor do indice d
             indexOfMax = i;                              // estabelece um maximo entre os elementos [0] e [1] e define o max para comparar com o resto do loop no array
     }
 }
-return indexOfMax;
-  
+return indexOfMax;  
 }
 console.log(indexMaxInArray(testArray));
 
@@ -51,5 +50,19 @@ function indexOfSmallest(testArray2) {
  }
     return indexOfSmallest;
    }
-
    console.log(indexOfSmallest(testArray2));
+
+   //Exercício 4
+let testArray4 = ['José', 'Lucas', 'Nádia', 'Fernanda', 'Cairo', 'Joana'];
+function lagerstName (testArray4) {
+    let lenght= 0;                                        // variável que vai armazenar o tamanho dos valores da array (testarray4)
+    let largest= " ";                                          // variável que vai armazenar a maior palavra da lista
+    for (let i = 0; i < testArray4.length; i += 1){
+        if (testArray4[i].lenght > lenght){
+            lenght = testArray[i].length
+            largest = testArray[i];
+        }
+    }
+    return largest;
+}
+console.log(lagerstName(testArray4));
