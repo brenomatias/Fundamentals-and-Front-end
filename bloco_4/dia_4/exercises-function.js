@@ -111,3 +111,26 @@ function mostFrequent (arr) {
 console.log(mostFrequent(arr));
 
 //Exercício 6
+let num = 5;
+
+function somatorio(num) {
+    let soma = 0;
+    for ( let i = 1; i <= num; i += 1){
+     soma += i;
+    }
+    return soma;
+}
+console.log(somatorio(num));
+
+let N = 5;
+function numberSum(N) {
+    var total = 0;
+      for(var i = 1; i <= N; i++){
+        total += i;
+      }
+      return total;
+  }
+  
+console.log(numberSum(N));
+
+//Exercício 7
