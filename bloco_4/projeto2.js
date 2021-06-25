@@ -1,7 +1,4 @@
-//1 - Crie uma função usando o opera
-let statement1 = true;
-let statement2 = false;
-
+//1 - Crie uma função usando o operador &&
 function compareTrue (statement1, statement2){
     let resultado;
     if (statement1 == true && statement2 == true){
@@ -11,8 +8,9 @@ function compareTrue (statement1, statement2){
     } 
     return resultado;
 }
-console.log(compareTrue(statement1, statement2));
+console.log(compareTrue(false, true));
 console.log(compareTrue(true, true));
+console.log(compareTrue(false, false));
 
 //2 - Crie uma função que calcule a área de um triângulo
 function calcArea (base, height){
@@ -25,12 +23,27 @@ console.log(calcArea(51, 1));
 
 //3 - Crie uma função que divida a frase
 function spliteSentence(setence){
-    let returnArray = setence.split(""); //Split a string into an array of substrings
-    for(let i = 0; i < setence.length; i += 1){
-        returnArray[i] += '';
-        return returnArray;
+    let returnArray = setence.split(" ");              //Split a string into an array of substrings * note que se nao tive espaço em " " vai retonar a separação por letra
+    for(let i = 0; i < returnArray.length; i += 1){   //returnArray é array que retorna a substring que vieram da string principal (propriedade ),                                          //o valor da lenght de array agora será 3 porque sao tres substrings
+        return returnArray;                         
         }
     } 
-
+console.log(spliteSentence("go trybe"));
 console.log(spliteSentence("vamo que vamo"));
+console.log(spliteSentence("foguete"));
 
+//4 - Crie uma função que use concatenação de strings
+
+function concatName (parametro) {
+    let firstItem = parametro[0];
+    let lasItem = parametro[parametro.length - 1];
+    let firstAndLast = [];
+    for (let i = 0; i < parametro.length; i += 1){
+        firstAndLast = lasItem + ", " + firstItem
+    } return firstAndLast;
+}
+console.log(concatName(['Lucas', 'Cassiano', 'Ferraz', 'Paolillo']));
+console.log(concatName(['foguete', 'não', 'tem', 'ré']));
+console.log(concatName(['captain', 'my', 'captain']));
+
+//
