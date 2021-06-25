@@ -67,3 +67,47 @@ for (let i = 0; i < testArray4.length; i += 1) {           //Inicia o loop para 
    return longest;
 }
 console.log(longestWord(testArray4));   
+
+//Exercício 5
+let numbers = [ 4, 2, 5, 8, 2, 3, 3, 3, 3, 3];
+function countNumbers (numbers){                              //função para contar a maior frequencia em uma array
+    let mf = 1;                                              //frequencia maxima (comparador de frequencia inicial)
+    let counter = 0;                                        //contador de frequencia
+    let storeNumber;                                       //armazenar o número com máxima frequencia
+    for (let i = 0; i < numbers.length; i += 1) {         //pecorre a array e seleciona o elemento atual da array numbers
+        for (let j = i; j < numbers.length; j += 1) {    //percorrer os próximos elementos na array numbers para comparar e calcular a frequência do elemento atual
+             if(numbers[i] == numbers[j]){              //checa se elemento se repete na array numbers
+                 counter += 1;                         //incrementa o contador se se repetir 
+             }  else if (mf < counter) {              //compara o contador de frequencia com a frequencia maxima de comparação (mf=1) e se a frequencia atual for maior que 1 (ou seja, repete o numero)
+                 mf = counter;                       //se contador maior que frequencia de comparaçao guarda o valor do contador na frequencia maxima para os proximos elementos         
+                 storeNumber = numbers[i];          //guarda o atual elemento no numero que desejamos selecionar 
+             }
+        }
+        return storeNumber;
+    } 
+}
+
+console.log(countNumbers(numbers));
+
+let arr = [2, 3, 2, 5, 8, 2, 3];;
+function mostFrequent (arr) {
+    let mf = arr[0];
+    let maxCount = 0;
+    let len = arr.lenght;
+    for ( let i = 0; i < len; i += 1){
+    let count = 0;
+        for(j = i+ 1; j < len; j += 1){
+            if(arr[i] == arr[j]){
+                count += 1;
+            }
+        }
+        if(maxCount < count){
+            maxCount = count;
+            mf = arr[i];
+        }
+    }
+        return mf;
+}
+console.log(mostFrequent(arr));
+
+//Exercício 6
