@@ -134,3 +134,17 @@ function numberSum(N) {
 console.log(numberSum(N));
 
 //Exercício 7
+let word = "trybe";
+let ending = "be";
+function confirmEnding(word, ending) {
+    let startIndex = word.length - ending.length; //(5-2)=3
+    let endIndex = word.length; // 5
+    let copiedEnding = word.slice(startIndex, endIndex); //Copy the last characters on the string (slice(3,5) = index vai variar de 3 a 5 na análise
+  if(copiedEnding === ending){ //Check if the copiedEnding is equal to the target.
+    return true;
+  }else{
+    return false;
+  }
+  }
+
+  console.log(confirmEnding(word, ending));
