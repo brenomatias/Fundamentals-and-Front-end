@@ -33,7 +33,6 @@ console.log(spliteSentence("vamo que vamo"));
 console.log(spliteSentence("foguete"));
 
 //4 - Crie uma função que use concatenação de strings
-
 function concatName (parametro) {
     let firstItem = parametro[0];
     let lasItem = parametro[parametro.length - 1];
@@ -46,4 +45,14 @@ console.log(concatName(['Lucas', 'Cassiano', 'Ferraz', 'Paolillo']));
 console.log(concatName(['foguete', 'não', 'tem', 'ré']));
 console.log(concatName(['captain', 'my', 'captain']));
 
-//
+//5 - Crie uma função que calcule a quantidade de pontos no futebol
+function footballPoints (wins, ties){
+    let pointsWin = 3;
+    let pointsTie = 1;
+    let total = wins*pointsWin + ties*pointsTie;
+    return total;
+}
+
+console.log(footballPoints(14, 8));
+console.log(footballPoints(1, 2));
+console.log(footballPoints(0, 0));
