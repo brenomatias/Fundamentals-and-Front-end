@@ -2,10 +2,10 @@
 let string = "Ana";
 function validatePalin(word) {  
   word = word.toLowerCase();
-  let len = word.length;   // get the total length of the words
-  for (let i = 0; i < len; i += 1) {   // iterate through the string 
+  let len = word.length;                      // get the total length of the words
+  for (let i = 0; i < len; i += 1) {         // iterate through the string 
       if (word[i] !== word[len - 1 - i]) {  //validate the first and last characters are same  
-          return false;   // se for falso já para na primeira iteração
+          return false;                    // se for falso já para na primeira iteração
       }  
   }  
   return true;  
@@ -52,17 +52,18 @@ function indexOfSmallest(testArray2) {
    }
    console.log(indexOfSmallest(testArray2));
 
-   //Exercício 4
+//Exercício 4
 let testArray4 = ['José', 'Lucas', 'Nádia', 'Fernanda', 'Cairo', 'Joana'];
-function lagerstName (testArray4) {
-    let lenght= 0;                                        // variável que vai armazenar o tamanho dos valores da array (testarray4)
-    let largest= " ";                                          // variável que vai armazenar a maior palavra da lista
-    for (let i = 0; i < testArray4.length; i += 1){
-        if (testArray4[i].lenght > lenght){
-            lenght = testArray[i].length
-            largest = testArray[i];
-        }
-    }
-    return largest;
+
+function longestWord (testArray4) {
+let lgth = 0;                                                //Define a largura inicial para comparar com os elementos da array
+let longest;                                                //Define a variável que vai receber a maior palavra 
+for (let i = 0; i < testArray4.length; i += 1) {           //Inicia o loop para passar entre os elementos da array4
+  if (testArray4[i].length > lgth) {                      //Compara a largura dos elementos da array (começando em 0) com a largura inicial
+    lgth = testArray4[i].length;                         // se a largura do elemento i da array4 (0,1,2) for maior que a largura inicial = 0, 
+    longest = testArray4[i];                            //o elemento largura inicial assume esse valor
+  }
 }
-console.log(lagerstName(testArray4));
+   return longest;
+}
+console.log(longestWord(testArray4));   
