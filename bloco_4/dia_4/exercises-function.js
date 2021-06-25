@@ -1,13 +1,18 @@
-let str = 'anna';
-console.log(str);
+let string = "Ana";
 
-function isPalindrome(inStr) {
-  for (let i = 0; i < inStr.lenght; i += 1){
-  if (inStr[i] !== inStr[inStr.lenght   - 1 - i]){
-    return false;
-  }
-}
-return true;
-}
+function validatePalin(word) {  
+  word = word.toLowerCase();
+  // get the total length of the words  
+  let len = word.length;  
+  
+  for (let i = 0; i < len; i++) {   // iterate through the string
 
-console.log(isPalindrome(str));
+      // validate the first and last characters are same  
+      if (word[i] !== word[len - 1 - i]) {  
+          return false;  
+      }  
+  }  
+  return true;  
+}  
+
+console.log(validatePalin(string));
