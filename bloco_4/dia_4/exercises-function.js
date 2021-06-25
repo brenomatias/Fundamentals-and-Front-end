@@ -14,5 +14,9 @@ function validatePalin(word) {
   }  
   return true;  
 }  
-
 console.log(validatePalin(string));
+
+let testArray = [2, 3, 6, 7, 10, 1];
+function maxInArray(){
+    let arrayLen = 
+}
