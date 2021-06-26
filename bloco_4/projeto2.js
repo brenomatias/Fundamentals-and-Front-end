@@ -114,15 +114,7 @@ console.log(fizzBuzz( [2, 15, 7, 9, 45]));
 console.log(fizzBuzz([7,9]));
 console.log(fizzBuzz([9, 25]));
 
-//9 - Crie uma função que Codifique e Decodifique
-let vowelCrypt = {
-    a: 1,
-    e: 2,
-    i: 3,
-    o: 4,
-    u: 5
-  }
-  
+//9 - Crie uma função que Codifique e Decodifique 
   function econde(string){
       return string.replace(/a/g, '1') //Specifies the value to be returned to the function caller
             .replace(/e/g, '2')    //Perform a global replacement /x/g, o g faz replace global
@@ -141,4 +133,18 @@ let vowelCrypt = {
 }
 console.log(decode('h3 th2r2!'));
   
-//
+//10 - Crie uma função de Lista de Tecnologias
+
+function lista (techIn, nameIn){
+    let objetoOut = [];
+    techIn.sort();
+    for(let i = 0; i < techIn.length; i += 1){
+        objetoOut.push({tech: techIn[i],name: nameIn});
+        }
+        
+        
+        return objetoOut;
+    }
+   
+
+    console.log(lista(["React", "Jest", "HTML", "CSS", "JavaScript"], "Breno"));
