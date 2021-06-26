@@ -60,13 +60,13 @@ console.log(footballPoints(0, 0));
 function highestCount(array) {
     let counter = 0;                                              //definição do contador de repetição do maior número
     let highestNumber = 0;                                        //definição da variável que vai receber o maior número da array
-    let frequenciaComparacao                                     //define a frequencia de comparação inicial 
+    let frequencia;                                     //define a frequencia de comparação inicial 
 for (let i=0; i <array.length; i += 1) {                         //seleciona o atual elemento da array
         for (let j=i; j<array.length; j += 1){                 //faz o loop atraves dos proximos elementos na array  
                 if (array[i] == array[j]){                    //ver se o elemento ocorre de novo na array 
                 counter += 1;                                //incrementar o contador se sim 
             } else if (array[highestNumber] > array[i])  {   //compara a frequencia do elemento atual com a frequencia de comparaçao compare current items frequency with maximum frequency
-                  frequenciaComparacao = counter;          //if frequencia de comparaçao é menor (se repete) a frequencia de comparaçao  store m in mf for upcoming elements           
+                  frequencia = counter;          //if frequencia de comparaçao é menor (se repete) a frequencia de comparaçao  store m in mf for upcoming elements           
                 }
         }  
         return counter;
@@ -93,4 +93,49 @@ console.log(catAndMouse(7,4, 5));
 console.log(catAndMouse(12,6,0));
 console.log(catAndMouse(10,5,5));
 
-//
+//8 - Crie uma função FizzBuzz
+function fizzBuzz(array){
+    let arrayFizBuzz = [];
+     for (let i = 0; i < array.length; i += 1){
+        if (array[i] % 3 == 0 && array[i] % 5 == 0){
+            arrayFizBuzz[i] = "fizBuzz";
+        }   
+        else if (array[i] % 3 == 0){
+            arrayFizBuzz[i] = "fizz";
+         } else if (array[i] % 5 == 0){
+             arrayFizBuzz[i] = "buzz";
+         }
+         else {
+             arrayFizBuzz[i] = "bug!"
+         }
+     } return arrayFizBuzz;
+}
+console.log(fizzBuzz( [2, 15, 7, 9, 45]));
+console.log(fizzBuzz([7,9]));
+console.log(fizzBuzz([9, 25]));
+
+//9 - Crie uma função que Codifique e Decodifique
+let vowelCrypt = {
+    a: 1,
+    e: 2,
+    i: 3,
+    o: 4,
+    u: 5
+  }
+  
+  function cryptInput(input) {
+    if (input.length > 0) {
+      return input.split('').reduce(function(acc, curr) {
+        if (vowelCrypt[curr]) {
+          acc += vowelCrypt[curr];
+        } else {
+          acc += curr + 'a';
+        }
+        return acc;
+      }, '')
+  
+  
+    }
+  }
+  
+  console.log(cryptInput('Victor'))
