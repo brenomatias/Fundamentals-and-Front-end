@@ -59,19 +59,38 @@ console.log(footballPoints(0, 0));
 //6 - Crie uma função que calcule a repetição do maior número
 function highestCount(array) {
     let counter = 0;                                              //definição do contador de repetição do maior número
-    let highestNumber = 0;   
-    let frequencia;                             //define a frequencia de comparação inicial 
+    let highestNumber = 0;                                        //definição da variável que vai receber o maior número da array
+    let frequenciaComparacao                                     //define a frequencia de comparação inicial 
 for (let i=0; i <array.length; i += 1) {                         //seleciona o atual elemento da array
-        for (let j=1    ; j<array.length; j += 1){                 //faz o loop atraves dos proximos elementos na array  
-                if (array[i] == array[j]){                    //ver se o elemento ocorre de nome na array 
+        for (let j=i; j<array.length; j += 1){                 //faz o loop atraves dos proximos elementos na array  
+                if (array[i] == array[j]){                    //ver se o elemento ocorre de novo na array 
                 counter += 1;                                //incrementar o contador se sim 
             } else if (array[highestNumber] > array[i])  {   //compara a frequencia do elemento atual com a frequencia de comparaçao compare current items frequency with maximum frequency
-                frequencia = counter                                                 //if frequencia de comparaçao é menor (se repete) a frequencia de comparaçao  store m in mf for upcoming elements   
+                  frequenciaComparacao = counter;          //if frequencia de comparaçao é menor (se repete) a frequencia de comparaçao  store m in mf for upcoming elements           
                 }
         }  
-        return frequencia;
+        return counter;
 }
 }
 console.log(highestCount([9, 1, 2, 3, 9, 5, 7]));
 console.log(highestCount( [0, 4, 4, 4, 9, 2, 1]));
 console.log(highestCount( [0, 0, 0]));
+
+//7 - Crie uma função de Caça ao Rato
+function  catAndMouse (mouse, cat1, cat2) {
+    let distanCat1 = mouse - cat1;
+    let distanCat2 = mouse - cat2;
+    let winnerCat;
+    if (distanCat1 > distanCat2) {
+        winnerCat = "cat1";
+    } else if (distanCat2 > distanCat1 ){
+        winnerCat = "cat2";
+    } else {
+        winnerCat = "os gatos trombam e o rato foge";
+        }return winnerCat;
+}
+console.log(catAndMouse(7,4, 5));
+console.log(catAndMouse(12,6,0));
+console.log(catAndMouse(10,5,5));
+
+//
