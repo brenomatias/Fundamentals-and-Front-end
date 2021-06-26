@@ -52,7 +52,26 @@ function footballPoints (wins, ties){
     let total = wins*pointsWin + ties*pointsTie;
     return total;
 }
-
 console.log(footballPoints(14, 8));
 console.log(footballPoints(1, 2));
 console.log(footballPoints(0, 0));
+
+//6 - Crie uma função que calcule a repetição do maior número
+function highestCount(array) {
+    let counter = 0;                                              //definição do contador de repetição do maior número
+    let highestNumber = 0;   
+    let frequencia;                             //define a frequencia de comparação inicial 
+for (let i=0; i <array.length; i += 1) {                         //seleciona o atual elemento da array
+        for (let j=1    ; j<array.length; j += 1){                 //faz o loop atraves dos proximos elementos na array  
+                if (array[i] == array[j]){                    //ver se o elemento ocorre de nome na array 
+                counter += 1;                                //incrementar o contador se sim 
+            } else if (array[highestNumber] > array[i])  {   //compara a frequencia do elemento atual com a frequencia de comparaçao compare current items frequency with maximum frequency
+                frequencia = counter                                                 //if frequencia de comparaçao é menor (se repete) a frequencia de comparaçao  store m in mf for upcoming elements   
+                }
+        }  
+        return frequencia;
+}
+}
+console.log(highestCount([9, 1, 2, 3, 9, 5, 7]));
+console.log(highestCount( [0, 4, 4, 4, 9, 2, 1]));
+console.log(highestCount( [0, 0, 0]));
