@@ -9,4 +9,10 @@ pai.insertBefore(newElement, theFirstChild);
 let elementoPai = document.getElementById("elementoOndeVoceEsta")
 let newNode = document.createElement("P");
 elementoPai.appendChild(newNode);
-newNode.innerText = "Teste"
+newNode.innerText = "Teste";
+
+//3 -Crie um filho para primeiroFilhoDoFilho .
+let elementoPaiDoFilho = document.getElementById("primeiroFilhoDoFilho")
+let newNode2 = document.createElement("P");
+elementoPaiDoFilho.appendChild(newNode2);
+newNode2.innerText = "Teste 224";
