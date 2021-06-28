@@ -6,5 +6,7 @@ document.getElementsByTagName("p")[1].innerText = "com o getElemenstByTagName se
 document.body.style.backgroundColor = "yellow"; //todo o body
 document.getElementsByClassName("main-content")[0].style.backgroundColor = "green"; // para classe os elementos também formam uma lista (array) que deve ser selecionada por elementos
 
+//3. Crie uma função que mude a cor do quadrado vermelho para branco.
+document.getElementsByClassName("center-content")[0].style.backgroundColor = "white";
 
 
