@@ -134,17 +134,71 @@ console.log(fizzBuzz([9, 25]));
 console.log(decode('h3 th2r2!'));
   
 //10 - Crie uma função de Lista de Tecnologias
-
 function lista (techIn, nameIn){
-    let objetoOut = [];
-    techIn.sort();
-    for(let i = 0; i < techIn.length; i += 1){
-        objetoOut.push({tech: techIn[i],name: nameIn});
-        }
-        
-        
-        return objetoOut;
+    let objectOut = [];
+    if (techIn.length == 0) {
+        return 'Vazio';      
+    } else {
+        techIn.sort();
     }
-   
+   for (let i = 0; i < techIn.length; i += 1){
+       objectOut.push({tech:techIn[i], name: nameIn})
+   } return objectOut;
+}
+console.log(lista(["React", "Jest", "HTML", "CSS", "JavaScript"], "Lucas"));
 
-    console.log(lista(["React", "Jest", "HTML", "CSS", "JavaScript"], "Breno"));
+// 11 - Crie uma função de Número de telefone
+function generatePhoneNumber(number) {
+    let contador = {};
+    if(number.length !== 11) {
+      return 'Array com tamanho incorreto.'
+    } else {
+      for(let index = 0; index < number.length; index +=1){
+        let numero = number[index];
+        if(number[index] < 0 || number[index] > 9) {
+          return 'não é possível gerar um número de telefone com esses valores'
+        } else if(contador[numero] != 0)
+          contador[numero] +=1;
+        }
+      }
+    for(let key in contador) {
+      if (contador[key] > 2) {
+          return 'não é possível gerar um número de telefone com esses valores' 
+      }
+    }
+    let telefone = [];
+    for(let index = 0; index < number.length; index +=1) {
+      telefone.push(number[index])
+    }
+    concat = '(' + telefone[0] + telefone[1] + ') ' + telefone[2] + telefone[3] + telefone[4] + telefone[5] + telefone[6] + '-' + telefone[7] + telefone[8] + telefone[9] + telefone[10];
+    return concat;
+  }
+console.log(generatePhoneNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1]));
+
+//12 - Crie uma função de Condição de existência de um triângulo
+  //The abs() method returns the absolute value of a number.
+    function triangleCheck(lineA, lineB, lineC) {
+        let linha1 = Math.abs(lineA);
+        let linha2 = Math.abs(lineB);
+        let linha3 = Math.abs(lineC);  
+        if(linha1 + linha2 < linha3 || linha1 + linha3 < linha2 || linha3 + linha2 < linha1) {
+          return false;
+        } else {
+          return true;
+        }
+      }
+console.log(triangleCheck(10, 14, 8));
+
+//13 - Crie uma função de boas vindas ao Bar da Trybe!
+function hydrate(drink) {
+    let allDrinks = drink.match(/\d/g);  // The match() method retrieves the result of matching a string against a regular expression.
+    let water = 0;                      //quantidade de água inicial
+    for (let index = 0; index < allDrinks.length; index += 1) { // pecorre a string das bebidas
+      water += Number(allDrinks[index]);                        //Use the regular expression \d+, which means any digit from 0 to 9 (\d) repeated one or more times (+). The qualifier g will make the search global 
+    }                                                           //The Number() function converts the object argument to a number that represents the object's value.
+    if(water === 1) {
+      return `${water} copo de água`;   //Template Literals '${} 'também permite interpolar valores em um texto
+    } 
+    return `${water} copos de água`;
+  }
+  
