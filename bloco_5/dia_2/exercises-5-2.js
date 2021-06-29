@@ -11,5 +11,5 @@ document.body.appendChild(mainContent); // adiciona ao body
 // 3-Adicione a tag div com a classe center-content como filho da tag div criada no passo 2;
 let centerContent = document.createElement('div');
 centerContent.classList.add('center-content'); //This property is useful to add, remove and toggle CSS classes on an element.
-mainContent.appendChild(centerContent);
+mainContent.appendChild(centerContent); // adciona na div que foi criada em cima (div = centerContent)
 centerContent.innerText= "Exercício 3";
