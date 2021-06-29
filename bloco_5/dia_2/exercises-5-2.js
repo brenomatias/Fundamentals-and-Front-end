@@ -8,3 +8,8 @@ document.body.appendChild(h1); //append the h1 element to the document body
 let mainContent = document.createElement("div"); // cria element div para ser adicionado ao body
 document.body.appendChild(mainContent); // adiciona ao body
 
+// 3-Adicione a tag div com a classe center-content como filho da tag div criada no passo 2;
+let centerContent = document.createElement('div');
+centerContent.classList.add('center-content'); //This property is useful to add, remove and toggle CSS classes on an element.
+mainContent.appendChild(centerContent);
+centerContent.innerText= "Exercício 3";
