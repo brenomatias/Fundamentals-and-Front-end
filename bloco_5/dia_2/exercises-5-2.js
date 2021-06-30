@@ -43,6 +43,12 @@ let list = document.createElement('ul');
 list.classList.add('list');
 let n1 = document.createElement('li'); // cria elemento da linha
 let text1 = document.createTextNode("um"); // cria o texto da linha um node de texto
-n1.appendChild(text1);
-list.appendChild(n1)
-document.querySelector('.right-content').appendChild(list)
+n1.appendChild(text1);   // da pra usar um loop aqui com certeza!
+list.appendChild(n1);
+document.querySelector('.right-content').appendChild(list);
+
+// 9 - Adicione 3 tags h3 , todas sendo filhas do div criado no passo 2.
+for (let i = 0; i < 3; i += 1){ // loop para criar os elementos h3
+let h3 = document.createElement('h3');
+document.querySelector('.main-content').appendChild(h3);
+}
