@@ -1,4 +1,5 @@
 // 1- Adicione a tag h1 com o texto Exercício 5.2 - JavaScript DOM como filho da tag body ;
+
 let h1 = document.createElement('h1'); //create the h1 element
 let textoH1 = document.createTextNode(' Exercício 5.2 - JavaScript DOM'); //create a text element
 h1.appendChild(textoH1); //appnd the text node to the H1 element 
@@ -51,4 +52,11 @@ document.querySelector('.right-content').appendChild(list);
 for (let i = 0; i < 3; i += 1){ // loop para criar os elementos h3
 let h3 = document.createElement('h3');
 document.querySelector('.main-content').appendChild(h3);
+h3.classList.add('description')
 }
+
+// 10 -Adicione a classe title na tag h1 criada;
+h1.classList.add('title');
+
+// 11 - Adicione a classe description nas 3 tags h3 criadas;
+// adicionado no for loop
