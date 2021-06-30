@@ -63,3 +63,6 @@ h1.classList.add('title');
 
 // 2.3 Remova o div criado no passo 5 (aquele que possui a classe left-content ). Utilize a função .removeChild() ;
 mainContent.removeChild(leftContent); // remove left content
+
+// remove elemento de um lista
+list.removeChild(n1);
