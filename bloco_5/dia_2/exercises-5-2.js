@@ -6,6 +6,7 @@ document.body.appendChild(h1); //append the h1 element to the document body
 
 //2 - Adicione a tag div com a classe main-content como filho da tag body ;
 let mainContent = document.createElement("div"); // cria element div para ser adicionado ao body
+mainContent.classList.add('main-content');
 document.body.appendChild(mainContent); // adiciona ao body
 
 // 3-Adicione a tag div com a classe center-content como filho da tag div criada no passo 2;
@@ -19,4 +20,21 @@ let paragraph = document.createElement("p");
 paragraph.innerText = " Algum texto"
 document.querySelector(".center-content").appendChild(paragraph);
 
-// 5 -
+// 5 -Adicione a tag div com a classe left-content como filho da tag div criada no passo 2;
+let leftContent = document.createElement("div"); 
+leftContent.classList.add('left-content');
+document.querySelector(".main-content").appendChild(leftContent);
+leftContent.innerText = "Left content";
+
+// 6 -Adicione a tag div com a classe right-content como filho da tag div criada no passo 2;
+let rightContent = document.createElement("div"); 
+rightContent.classList.add('right-content');
+document.querySelector(".main-content").appendChild(rightContent);
+rightContent.innerText = "Right content";
+
+// 7 -Adicione uma imagem com src configurado para o valor https://picsum.photos/200 e classe small-image . Esse elemento deve ser filho do div criado no passo 5;
+let imageContent = document.createElement("img"); 
+imageContent.classList.add('small-image');
+imageContent.src = "https://picsum.photos/200";
+document.querySelector('.left-content').appendChild(imageContent);
+
