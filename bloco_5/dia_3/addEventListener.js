@@ -5,27 +5,27 @@ const divTres = document.getElementById('divTres');
 const input = document.getElementById('input');
 const myWebpage = document.getElementById('mySpotrybefy');
 
-
 // 2. Crie uma função que adicione a classe 'tech' ao elemento selecionado;
-// 2.1. Deve existir apenas um elemento com a classe 'tech'. Como você faz isso?
+// Deve existir apenas um elemento com a classe 'tech'. Como você faz isso?
 
-divDois.addEventListener("click", addClass);
-divTres.addEventListener("select", addClass);
+divDois.addEventListener("click", toggleClass1);  // resoluçao baseada neste vídeo https://www.youtube.com/watch?v=BWvWSRCnYyg
+divTres.addEventListener("click", toggleClass2);
 
-function addClass(){
-
-divDois.classList.add("tech");
-divTres.classList.add("tech");
-
+function toggleClass1 (){
+if (divDois.classList == "tech"){
+    divDois.classList.remove("tech");
+} else {
+    divDois.classList.add("tech");
+}
 }
 
-
-
-
-
-
-
-
+function toggleClass2 (){
+    if (divTres.classList == "tech"){
+        divTres.classList.remove("tech");
+    } else {
+        divTres.classList.add("tech");
+    }
+}
 
 
 
