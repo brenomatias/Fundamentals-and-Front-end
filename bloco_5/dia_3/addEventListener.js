@@ -41,33 +41,38 @@ function toggleClass2 (){
 // 3. Crie uma função que, ao digitar na caixa de texto, altere o texto do elemento
 // com a classe 'tech';
 
-
-
-
-
-
-
-
 let capturarando = ""; //resoluçao baseada neste vídeo https://www.youtube.com/watch?v=ZGMJqxIkAb0
 function capturar(){
+    capturarando = document.getElementById("input").value;
    if(divUm.classList == "tech") {
-   capturarando = document.getElementById("input").value;
-   document.querySelector("input").innerHTML = capturarando;
-   } else if (divDois.classList == "tech"){
-    document.getElementById("input").placeholder = "Alterar segunda tecnologia";
-    capturarando = document.getElementById("input").value;
-    document.getElementById("divDois").innerHTML = capturarando;
-   } else if (divTres.classList == "tech"){
-    capturarando = document.getElementById("input").value;
-    document.getElementById("divTres").innerHTML = capturarando;
+   document.getElementById("divUm").innerHTML = capturarando;
+   } else if (divDois.classList == "tech") {
+    document.getElementById("divDois").innerHTML = capturarando;      
+   }else if (divTres.classList == "tech") {
+    document.getElementById("divTres").innerHTML = capturarando;      
    }
 }
 
+// 4. Crie uma função que, ao clicar duas vezes em 'Meu top 3 do Spotrybefy', ele
+// redirecione para alguma página;
+// 4.1. Que tal redirecionar para seu portifólio?
 
+let clickSportry = document.getElementById("mySpotrybefy");
+clickSportry.addEventListener("dblclick", receberClick);
 
+function receberClick (){
+   // window.location.href = "https://brenomatias.github.io/"; // https://www.w3schools.com/howto/howto_js_redirect_webpage.asp
+   window.open("https://brenomatias.github.io/", "blank"); // redireciona para página em branco https://www.codegrepper.com/code-examples/javascript/redirect+target+_blank+javascript
+}
 
+//5. Crie uma função que, ao passar o mouse sobre 'Meu top 3 do Spotrybefy', altere
+// a cor do mesmo;
 
-
+let mouseOver = document.getElementById("mySpotrybefy");
+mouseOver.addEventListener("mouseover", mouseEmcima);
+function mouseEmcima(){
+    mouseOver.style.color = "red";
+}
 
 divUm.addEventListener('dblclick', resetText);
 // Não precisa passar o parâmetro dentro do addEventListener. O próprio
