@@ -73,6 +73,7 @@ mouseOver.addEventListener("mouseover", mouseEmcima);
 function mouseEmcima(){
     mouseOver.style.color = "red";
 }
+// para voltar a cor no caso teria que um mouse leave.
 
 divUm.addEventListener('dblclick', resetText);
 // Não precisa passar o parâmetro dentro do addEventListener. O próprio
