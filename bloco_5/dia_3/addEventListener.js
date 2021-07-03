@@ -12,6 +12,7 @@ divUm.addEventListener("click", toggleClass3);
 divDois.addEventListener("click", toggleClass1);  // resoluçao baseada neste vídeo https://www.youtube.com/watch?v=BWvWSRCnYyg
 divTres.addEventListener("click", toggleClass2);
 
+
 function toggleClass3 (){
     if (divUm.classList == "tech"){
         divUm.classList.remove("tech");
@@ -37,6 +38,8 @@ function toggleClass2 (){
     }
 }
 
+// 3. Crie uma função que, ao digitar na caixa de texto, altere o texto do elemento
+// com a classe 'tech';
 
 
 
@@ -45,14 +48,26 @@ function toggleClass2 (){
 
 
 
-
-
-function resetText(event) {
-  // O Event é passado como um parâmetro para a função.
-  event.target.innerText = 'Opção reiniciada';
-  // O event possui várias propriedades, porém a mais usada é o event.target,
-  // que retorna o objeto que disparou o evento.
+let capturarando = ""; //resoluçao baseada neste vídeo https://www.youtube.com/watch?v=ZGMJqxIkAb0
+function capturar(){
+   if(divUm.classList == "tech") {
+   capturarando = document.getElementById("input").value;
+   document.querySelector("input").innerHTML = capturarando;
+   } else if (divDois.classList == "tech"){
+    document.getElementById("input").placeholder = "Alterar segunda tecnologia";
+    capturarando = document.getElementById("input").value;
+    document.getElementById("divDois").innerHTML = capturarando;
+   } else if (divTres.classList == "tech"){
+    capturarando = document.getElementById("input").value;
+    document.getElementById("divTres").innerHTML = capturarando;
+   }
 }
+
+
+
+
+
+
 
 divUm.addEventListener('dblclick', resetText);
 // Não precisa passar o parâmetro dentro do addEventListener. O próprio
