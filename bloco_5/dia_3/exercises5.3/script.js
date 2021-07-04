@@ -100,12 +100,17 @@ function changeFridayText() {
 	}
 }
 
-// Exercício 6:
+// Exercício 6: // referenc https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseover_event
 
-let mouseOver = document.getElementById("daysId")
-mouseOver.addEventListener("mouseover", mouseEmCima);
+let test = document.getElementById("days");
+// This handler will be executed every time the cursor
+// is moved over a different list item
+test.addEventListener("mouseover", function( event ) {
+  // highlight the mouseover target
+  event.target.style.fontSize = "130%";
 
-function mouseEmCima (evento){
-
-    evento.target.style.color = "red";
-}
+  // reset the color after a short delay
+  setTimeout(function() {
+    event.target.style.fontSize = "";
+  }, 500);
+}, false);
