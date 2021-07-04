@@ -123,9 +123,22 @@ function addTasks(tasks){
   const taskSpan = document.createElement("span");
   taskSpan.innerHTML = tasks;  
   taskSelector.appendChild(taskSpan);
-  
+  const linebreak = document.createElement("br");
+  taskSelector.appendChild(linebreak);
  }
- 
  addTasks("cozinhar");
+ addTasks("projeto")
 
-addTasks(" estudar ")
+
+
+// Exercício 8:
+
+function addColor(cor){
+  const colorSelctor = document.querySelector(".my-tasks");
+  const colorCaption = document.createElement('div');
+  colorCaption.classList.add("task");
+  colorCaption.style.backgroundColor = cor;
+  colorSelctor.appendChild(colorCaption);
+}
+addColor ("red");
+addColor ("green")
