@@ -165,3 +165,10 @@ const compromissosList = document.createElement('li'); // cria os elementos de l
 compromissosList.setAttribute("id", "compromissosId");
 compromissos.appendChild(compromissosList);
 
+let catchInput = ""; //resoluçao baseada neste vídeo https://www.youtube.com/watch?v=ZGMJqxIkAb0
+function capturar(){
+  if(compromissos.classList == "task-list") {
+    catchInput = document.getElementById("task-input").value;
+   document.getElementById("compromissosId").innerText = catchInput;
+}
+}
