@@ -79,7 +79,7 @@ function reverseHoliday() {
 
 // Exercício 4:
 
-function selectFridays(Feriados){
+function selectFridays(Fridays){
     const fridaySelector = document.querySelector(".buttons-container");   // create the button object and add the text to it
     const fridayButton = document.createElement("button");
     fridayButton.innerHTML = "Sexta-feira";  
@@ -114,3 +114,18 @@ test.addEventListener("mouseover", function( event ) {
     event.target.style.fontSize = "";
   }, 500);
 }, false);
+
+// Exercício 7:
+
+function addTasks(tasks){
+  
+  const taskSelector = document.querySelector(".my-tasks");   // create the button object and add the text to it
+  const taskSpan = document.createElement("span");
+  taskSpan.innerHTML = tasks;  
+  taskSelector.appendChild(taskSpan);
+  
+ }
+ 
+ addTasks("cozinhar");
+
+addTasks(" estudar ")
