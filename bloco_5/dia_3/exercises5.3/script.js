@@ -38,4 +38,4 @@
   };
   createNumbersOfTheWeek();
   
- 
+ // Exercício 2
