@@ -73,5 +73,15 @@ function reverseHoliday() {
 	}
 }
 
+// Exercício 4:
 
-
+function selectFridays(Feriados){
+    const fridaySelector = document.querySelector(".buttons-container");   // create the button object and add the text to it
+    const fridayButton = document.createElement("button");
+    fridayButton.innerHTML = "Sexta-feira";  
+    fridaySelector.appendChild(fridayButton);
+    fridayButton.setAttribute("id", "btn-friday"); // set attribute https://www.w3schools.com/jsref/met_element_setattribute.asp
+   }
+   
+   selectFridays();
+   
