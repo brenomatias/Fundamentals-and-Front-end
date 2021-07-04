@@ -17,9 +17,9 @@
 
 //Exercício 1:
 
-
+const numberDay = [29, 30, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];;
   function createNumbersOfTheWeek() {
-    const numberDay = [29, 30, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];;
+   
     const numberDayList = document.querySelector('#days');
   
     for (let i = 0; i < numberDay.length; i += 1) {
@@ -50,3 +50,28 @@
 }
 
 selectHoliday();
+
+// Exercício 3  // referencia https://www.codegrepper.com/code-examples/javascript/javascript+change+color+for+class+name
+let clickHoliday = document.getElementById("btn-holiday");
+clickHoliday.addEventListener("click", changeHolidayColor);
+
+function changeHolidayColor() {
+	var holidays = document.getElementsByClassName('holiday'); 
+	for(var i = 0; i < numberDay.length; i += 1){
+		holidays[i].style.backgroundColor = "white";
+	}
+}
+
+
+let reverseClickHoliday = document.getElementById("btn-holiday");
+reverseClickHoliday.addEventListener("dblclick", reverseHoliday);
+
+function reverseHoliday() {
+	var holidays = document.getElementsByClassName('holiday'); 
+	for(var i = 0; i < numberDay.length; i += 1){
+		holidays[i].style.backgroundColor = "rgb(238,238,238)";
+	}
+}
+
+
+
