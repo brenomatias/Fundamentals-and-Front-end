@@ -29,10 +29,13 @@ const numberDay = [29, 30, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16
       numbersListItem.innerHTML = numbers;
       numberDayList.appendChild(numbersListItem);
     
-      if (numberDay[i] === 24 || numberDay[i] === 25 || numberDay[i] === 31 ){ // adiciona a classe holiday * note que o if está dentro do looping exterior pois pecorre toda a array;
+
+      if (numberDay[i] === 25) { // adiciona as duas classes ao dia 25 https://www.codegrepper.com/code-examples/javascript/how+to+add+two+classes+in+javascript
+          numbersListItem.classList.add("holiday", "friday")
+      }  else if (numberDay[i] === 24 || numberDay[i] === 31 ){ // adiciona a classe holiday * note que o if está dentro do looping exterior pois pecorre toda a array;
         numbersListItem.classList.add("holiday")
-    } else if (numberDay[i] === 4 || numberDay[i] === 11 || numberDay[i] === 18 || numberDay[i] === 25 ) {
-        numbersListItem.classList.add("friday")
+    } else if (numberDay[i] === 4 || numberDay[i] === 11 || numberDay[i] === 18  ) {
+        numbersListItem.className = "friday";
     }
     };
   };
@@ -84,4 +87,14 @@ function selectFridays(Feriados){
    }
    
    selectFridays();
-   
+
+   // Exercício 5:
+   let clickFriday= document.getElementById("btn-friday");
+clickFriday.addEventListener("click", changeFridayText);
+
+function changeFridayText() {
+	var fridays = document.getElementsByClassName('friday'); 
+	for(var i = 0; i < numberDay.length; i += 1){
+		fridays[i].innerText = "Sextou";
+	}
+}
