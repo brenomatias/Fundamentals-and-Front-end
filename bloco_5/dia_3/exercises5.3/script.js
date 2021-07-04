@@ -26,6 +26,7 @@ const numberDay = [29, 30, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16
       days.classList.add("day"); // adiciona a classe day 
       const numbers = numberDay[i];
       const numbersListItem = document.createElement('li'); // cria os elementos de lista 'li'
+      numbersListItem.setAttribute("id", "daysId");
       numbersListItem.innerHTML = numbers;
       numberDayList.appendChild(numbersListItem);
     
@@ -89,7 +90,7 @@ function selectFridays(Feriados){
    selectFridays();
 
    // Exercício 5:
-   let clickFriday= document.getElementById("btn-friday");
+let clickFriday= document.getElementById("btn-friday");
 clickFriday.addEventListener("click", changeFridayText);
 
 function changeFridayText() {
@@ -97,4 +98,14 @@ function changeFridayText() {
 	for(var i = 0; i < numberDay.length; i += 1){
 		fridays[i].innerText = "Sextou";
 	}
+}
+
+// Exercício 6:
+
+let mouseOver = document.getElementById("daysId")
+mouseOver.addEventListener("mouseover", mouseEmCima);
+
+function mouseEmCima (evento){
+
+    evento.target.style.color = "red";
 }
