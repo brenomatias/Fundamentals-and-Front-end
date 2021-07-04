@@ -163,7 +163,5 @@ function removeClass(event2){
 const compromissos = document.querySelector(".task-list");
 const compromissosList = document.createElement('li'); // cria os elementos de lista 'li'
 compromissosList.setAttribute("id", "compromissosId");
-compromissosList.innerHTML = "test";
 compromissos.appendChild(compromissosList);
-
 
