@@ -41,5 +41,25 @@ let colorPixel23 = document.getElementsByClassName("pixel")[22].style.background
 let colorPixel24 = document.getElementsByClassName("pixel")[23].style.backgroundColor = "white";
 let colorPixel25 = document.getElementsByClassName("pixel")[24].style.backgroundColor = "white";
 
-let selectClass = document.getElementsByClassName("color")[0];
-selectClass.classList.add("selected")
+let selectClass1 = document.getElementsByClassName("color")[0];
+selectClass1.classList.add("selected");
+
+
+// desafio 8 // referencia https://stackoverflow.com/questions/50883690/remove-class-from-one-element-while-adding-that-class-to-another-element-using
+
+
+var colorsArray = document.querySelectorAll(".color");
+
+for (var i = 0; i < colorsArray.length; i += 1) { 
+  colorsArray[i].addEventListener("click", addClassColors);
+   function addClassColors(evt) {
+    clearClass(); // invoca a função de remoção
+    evt.target.classList.add("selected");
+  }
+}
+
+function clearClass(){
+  for (var i = 0; i < colorsArray.length; i += 1) {
+    colorsArray[i].classList.remove("selected");
+  }
+}

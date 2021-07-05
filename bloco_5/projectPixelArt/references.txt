@@ -1,2 +1,14 @@
 https://css-tricks.com/complete-guide-table-element/
 // Referencias : https://css-tricks.com/fun-times-css-pixel-art/
+https://stackoverflow.com/questions/50883690/remove-class-from-one-element-while-adding-that-class-to-another-element-using
+
+
+exercicio 7
+
+let selectClass2 = document.getElementsByClassName("color")[1];
+selectClass2.classList.add("selected");
+let selectClass3 = document.getElementsByClassName("color")[2];
+selectClass3.classList.add("selected");
+let selectClass4 = document.getElementsByClassName("color")[3];
+selectClass4.classList.add("selected");
+
