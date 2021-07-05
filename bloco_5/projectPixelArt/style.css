@@ -8,5 +8,5 @@
 }
 
 .palette-list li {
-    display: inline;
+    display: inline-flex;
 }
