@@ -1,4 +1,4 @@
-#title {
+#title { 
     font-size: 80px;
     font-weight: 200;
 }
@@ -10,3 +10,8 @@
 .palette-list li {
     display: inline-flex;
 }
+
+td, th {
+    border: 1px solid #999;
+    padding: 40px;
+  }
