@@ -15,7 +15,7 @@ let color4 = document.getElementsByClassName("color")[3].style.border = " 1px so
 let blue = document.querySelector("#blue").style.backgroundColor = "blue";
 let bluePadding = document.querySelector("#blue").style.padding = "60px 60px";
 
-let colorPixel1 = document.getElementsByClassName("pixel")[0].style.backgroundColor = "white";
+let colorPixel1 = document.getElementsByClassName("pixel")[0].style.backgroundColor = "black";
 let colorPixel2 = document.getElementsByClassName("pixel")[1].style.backgroundColor = "white";
 let colorPixel3 = document.getElementsByClassName("pixel")[2].style.backgroundColor = "white";
 let colorPixel4 = document.getElementsByClassName("pixel")[3].style.backgroundColor = "white";
