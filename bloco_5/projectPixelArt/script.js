@@ -15,31 +15,26 @@ let color4 = document.getElementsByClassName("color")[3].style.border = " 1px so
 let blue = document.querySelector("#blue").style.backgroundColor = "blue";
 let bluePadding = document.querySelector("#blue").style.padding = "60px 60px";
 
-let colorPixel1 = document.getElementsByClassName("pixel")[0].style.backgroundColor = "black";
-let colorPixel2 = document.getElementsByClassName("pixel")[1].style.backgroundColor = "white";
-let colorPixel3 = document.getElementsByClassName("pixel")[2].style.backgroundColor = "white";
-let colorPixel4 = document.getElementsByClassName("pixel")[3].style.backgroundColor = "white";
-let colorPixel5 = document.getElementsByClassName("pixel")[4].style.backgroundColor = "white";
-let colorPixel6 = document.getElementsByClassName("pixel")[5].style.backgroundColor = "white";
-let colorPixel7 = document.getElementsByClassName("pixel")[6].style.backgroundColor = "white";
-let colorPixel8 = document.getElementsByClassName("pixel")[7].style.backgroundColor = "white";
-let colorPixel9 = document.getElementsByClassName("pixel")[8].style.backgroundColor = "white";
-let colorPixel10 = document.getElementsByClassName("pixel")[9].style.backgroundColor = "white";
-let colorPixel11 = document.getElementsByClassName("pixel")[10].style.backgroundColor = "white";
-let colorPixel12 = document.getElementsByClassName("pixel")[11].style.backgroundColor = "white";
-let colorPixel13 = document.getElementsByClassName("pixel")[12].style.backgroundColor = "white";
-let colorPixel14 = document.getElementsByClassName("pixel")[13].style.backgroundColor = "white";
-let colorPixel15 = document.getElementsByClassName("pixel")[14].style.backgroundColor = "white";
-let colorPixel16 = document.getElementsByClassName("pixel")[15].style.backgroundColor = "white";
-let colorPixel17 = document.getElementsByClassName("pixel")[16].style.backgroundColor = "white";
-let colorPixel18 = document.getElementsByClassName("pixel")[17].style.backgroundColor = "white";
-let colorPixel19 = document.getElementsByClassName("pixel")[18].style.backgroundColor = "white";
-let colorPixel20 = document.getElementsByClassName("pixel")[19].style.backgroundColor = "white";
-let colorPixel21 = document.getElementsByClassName("pixel")[20].style.backgroundColor = "white";
-let colorPixel22 = document.getElementsByClassName("pixel")[21].style.backgroundColor = "white";
-let colorPixel23 = document.getElementsByClassName("pixel")[22].style.backgroundColor = "white";
-let colorPixel24 = document.getElementsByClassName("pixel")[23].style.backgroundColor = "white";
-let colorPixel25 = document.getElementsByClassName("pixel")[24].style.backgroundColor = "white";
+// 4 - Adicione à página um quadro de pixels, com 25 pixels.
+
+let table = document.querySelector('#pixel-board');
+function pixelTable() {
+  table.innerHTML = '';
+  let rowsAndColumns = 5;
+  for (let i = 0; i < rowsAndColumns; i += 1) {
+    let pixelsRow = document.createElement('tr');
+    table.appendChild(pixelsRow);
+    for (let j = 0; j < rowsAndColumns; j += 1) {
+      let pixel = document.createElement('td');
+      pixel.classList.add('pixel');
+      pixelsRow.appendChild(pixel);
+     
+    }
+  }
+}
+pixelTable();
+
+// desafio 6
 
 let selectClass1 = document.getElementsByClassName("color")[0];
 selectClass1.classList.add("selected");
@@ -73,4 +68,6 @@ for (let i = 0; i < pixelArray.length; i += 1) { // passa por todos elementos do
     evt.target.style.backgroundColor = backColor; // o evento target (o que foi cliclado receb a cor do selected)
   }
 }
+
+// deasfio 9
 
