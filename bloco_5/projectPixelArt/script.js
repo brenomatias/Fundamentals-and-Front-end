@@ -45,12 +45,11 @@ let selectClass1 = document.getElementsByClassName("color")[0];
 selectClass1.classList.add("selected");
 
 
-// desafio 8 // referencia https://stackoverflow.com/questions/50883690/remove-class-from-one-element-while-adding-that-class-to-another-element-using
+// desafio 7 // referencia https://stackoverflow.com/questions/50883690/remove-class-from-one-element-while-adding-that-class-to-another-element-using
 
+let colorsArray = document.querySelectorAll(".color");
 
-var colorsArray = document.querySelectorAll(".color");
-
-for (var i = 0; i < colorsArray.length; i += 1) { 
+for (let i = 0; i < colorsArray.length; i += 1) { 
   colorsArray[i].addEventListener("click", addClassColors);
    function addClassColors(evt) {
     clearClass(); // invoca a função de remoção
@@ -59,7 +58,19 @@ for (var i = 0; i < colorsArray.length; i += 1) {
 }
 
 function clearClass(){
-  for (var i = 0; i < colorsArray.length; i += 1) {
+  for (let i = 0; i < colorsArray.length; i += 1) {
     colorsArray[i].classList.remove("selected");
   }
 }
+
+// desafio 8 
+let pixelArray = document.querySelectorAll(".pixel"); 
+
+for (let i = 0; i < pixelArray.length; i += 1) { // passa por todos elementos do araray contendo os valores pixel
+  pixelArray[i].addEventListener("click", addColorPixel);
+   function addColorPixel(evt) {
+    let backColor = document.querySelector(".selected").style.backgroundColor // armazena a variavel da cor de fundo do elemento que foi criado
+    evt.target.style.backgroundColor = backColor; // o evento target (o que foi cliclado receb a cor do selected)
+  }
+}
+
