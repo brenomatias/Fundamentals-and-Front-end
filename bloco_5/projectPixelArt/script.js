@@ -1,6 +1,6 @@
 let color1 = document.getElementsByClassName("color")[0].style.border = " 1px solid black"; // Até rePadding é o exercício 2 
-let red = document.querySelector("#red").style.backgroundColor = "red";
-let redPadding = document.querySelector("#red").style.padding = "60px 60px";
+let black = document.querySelector("#black").style.backgroundColor = "black";
+let blackPadding = document.querySelector("#black").style.padding = "60px 60px";
 
 
 let color2 = document.getElementsByClassName("color")[1].style.border = " 1px solid black";
