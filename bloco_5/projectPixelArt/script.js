@@ -17,7 +17,7 @@ let bluePadding = document.querySelector("#blue").style.padding = "60px 60px";
 
 // 4 - Adicione à página um quadro de pixels, com 25 pixels.
 
-let table = document.querySelector('#pixel-board');
+let table = document.querySelector('#pixel-board'); // seleciona a table pelo id
 function pixelTable() {
   let rowsAndColumns = 5; // define o número de linhas e colunas 
   for (let i = 0; i < rowsAndColumns; i += 1) {
@@ -43,9 +43,9 @@ selectClass1.classList.add("selected");
 let colorsArray = document.querySelectorAll(".color"); // selector all cria uma array com todos elementos com a classe "color"
 
 for (let i = 0; i < colorsArray.length; i += 1) { 
-  colorsArray[i].addEventListener("click", addClassColors);
-   function addClassColors(event) {
-    clearClass(); // invoca a função de remoção
+  colorsArray[i].addEventListener("click", addClassColors); // cria um evento de click para todos os elementos do array [colors]
+   function addClassColors(event) { // cria uma funçao para adicionar classe a elemento clicado (no array);
+   clearClass(); //invoca a função de remoção para proxima seleção;
     event.target.classList.add("selected"); // seleciona o target (elemento clicado e adciona a classe "selected")
   }
 }
