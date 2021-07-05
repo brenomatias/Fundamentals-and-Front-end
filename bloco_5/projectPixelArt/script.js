@@ -60,12 +60,40 @@ function clearClass(){
 let pixelArray = document.querySelectorAll(".pixel"); 
 
 for (let i = 0; i < pixelArray.length; i += 1) { // passa por todos elementos do araray contendo os valores pixel
-  pixelArray[i].addEventListener("click", addColorPixel);
-   function addColorPixel(event) {
-    let backColor = document.querySelector(".selected").style.backgroundColor // armazena a variavel da cor de fundo do elemento que foi criado
+    pixelArray[i].addEventListener("click", addColorPixel);
+    function addColorPixel(event) {
+    let backColor = document.querySelector(".selected").style.backgroundColor; // armazena a variavel da cor de fundo do elemento que foi criado
     event.target.style.backgroundColor = backColor; // o evento target (o que foi cliclado receb a cor do selected)
   }
 }
 
 // deasfio 9
+    let clickClear = document.querySelector(".button-section"); // seleciona o local de append child 
+    let buttonClear = document.createElement("button");
+    buttonClear.innerHTML = "Limpar";  
+    clickClear.appendChild(buttonClear);
+    buttonClear.setAttribute("id", "clear-board"); // define atributes, dá o id
+    buttonClear.addEventListener("click", clearBox);
 
+    function clearBox() {
+    let allPixels = document.querySelectorAll('td'); // seleciona todos elementos do estilo (elementos que vao disparar a função)
+    for (let i = 0; i < allPixels.length; i += 1) { // faz o loop por todos elementos de pixel 
+          allPixels[i].style.backgroundColor = 'white';
+        }
+      }
+      
+   // requisito 10
+   let resize = document.querySelector(".size-button"); // seleciona o local de append child 
+   let resizeButton = document.createElement("button");
+   resizeButton.type = "submit"; // https://www.techiedelight.com/dynamically-generate-input-type-button-javascript/
+   resizeButton.innerHTML = "VQV";  
+   resize.appendChild(resizeButton);
+   resizeButton.setAttribute("id", "clear-board"); //até aqui cria o botão de resize
+
+   let inputSize = document.querySelector(".size-button"); // seleciona o local de append child 
+   let inputSizeButton = document.createElement("input");
+   inputSizeButton.type = "number"; // este elemento e os elementos min e max criam os botoes de escolha de 5 a 50 no input
+   inputSizeButton.min = "5";
+   inputSizeButton.max = "50";
+   inputSize.appendChild(inputSizeButton);
+   inputSizeButton.setAttribute("id", "input-size"); //até aqui cria o botão de resize

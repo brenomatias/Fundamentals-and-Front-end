@@ -1,6 +1,8 @@
 https://css-tricks.com/complete-guide-table-element/
-// Referencias : https://css-tricks.com/fun-times-css-pixel-art/
+ https://css-tricks.com/fun-times-css-pixel-art/
 https://stackoverflow.com/questions/50883690/remove-class-from-one-element-while-adding-that-class-to-another-element-using
+https://www.w3schools.com/tags/att_button_type.asp
+https://en.wikibooks.org/wiki/JavaScript/Changing_elements
 
 
 exercicio 7
