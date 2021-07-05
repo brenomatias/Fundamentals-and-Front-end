@@ -40,3 +40,6 @@ let colorPixel22 = document.getElementsByClassName("pixel")[21].style.background
 let colorPixel23 = document.getElementsByClassName("pixel")[22].style.backgroundColor = "white";
 let colorPixel24 = document.getElementsByClassName("pixel")[23].style.backgroundColor = "white";
 let colorPixel25 = document.getElementsByClassName("pixel")[24].style.backgroundColor = "white";
+
+let selectClass = document.getElementsByClassName("color")[0];
+selectClass.classList.add("selected")
