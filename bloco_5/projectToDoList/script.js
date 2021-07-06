@@ -37,19 +37,32 @@ buttonInput.addEventListener ("click", addAnother);
 
 // Quesito 7 // referencia https://github.com/tryber/sd-012-project-todo-list/blob/duribeiro-todo-list/script.js
 
-function selectItem() { // essa funçao selecionará o item da lista selecionado
+
+
 let ol = document.getElementById("lista-tarefas");
-ol.addEventListener('click', (event) => { // cria evento de clicar em cada item da lista(event target)
+ol.addEventListener('click', selectItem); 
+
+function selectItem(event){ 
 let itemSelected = document.querySelector('.selected');
 if (itemSelected !== null) {
         itemSelected.classList.remove('selected');
 }
- event.target.classList.add('selected');
+ event.target.classList.add('selected'); // note que o event está fora do if (passa pelo if primeiro a função)
 paintTask();
-});
 }
-  selectItem();
 
-// depois alterar cor de classe no css)
+// depois alterar cor de classe(.selected) no css)
 
-//Quesito 8
+//quesito 8 
+// ja foi feito no 7
+
+//Quesito 9
+
+let completeOl = document.getElementById("lista-tarefas");
+completeOl.addEventListener('dblclick', selectCompleted);
+
+function selectCompleted (event){ 
+let completedSelected = document.querySelector('.completed');
+event.target.classList.add('completed');   
+}
+  
