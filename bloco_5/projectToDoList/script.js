@@ -29,6 +29,7 @@ button.appendChild(buttonInput);
     var li = document.createElement("li");
     li.innerText = text;
     ul.appendChild(li)
+    document.getElementById("myForm").reset(); // https://www.w3schools.com/Jsref/met_form_reset.asp
 }
 
 buttonInput.addEventListener ("click", addAnother);
