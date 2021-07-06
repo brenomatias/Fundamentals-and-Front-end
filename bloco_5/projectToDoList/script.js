@@ -66,19 +66,25 @@ let completedSelected = document.querySelector('.completed');
 event.target.classList.add('completed');   
 }
 
-//Quesito 10
+//Quesito 10 // referencia https://github.com/tryber/sd-012-project-todo-list/blob/julio-barros-todo-list/script.js
 
 let clickClear = document.querySelector(".button-clear"); 
-    let buttonClear = document.createElement("button");
-    buttonClear.innerHTML = "Limpar tarefas";  
-    clickClear.appendChild(buttonClear);
-    buttonClear.id = "apaga-tudo";
-    buttonClear.addEventListener("click", clearBox);
+let buttonClear = document.createElement("button");
+buttonClear.innerHTML = "Limpar tarefas";  
+clickClear.appendChild(buttonClear);
+buttonClear.id = "apaga-tudo";
+buttonClear.addEventListener("click", clearBox);
+
+function clearBox (){
+let itemsToClear = document.getElementsByTagName('li'); // cria um array de elementos
+let list = document.querySelector('#lista-tarefas');
+    if (itemsToClear.length > 0) {
+        while (list.firstChild) {
+          list.removeChild(list.firstChild);
+        }
+      } else {
+        alert('A lista está vazia!');
+      }
+}
   
-    function clearBox() {
-        let allItemsList = document.querySelectorAll('td'); // seleciona todos elementos do estilo (elementos que vao disparar a função)
-        for (let i = 0; i < allItemsList.length; i += 1) { // faz o loop por todos elementos de pixel 
-              clear
-            }
-          }
-          
+  

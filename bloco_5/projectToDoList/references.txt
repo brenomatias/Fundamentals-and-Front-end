@@ -5,3 +5,4 @@ https://stackoverflow.com/questions/20673959/how-to-add-new-li-to-ul-onclick-wit
 https://www.w3schools.com/Jsref/met_form_reset.asp
 https://github.com/tryber/sd-012-project-todo-list/blob/duribeiro-todo-list/script.js
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions
+https://stackoverflow.com/questions/436411/where-should-i-put-script-tags-in-html-markup
