@@ -21,10 +21,10 @@ let buttonInput= document.createElement("button");
 button.id = "criar-tarefa";
 buttonInput.innerText = "Adicionar tarefa"
 button.appendChild(buttonInput);
+buttonInput.addEventListener ("click", addAnotherTask);
 
-
- function addAnother() {
-    let text = inputTask.value;
+ function addAnotherTask() {
+    let text = inputTask.value; // define uma variável para armazenar p valor do input 
     let ol = document.getElementById("lista-tarefas");
     let li = document.createElement("li");
     li.classList.add("taskItem");
@@ -33,7 +33,7 @@ button.appendChild(buttonInput);
     ol.appendChild(li)
     document.getElementById("myForm").reset(); // https://www.w3schools.com/Jsref/met_form_reset.asp
 }
-buttonInput.addEventListener ("click", addAnother);
+
 
 // Quesito 7 // referencia https://github.com/tryber/sd-012-project-todo-list/blob/duribeiro-todo-list/script.js
 
@@ -75,11 +75,11 @@ clickClear.appendChild(buttonClear);
 buttonClear.id = "apaga-tudo";
 buttonClear.addEventListener("click", clearBox);
 
-function clearBox (){
+function clearBox () { //https://github.com/tryber/sd-012-project-todo-list/blob/julio-barros-todo-list/script.js
 let itemsToClear = document.getElementsByTagName('li'); // cria um array de elementos
-let list = document.querySelector('#lista-tarefas');
+let list = document.querySelector('#lista-tarefas'); // define o node da lista
     if (itemsToClear.length > 0) {
-        while (list.firstChild) {
+        while (list.firstChild) { // enquanto a lista tiver uma child o código será executado
           list.removeChild(list.firstChild);
         }
       } else {
@@ -87,4 +87,23 @@ let list = document.querySelector('#lista-tarefas');
       }
 }
   
-  
+// Quesito 11 
+
+let clickClearCompleted = document.querySelector(".button-clear-completed"); 
+let buttonClearCompleted = document.createElement("button");
+buttonClearCompleted.innerHTML = "Limpar tarefas completas";  
+clickClearCompleted.appendChild(buttonClearCompleted);
+buttonClearCompleted.id = "remover-finalizados";
+buttonClearCompleted.addEventListener("click", clearBoxCompleted);
+
+function clearBoxCompleted () { 
+    let itemsCompletedToClear = document.getElementsByClassName('completed'); // cria array de items selecionados (com a classe 'completed')
+    let listCompletedToClear = document.querySelector('#lista-tarefas'); // seleciona os elementos 
+    if (itemsCompletedToClear.length > 0) {
+        while (listCompletedToClear.firstChild) { // enquanto a lista tiver uma child o código será executado
+            itemsCompletedToClear[0].parentNode.removeChild(itemsCompletedToClear[0]);
+        }
+      } else {
+        alert('Você não possui tarefas completas!');
+      }
+}
