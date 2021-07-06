@@ -83,17 +83,35 @@ for (let i = 0; i < pixelArray.length; i += 1) { // passa por todos elementos do
       }
       
    // requisito 10
-   let resize = document.querySelector(".size-button"); // seleciona o local de append child 
-   let resizeButton = document.createElement("button");
-   resizeButton.type = "submit"; // https://www.techiedelight.com/dynamically-generate-input-type-button-javascript/
-   resizeButton.innerHTML = "VQV";  
-   resize.appendChild(resizeButton);
-   resizeButton.setAttribute("id", "clear-board"); //até aqui cria o botão de resize
+   let input = document.querySelector(".size-button"); // seleciona o local de append child 
+   let inputResize= document.createElement("input");
+   inputResize.type = "number";
+   inputResize.id = "board-size";
+   inputResize.min = "5";
+   inputResize.max = "50";
+   input.appendChild(inputResize);
 
-   let inputSize = document.querySelector(".size-button"); // seleciona o local de append child 
-   let inputSizeButton = document.createElement("input");
-   inputSizeButton.type = "number"; // este elemento e os elementos min e max criam os botoes de escolha de 5 a 50 no input
-   inputSizeButton.min = "5";
-   inputSizeButton.max = "50";
-   inputSize.appendChild(inputSizeButton);
-   inputSizeButton.setAttribute("id", "input-size"); //até aqui cria o botão de resize
+   let buttonResize = document.querySelector(".size-button");
+   let clickResize = document.createElement("button");
+   clickResize.type = "submit";
+   clickResize.id = "generate-board";
+   clickResize.innerText = "VQV";
+   buttonResize.appendChild(clickResize);
+   clickResize.addEventListener("click", resizeTable)
+
+   
+   function defineTableSize() {
+    table.innerHTML = '';
+    for (let index = 0; index < inputSize.value; index += 1) {
+      const newPixelsRow = document.createElement('tr');
+      table.appendChild(newPixelsRow);
+      for (let index1 = 0; index1 < inputSize.value; index1 += 1) {
+        const newPixel = document.createElement('td');
+        newPixel.classList.add('pixel');
+        newPixelsRow.appendChild(newPixel);
+        newPixel.addEventListener('click', paintPixels);
+      }
+    }
+  }
+  
+  defineSizeButton.addEventListener('click', defineTableSize);
