@@ -37,8 +37,6 @@ buttonInput.addEventListener ("click", addAnother);
 
 // Quesito 7 // referencia https://github.com/tryber/sd-012-project-todo-list/blob/duribeiro-todo-list/script.js
 
-
-
 let ol = document.getElementById("lista-tarefas");
 ol.addEventListener('click', selectItem); 
 
@@ -65,4 +63,20 @@ function selectCompleted (event){
 let completedSelected = document.querySelector('.completed');
 event.target.classList.add('completed');   
 }
+
+//Quesito 10
+
+let clickClear = document.querySelector(".button-clear"); 
+    let buttonClear = document.createElement("button");
+    buttonClear.innerHTML = "Limpar tarefas";  
+    clickClear.appendChild(buttonClear);
+    buttonClear.id = "apaga-tudo";
+    buttonClear.addEventListener("click", clearBox);
   
+function clearBox() {
+  let allItemsList = document.querySelectorAll('#lista-tarefas'); // seleciona todos elementos do estilo (elementos que vao disparar a função)
+    for (let i = 0; i < allItemsList.length; i += 1) { // faz o loop por todos elementos de pixel 
+    allItemsList[i] = null;
+ }
+}
+          
