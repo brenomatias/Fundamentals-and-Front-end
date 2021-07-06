@@ -1,0 +1,14 @@
+.taskItem {
+    font-size: 30px;
+    border: 1px solid black;
+}
+
+
+
+.taskItem {
+    background-color: aqua;
+}
+
+.selected {
+    background-color: rgb(128, 128, 128);
+}
