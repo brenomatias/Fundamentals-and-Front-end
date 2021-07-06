@@ -25,12 +25,29 @@ button.appendChild(buttonInput);
 
  function addAnother() {
     let text = inputTask.value;
-    var ul = document.getElementById("lista-tarefas");
+    var ol = document.getElementById("lista-tarefas");
     var li = document.createElement("li");
+    li.id = "taskItem"
     li.innerText = text;
-    ul.appendChild(li)
+    ol.appendChild(li)
     document.getElementById("myForm").reset(); // https://www.w3schools.com/Jsref/met_form_reset.asp
 }
-
 buttonInput.addEventListener ("click", addAnother);
+
+// Quesito 7 // referencia https://github.com/tryber/sd-012-project-todo-list/blob/duribeiro-todo-list/script.js
+
+function selectItem() { // essa funçao selecionará o item da lista selecionado
+var ol = document.getElementById("lista-tarefas");
+ol.addEventListener('click', (event) => {
+const itemSelected = document.querySelector('.selected');
+if (itemSelected !== null) {
+        itemSelected.classList.remove('selected');
+}
+ event.target.classList.add('selected');
+paintTask();
+});
+}
+  selectItem();
+
+  
 
