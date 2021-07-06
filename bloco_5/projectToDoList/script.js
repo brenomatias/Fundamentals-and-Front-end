@@ -24,7 +24,11 @@ button.appendChild(buttonInput);
 buttonInput.addEventListener ("click", addAnotherTask);
 
  function addAnotherTask() {
+
     let text = inputTask.value; // define uma variável para armazenar p valor do input 
+    if (text === ''){
+      alert("Insira uma tarefa!")
+    }
     let ol = document.getElementById("lista-tarefas");
     let li = document.createElement("li");
     li.classList.add("taskItem");
@@ -36,7 +40,6 @@ buttonInput.addEventListener ("click", addAnotherTask);
 
 
 // Quesito 7 // referencia https://github.com/tryber/sd-012-project-todo-list/blob/duribeiro-todo-list/script.js
-
 
 
 let ol = document.getElementById("lista-tarefas");
@@ -107,3 +110,24 @@ function clearBoxCompleted () {
         alert('Você não possui tarefas completas!');
       }
 }
+
+// Quesito 12 referencia https://github.com/tryber/sd-012-project-todo-list/blob/luciano-lanes-lopes-project-todo-list/script.js
+
+let clickSave = document.querySelector(".button-save"); 
+let buttonSave = document.createElement("button");
+buttonSave.innerHTML = "Salvar tarefas";  
+clickSave.appendChild(buttonSave);
+buttonSave.id = "salvar-tarefas";
+buttonSave.addEventListener("click", saveTasks);
+
+function saveTasks () { 
+  let taskListSaveLocal = document.getElementById('lista-tarefas');
+      localStorage.setItem('tasks', taskListSaveLocal.innerHTML);
+  }  
+function retrieveTasks () {
+  let taskListSaveLocal = document.getElementById('lista-tarefas');
+  taskListSaveLocal.innerHTML = localStorage.getItem('tasks');
+}
+
+window.onload = retrieveTasks(); // Execute a JavaScript immediately after a page has been loaded:
+
