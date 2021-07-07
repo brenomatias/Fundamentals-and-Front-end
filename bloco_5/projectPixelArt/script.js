@@ -32,13 +32,13 @@ function pixelTable() {
 }
 pixelTable();
 
-// desafio 6
+// Quesito 6
 
 let selectClass1 = document.getElementsByClassName("color")[0];
 selectClass1.classList.add("selected");
 
 
-// desafio 7 // referencia https://stackoverflow.com/questions/50883690/remove-class-from-one-element-while-adding-that-class-to-another-element-using
+// Quesito 7 // referencia https://stackoverflow.com/questions/50883690/remove-class-from-one-element-while-adding-that-class-to-another-element-using
 
 let colorsArray = document.querySelectorAll(".color"); // selector all cria uma array com todos elementos com a classe "color"
 
@@ -50,13 +50,13 @@ for (let i = 0; i < colorsArray.length; i += 1) {
   }
 }
 
-function clearClass(){
+function clearClass(){ // função de remoção (usada dentro do loop inicial de seleção para remover pos outro item selecionado)
   for (let i = 0; i < colorsArray.length; i += 1) {
     colorsArray[i].classList.remove("selected");
   }
 }
 
-// desafio 8 
+// Quesito 8 
 let pixelArray = document.querySelectorAll(".pixel"); 
 
 for (let i = 0; i < pixelArray.length; i += 1) { // passa por todos elementos do araray contendo os valores pixel
@@ -103,7 +103,7 @@ for (let i = 0; i < pixelArray.length; i += 1) { // passa por todos elementos do
    function defineTableSize() {
      table.innerHTML = ''; // Exercicio 4 (recupera o valor e define uma matriz null para fazer os loops de add) let table = document.querySelector('#pixel-board'); // seleciona a table pelo id
      for (let i = 0; i < inputValue.value; i += 1) { // os loops entao vao se realizar com base no valor do input
-       let newPixelsRow = document.createElement('tr');
+       let newPixelsRow = document.createElement('tr'); // os loops criam as rows e columns e adicionam na table inicial (vazia)
        table.appendChild(newPixelsRow);
        for (let j = 0; j < inputValue.value; j += 1) {
          let newPixelsColums = document.createElement('td');
@@ -112,6 +112,45 @@ for (let i = 0; i < pixelArray.length; i += 1) { // passa por todos elementos do
          newPixelsColums.addEventListener('click', addColorPixel); // aqui invoca a função definida no exercício 8 de adicionar a cor ao elemento selected
        }
      }
-   } // a função de selecionar roda antes dessa independente
+   } // a função de selecionar (add class selected) roda antes dessa independente
    
+   clickResize.addEventListener('click', boardNullAlert); // aqui adiciona mais um evento ao botão VQV (no final serão 3)
+   function boardNullAlert() { // essa função emite alerta se a intrada do input for nula e o botão VQV
+    if (inputSize.value == '') { // input valor nulo
+      alert('Board Inválido! Sem valor adcionado');
+      pixelTable(); // aqui invoca a função de construção do board de pixel feita no quesito 4
+    }
+   } 
+
+   // Quesito 11
+   
+   function maxTableSize() { // essa função vai restringir a criação de blocos de pixel
+    table.innerHTML = '';
+    let maxInput = 50; // define o valor máximo de entrada possível
+    for (let index = 0; index < maxInput; index += 1) {
+      let pixelsRow = document.createElement('tr'); 
+      table.appendChild(pixelsRow);
+      for (let index1 = 0; index1 < maxInput; index1 += 1) {
+        let pixel = document.createElement('td');
+        pixel.classList.add('pixel');
+        pixelsRow.appendChild(pixel);
+        pixel.addEventListener('click', addColorPixel);
+      }
+    }
+  }
+  clickResize.addEventListener('click', boardLimitSize); // adciona ao botão mais um evento e função (a função de restringir o valor máximo)
+  // função criada para emitir alerta -> se o clique for com os valores de max e min emite alerta
+  function boardLimitSize() {
+    if (inputSize.value < 5) { // cria uma restrição de valor de maximo e mínimo
+      alert('Board inválido!');
+      pixelTable(); // invoca novamente a função inicial de construçao do board
+    }
+  
+    if (inputSize.value > 50) {
+      alert('Board inválido!');
+      maxTableSize(); // retorna o valor máximo que é maxInput = 50 para a criação da matrix
+    }
+  }
+  
+  
  
