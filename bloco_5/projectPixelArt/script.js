@@ -23,7 +23,7 @@ function pixelTable() {
   for (let i = 0; i < rowsAndColumns; i += 1) {
     let pixelsRow = document.createElement('tr'); // cria elemento de linha no pai
     table.appendChild(pixelsRow); // adiciona as linhas ao pai (pixel-board)
-    for (let j = 0; j < rowsAndColumns; j += 1) { 
+    for (let j = 0; j < rowsAndColumns; j += 1) {  // loop cria elementos ate o valor definido
       let pixel = document.createElement('td'); // cria elemento de coluna 
       pixel.classList.add('pixel');
       pixelsRow.appendChild(pixel);  
@@ -47,21 +47,21 @@ for (let i = 0; i < colorsArray.length; i += 1) {
    function addClassColors(event) { // cria uma funçao para adicionar classe a elemento clicado (no array);
    clearClass(); //invoca a função de remoção para proxima seleção;
     event.target.classList.add("selected"); // seleciona o target (elemento clicado e adciona a classe "selected")
-  }
+  } // a classe "colors" são as cores primárias(paleta)
 }
 
 function clearClass(){ // função de remoção (usada dentro do loop inicial de seleção para remover pos outro item selecionado)
-  for (let i = 0; i < colorsArray.length; i += 1) {
+  for (let i = 0; i < colorsArray.length; i += 1) { // faz o loop dentro dos elementos com a classe color
     colorsArray[i].classList.remove("selected");
   }
 }
 
 // Quesito 8 
-let pixelArray = document.querySelectorAll(".pixel"); 
+let pixelArray = document.querySelectorAll(".pixel"); // pixel sao os elementos do board de pixels a ser criado
 
 for (let i = 0; i < pixelArray.length; i += 1) { // passa por todos elementos do araray contendo os valores pixel
     pixelArray[i].addEventListener("click", addColorPixel);
-    function addColorPixel(event) {
+    function addColorPixel(event) { // função de adcionar cor aos pixels (o evento target é o pixel clicado (com a class selected))
     let backColor = document.querySelector(".selected").style.backgroundColor; // armazena a variavel da cor de fundo do elemento que foi criado
     event.target.style.backgroundColor = backColor; // o evento target (o que foi cliclado receb a cor do selected)
   }
@@ -84,16 +84,16 @@ for (let i = 0; i < pixelArray.length; i += 1) { // passa por todos elementos do
       
    // requisito 10 referencia https://github.com/tryber/sd-013-b-project-pixels-art/blob/guihtryb-project-pixels-art/script.js
    let input = document.querySelector(".size-button"); // seleciona o local de append child 
-   let inputSize= document.createElement("input");
+   let inputSize= document.createElement("input"); // cria elemento de input
    inputSize.type = "number";
    inputSize.id = "board-size";
-   inputSize.min = "5";
+   inputSize.min = "5"; // define min e max da entrada do input (isso cria input interativo)
    inputSize.max = "50";
    input.appendChild(inputSize);
 
    let buttonResize = document.querySelector(".size-button");
    let clickResize = document.createElement("button");
-   clickResize.type = "submit";
+   clickResize.type = "submit"; // The button is a submit button (submits form-data)
    clickResize.id = "generate-board";
    clickResize.innerText = "VQV";
    buttonResize.appendChild(clickResize);
