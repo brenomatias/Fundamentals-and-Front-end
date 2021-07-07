@@ -1,3 +1,8 @@
+// Requisito 2
+let instructions= document.createElement("p");
+instructions.innerText = "Clique duas vezes em um item para marcá-lo como completo<"
+document.getElementById("header").appendChild(instructions);
+
 // Requisito 3
 
 let input = document.querySelector(".input-task"); // seleciona o local de append child 
@@ -32,7 +37,7 @@ buttonInput.addEventListener ("click", addAnotherTask);
     let li = document.createElement("li");
     li.classList.add("taskItem");
     li.id = "task-item"
-    li.innerText = text;
+    li.innerText = text; // aqui retorna o valor do input para adicionar na lista
     ol.appendChild(li)
     document.getElementById("myForm").reset(); // https://www.w3schools.com/Jsref/met_form_reset.asp
 }
@@ -112,7 +117,7 @@ function clearBoxCompleted () {
 
 let clickSave = document.querySelector(".button-save"); 
 let buttonSave = document.createElement("button");
-buttonSave.innerHTML = "Salvar tarefas";  
+buttonSave.innerHTML = "Atualizar tarefas";  
 clickSave.appendChild(buttonSave);
 buttonSave.id = "salvar-tarefas";
 buttonSave.addEventListener("click", saveTasks);
@@ -161,3 +166,15 @@ function moveDown () {
 }
 
 // Quesito 14
+
+let clickRemoveSelected = document.querySelector(".button-up"); 
+let buttonRemoveSelected = document.createElement("button");
+buttonRemoveSelected.innerHTML = "Remover tarefa selecionada";  
+clickRemoveSelected.appendChild(buttonRemoveSelected);
+buttonRemoveSelected.id = "remover-selecionado";
+buttonRemoveSelected.addEventListener("click", removeTaskSelected);
+
+function removeTaskSelected () {
+  let taskSelectedToRemove = document.querySelector('.selected');
+  taskSelectedToRemove.remove(); // The Element.remove() method removes the element from the tree it belongs to.
+}
