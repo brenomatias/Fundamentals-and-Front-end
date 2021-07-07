@@ -6,7 +6,6 @@ inputTask.type = "text";
 inputTask.id = "texto-tarefa";
 input.appendChild(inputTask);
 
-
 // Requisito 4
 
 let task = document.querySelector(".task-list"); // seleciona o local de append child 
@@ -38,9 +37,7 @@ buttonInput.addEventListener ("click", addAnotherTask);
     document.getElementById("myForm").reset(); // https://www.w3schools.com/Jsref/met_form_reset.asp
 }
 
-
 // Quesito 7 // referencia https://github.com/tryber/sd-012-project-todo-list/blob/duribeiro-todo-list/script.js
-
 
 let ol = document.getElementById("lista-tarefas");
 ol.addEventListener('click', selectItem); 
@@ -120,14 +117,30 @@ clickSave.appendChild(buttonSave);
 buttonSave.id = "salvar-tarefas";
 buttonSave.addEventListener("click", saveTasks);
 
-function saveTasks () { 
+function saveTasks() { 
   let taskListSaveLocal = document.getElementById('lista-tarefas');
       localStorage.setItem('tasks', taskListSaveLocal.innerHTML);
   }  
-function retrieveTasks () {
+function retrieveTasks() {
   let taskListSaveLocal = document.getElementById('lista-tarefas');
   taskListSaveLocal.innerHTML = localStorage.getItem('tasks');
 }
 
 window.onload = retrieveTasks(); // Execute a JavaScript immediately after a page has been loaded:
 
+// Quesito 13 - primeiro precisamos selecionar o elemento -> com a classe selected
+
+let clickUp = document.querySelector(".button-up"); 
+let buttonUp = document.createElement("button");
+buttonUp.innerHTML = "Mover para cima";  
+clickUp.appendChild(buttonUp);
+buttonUp.id = "mover-cima";
+buttonUp.addEventListener("click", moveUp);
+
+function moveUp (){
+let ol = document.querySelector('#lista-tarefas');
+    let taskUp = document.querySelector('.selected');
+    if (ol.firstChild != taskUp && taskUp != null) {
+      ol.insertBefore(taskUp, taskUp.previousSibling); // insertBefore ---> https://developer.mozilla.org/pt-BR/docs/Web/API/Node/insertBefore
+    }
+  }
