@@ -10,3 +10,5 @@ https://developer.mozilla.org/en-US/docs/Web/API/Storage/setItem
 https://github.com/tryber/sd-012-project-todo-list/blob/luciano-lanes-lopes-project-todo-list/script.js
 https://www.w3schools.com/jsref/event_onload.asp
 https://developer.mozilla.org/en-US/docs/Web/API/Storage/setItem
+https://github.com/tryber/sd-012-project-todo-list/blob/caroline-benichio-todo-list/script.js
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND

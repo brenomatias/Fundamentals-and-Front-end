@@ -137,10 +137,25 @@ clickUp.appendChild(buttonUp);
 buttonUp.id = "mover-cima";
 buttonUp.addEventListener("click", moveUp);
 
-function moveUp (){
+function moveUp (){ // referencia https://github.com/tryber/sd-012-project-todo-list/blob/caroline-benichio-todo-list/script.js
 let ol = document.querySelector('#lista-tarefas');
     let taskUp = document.querySelector('.selected');
-    if (ol.firstChild != taskUp && taskUp != null) {
+    if (ol.firstChild != taskUp && taskUp != null) { // The logical AND (&&) operator (logical conjunction) for a set of operands is true if and only if all of its operands are true
       ol.insertBefore(taskUp, taskUp.previousSibling); // insertBefore ---> https://developer.mozilla.org/pt-BR/docs/Web/API/Node/insertBefore
     }
   }
+
+let clickDown = document.querySelector(".button-down"); 
+let buttonDown = document.createElement("button");
+buttonDown.innerHTML = "Mover para baixo";  
+clickDown.appendChild(buttonDown);
+buttonDown.id = "mover-cima";
+buttonDown.addEventListener("click", moveDown);
+
+function moveDown () {
+  let ol = document.querySelector('#lista-tarefas');
+  let taskDown = document.querySelector('.selected');
+  if (ol.lastChild != taskDown && taskDown != null) {
+    ol.insertBefore(taskDown.nextSibling, taskDown);
+  }
+}
