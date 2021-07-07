@@ -142,10 +142,10 @@ let ol = document.querySelector('#lista-tarefas');
     let taskUp = document.querySelector('.selected');
     if (ol.firstChild != taskUp && taskUp != null) { // The logical AND (&&) operator (logical conjunction) for a set of operands is true if and only if all of its operands are true
       ol.insertBefore(taskUp, taskUp.previousSibling); // insertBefore ---> https://developer.mozilla.org/pt-BR/docs/Web/API/Node/insertBefore
-    }
+    } // != null é quando a classe é a selected (o item clicado)
   }
 
-let clickDown = document.querySelector(".button-down"); 
+let clickDown = document.querySelector(".button-down"); // mover item está relacionado com a posição das childs nos nós
 let buttonDown = document.createElement("button");
 buttonDown.innerHTML = "Mover para baixo";  
 clickDown.appendChild(buttonDown);
@@ -159,3 +159,5 @@ function moveDown () {
     ol.insertBefore(taskDown.nextSibling, taskDown);
   }
 }
+
+// Quesito 14
