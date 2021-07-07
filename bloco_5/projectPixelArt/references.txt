@@ -6,14 +6,6 @@ https://en.wikibooks.org/wiki/JavaScript/Changing_elements
 https://github.com/tryber/sd-013-b-project-pixels-art/blob/guihtryb-project-pixels-art/script.js
  https://www.techiedelight.com/dynamically-generate-input-type-button-javascript/
  https://github.com/tryber/sd-013-b-project-pixels-art/blob/mariana-nogueira-project-pixels-art/script.js
+ https://github.com/tryber/sd-013-b-project-pixels-art/blob/guihtryb-project-pixels-art/script.js
 
-
-exercicio 7
-
-let selectClass2 = document.getElementsByClassName("color")[1];
-selectClass2.classList.add("selected");
-let selectClass3 = document.getElementsByClassName("color")[2];
-selectClass3.classList.add("selected");
-let selectClass4 = document.getElementsByClassName("color")[3];
-selectClass4.classList.add("selected");
 

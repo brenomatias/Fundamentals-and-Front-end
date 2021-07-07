@@ -82,14 +82,14 @@ for (let i = 0; i < pixelArray.length; i += 1) { // passa por todos elementos do
         }
       }
       
-   // requisito 10
+   // requisito 10 referencia https://github.com/tryber/sd-013-b-project-pixels-art/blob/guihtryb-project-pixels-art/script.js
    let input = document.querySelector(".size-button"); // seleciona o local de append child 
-   let inputResize= document.createElement("input");
-   inputResize.type = "number";
-   inputResize.id = "board-size";
-   inputResize.min = "5";
-   inputResize.max = "50";
-   input.appendChild(inputResize);
+   let inputSize= document.createElement("input");
+   inputSize.type = "number";
+   inputSize.id = "board-size";
+   inputSize.min = "5";
+   inputSize.max = "50";
+   input.appendChild(inputSize);
 
    let buttonResize = document.querySelector(".size-button");
    let clickResize = document.createElement("button");
@@ -97,21 +97,21 @@ for (let i = 0; i < pixelArray.length; i += 1) { // passa por todos elementos do
    clickResize.id = "generate-board";
    clickResize.innerText = "VQV";
    buttonResize.appendChild(clickResize);
-   clickResize.addEventListener("click", resizeTable)
+   clickResize.addEventListener("click", defineTableSize)
 
-   
+   let inputValue = document.querySelector('#board-size'); // variável para armazenar o valor do input 
    function defineTableSize() {
-    table.innerHTML = '';
-    for (let index = 0; index < inputSize.value; index += 1) {
-      const newPixelsRow = document.createElement('tr');
-      table.appendChild(newPixelsRow);
-      for (let index1 = 0; index1 < inputSize.value; index1 += 1) {
-        const newPixel = document.createElement('td');
-        newPixel.classList.add('pixel');
-        newPixelsRow.appendChild(newPixel);
-        newPixel.addEventListener('click', paintPixels);
-      }
-    }
-  }
-  
-  defineSizeButton.addEventListener('click', defineTableSize);
+     table.innerHTML = ''; // Exercicio 4 (recupera o valor e define uma matriz null para fazer os loops de add) let table = document.querySelector('#pixel-board'); // seleciona a table pelo id
+     for (let i = 0; i < inputValue.value; i += 1) { // os loops entao vao se realizar com base no valor do input
+       let newPixelsRow = document.createElement('tr');
+       table.appendChild(newPixelsRow);
+       for (let j = 0; j < inputValue.value; j += 1) {
+         let newPixelsColums = document.createElement('td');
+         newPixelsColums.classList.add('pixel');
+         newPixelsRow.appendChild(newPixelsColums);
+         newPixelsColums.addEventListener('click', addColorPixel); // aqui invoca a função definida no exercício 8 de adicionar a cor ao elemento selected
+       }
+     }
+   } // a função de selecionar roda antes dessa independente
+   
+ 
