@@ -7,5 +7,5 @@ https://github.com/tryber/sd-013-b-project-pixels-art/blob/guihtryb-project-pixe
  https://www.techiedelight.com/dynamically-generate-input-type-button-javascript/
  https://github.com/tryber/sd-013-b-project-pixels-art/blob/mariana-nogueira-project-pixels-art/script.js
  https://github.com/tryber/sd-013-b-project-pixels-art/blob/guihtryb-project-pixels-art/script.js
-
-
+https://www.w3schools.com/css/css3_transitions.asp
+https://developer.mozilla.org/en-US/docs/Web/CSS/scale  
