@@ -46,8 +46,23 @@
     </fieldset>
 
     <fieldset>
-
-
+    <label for="curriculum">Resumo do currículo:</label>
+    <textarea id="curriculum" name="curriculum" maxlength="1000"  rows="20" cols="50">
+            Conte suas experiências!
+    </textarea>
+        <br>
+    <label for="jobTitle">Cargo
+        <input type="text" name="jobTitle" id="jobTitle" maxlength="40" required>
+    </label>
+    <br>
+    <label for="jobDescription">Descrição do cargo</label>
+    <textarea id="jobDescription" name="jobDescription" maxlength="1000"  rows="20" cols="50">   
+    </textarea>
+    <br>
+    <label for="date">Data de início</label>
+    <input type="date" id="date" name="date"
+       value="2021-07-22"
+       min="2018-09-07" max="2100-12-31 required">
     </fieldset>
 </form>
 </main>
