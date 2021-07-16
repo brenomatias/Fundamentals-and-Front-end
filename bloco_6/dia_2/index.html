@@ -10,26 +10,29 @@
 integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-    <form action="" method="GET" class="form-control" >
-    
-    <div>
+    <main >
+<div class="container">
+    <form action="" method="GET" >
+    <div class="container">
       <label for="email">Email</label>
-      <input type="email" name="email" id="email" placeholder=" Digite seu email" required autocomplete="off">
+      <input class="form-control form-control-sm" type="email" name="email" id="email" placeholder=" Digite seu email" required autocomplete="off">
     </div>
     <hr>
-    <div>
+    <div class="container">
       <label for = "password">Password</label>
-      <input type="password" name="password" id="password" placeholder="Digite seu email" autofocus required>
-    </div>
-    <hr>
-    <div>
-      <label for="lembreMe">Lembre-me</label>
-      <input type="checkbox" name="lembreMe" id="lembreMe">
+      <input class="form-control form-control-lg" type="password" name="password" id="password" placeholder="Digite seu email" autofocus required>
     </div>
     <div>
-      <button type="submit">Entrar</button>
+        <hr>
+      <label  for="lembreMe">Lembre-me</label>
+      <input  type="checkbox" name="lembreMe" id="lembreMe">
     </div>
+    <div>
+      <button class="btn btn-success" type="submit">Entrar</button>
+    </div>
+</div>
 </form>
-</label>
+</main>
+
 </body>
 </html>
