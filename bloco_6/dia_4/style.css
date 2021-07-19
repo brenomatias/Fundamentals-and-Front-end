@@ -29,6 +29,7 @@
     background-color: blue;
     order: 0;
     flex-grow: 1;
+    align-self: center;
   }
   
   .menu-container ul {
