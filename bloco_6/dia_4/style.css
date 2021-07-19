@@ -20,12 +20,14 @@
     justify-content: center;
     flex-basis: 248px;
     background-color: aquamarine;
+    order: -1;
   }
   
   .menu-container {
     display: flex;
     flex-basis: 500px;
     background-color: blue;
+    order: 0;
   }
   
   .menu-container ul {
