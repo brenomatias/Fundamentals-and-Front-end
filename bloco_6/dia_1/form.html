@@ -10,7 +10,7 @@
     <header id="header">Informações Curriculares</header>
     
     <main>
-    <form action="test.html" method="GET">
+    <form action="">
     <fieldset>
         <label for="name">Nome
         <input type="text" name="name" id="name" maxlength="40" required>
@@ -21,7 +21,7 @@
     </label>
     <br>
     <label for="cpf">CPF
-        <input type="number" name="cpf" id="cpf"  max="50" required>
+        <input type="number" name="cpf" id="cpf"  required>
     </label>
     <br>
     <label for="address">Address
@@ -46,10 +46,31 @@
     </fieldset>
 
     <fieldset>
-
-
+    <label for="curriculum">Resumo do currículo:</label>
+    <textarea id="curriculum" name="curriculum" maxlength="1000"  rows="20" cols="50">
+            Conte suas experiências!
+    </textarea>
+        <br>
+    <label for="jobTitle">Cargo
+        <input type="text" name="jobTitle" id="jobTitle" maxlength="40" required>
+    </label>
+    <br>
+    <label for="jobDescription">Descrição do cargo</label>
+    <textarea id="jobDescription" name="jobDescription" maxlength="1000"  rows="20" cols="50">   
+    </textarea>
+    <br>
+    <label for="date">Data de início</label>
+    <input type="date" id="date" name="date"
+       value="2021-07-22"
+       min="2018-09-07" max="2100-12-31 required">
     </fieldset>
+    <button type="submit" id="buttonSubmit">Submit</button>
+    <div id="output-box"></div>
+    <p id="nameUser"></p>
+    <p id="error"></p>
+
 </form>
 </main>
+<script src="script.js"></script>
 </body>
 </html>
