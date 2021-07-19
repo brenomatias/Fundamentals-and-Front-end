@@ -56,6 +56,7 @@
     flex-direction: column;
     flex-basis: 700px;
     flex-grow: 10;
+
   
   }
   
@@ -102,5 +103,6 @@
 
   .films {
       width: 16%;
+      flex: 1 1 auto;
 
   }
