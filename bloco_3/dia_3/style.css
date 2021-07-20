@@ -1,0 +1,18 @@
+ .img {
+    width: 600px;
+}
+ 
+.seaHorses {
+    color: blue;
+}
+
+.seaHorse {
+    color:green
+}
+
+.paragrafos {
+    background-color: aqua;
+    width: 100%;
+    height: 300px;
+    overflow: auto; 
+}
