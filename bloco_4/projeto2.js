@@ -38,12 +38,12 @@ function concatName (parametro) {
     let lasItem = parametro[parametro.length - 1];
     let firstAndLast = [];
     for (let i = 0; i < parametro.length; i += 1){
-        firstAndLast = lasItem + ", " + firstItem
+        firstAndLast = lasItem + " , " + firstItem
     } return firstAndLast;
 }
 console.log(concatName(['Lucas', 'Cassiano', 'Ferraz', 'Paolillo']));
 console.log(concatName(['foguete', 'não', 'tem', 'ré']));
-console.log(concatName(['captain', 'my', 'captain']));
+
 
 //5 - Crie uma função que calcule a quantidade de pontos no futebol
 function footballPoints (wins, ties){
@@ -201,4 +201,6 @@ function hydrate(drink) {
     } 
     return `${water} copos de água`;
   }
+  
+
   
