@@ -53,3 +53,19 @@ assert.strictEqual(numbers([1, 'a', 3]), false, "teste letter string"); // este 
 module.exports = numbers;
 
 // Requisito 3
+
+const vqv = (nome, idade) => { // 
+    if (typeof (nome) !== 'string' || typeof (idade) !== 'number') {
+        return undefined;
+      }
+      return `Oi, meu nome é ${nome}!
+    Tenho ${idade} anos,
+    trabalho na Trybe e mando muito em programação!
+    #VQV!`;
+    };
+
+console.log(vqv('Breno', 26));
+
+assert.strictEqual(vqv(['Breno', 26]), true, "teste 1"); 
+
+module.exports = vqv;
