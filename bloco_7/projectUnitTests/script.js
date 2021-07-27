@@ -65,7 +65,8 @@ const vqv = (nome, idade) => { //
     };
 
 console.log(vqv('Breno', 26));
+console.log(vqv());
+console.log(assert.strictEqual(vqv(['breno', 26]), true, "teste letter string"))
 
-assert.strictEqual(vqv(['Breno', 26]), true, "teste 1"); 
 
 module.exports = vqv;
