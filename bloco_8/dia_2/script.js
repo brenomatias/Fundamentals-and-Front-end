@@ -142,3 +142,14 @@ function booksOrderedByReleaseYearDesc(array) {
   };
 
   console.log(booksOrderedByReleaseYearDesc(books));
+
+  // 5
+  
+  let birthYear2 = (birth) => {
+    birth = books[author];
+    return birth > 0;
+  }
+
+  console.log(books.every(birthYear2));
+   
+
