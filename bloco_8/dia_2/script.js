@@ -73,10 +73,10 @@ function getKeyByValue(object, value) {
    let name = ''
    object.find((key) => {
       if (key.author.birthYear === value){
-      name 
+    name = key.author.name;
+      console.log(name)
       } 
 
   });
 }
 console.log(getKeyByValue(books, 1947));
-
