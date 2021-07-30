@@ -20,7 +20,7 @@
 const numberDay = [29, 30, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];;
   function createNumbersOfTheWeek() {
    
-    const numberDayList = document.querySelector('#days');
+    const compromissos = document.querySelector('#days');
   
     for (let i = 0; i < numberDay.length; i += 1) {
       days.classList.add("day"); // adiciona a classe day 
@@ -28,7 +28,7 @@ const numberDay = [29, 30, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16
       const numbersListItem = document.createElement('li'); // cria os elementos de lista 'li'
       numbersListItem.setAttribute("id", "daysId");
       numbersListItem.innerHTML = numbers;
-      numberDayList.appendChild(numbersListItem);
+      compromissos.appendChild(numbersListItem);
     
 
       if (numberDay[i] === 25) { // adiciona as duas classes ao dia 25 https://www.codegrepper.com/code-examples/javascript/how+to+add+two+classes+in+javascript
@@ -155,4 +155,20 @@ let removeTask = document.querySelector(".task");
 removeTask.addEventListener("dblclick", removeClass);
 function removeClass(event2){
   event2.target.classList.remove("selected")
+}
+
+
+// Bonus
+
+const compromissos = document.querySelector(".task-list");
+const compromissosList = document.createElement('li'); // cria os elementos de lista 'li'
+compromissosList.setAttribute("id", "compromissosId");
+compromissos.appendChild(compromissosList);
+
+let catchInput = ""; //resoluçao baseada neste vídeo https://www.youtube.com/watch?v=ZGMJqxIkAb0
+function capturar(){
+  if(compromissos.classList == "task-list") {
+    catchInput = document.getElementById("task-input").value;
+   document.getElementById("compromissosId").innerText = catchInput;
+}
 }
