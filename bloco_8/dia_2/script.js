@@ -125,3 +125,16 @@ function getNamedBook(array, value) {
 }
 
 console.log(getNamedBook(books, 26));
+
+// 4
+function booksOrderedByReleaseYearDesc(array) {
+ let sortedBooks;
+ for (book in books){
+   sortedBooks.push([book, books[book]]);
+ }
+ sortedBooks.sort((a, b) => {
+   return a[1] -b[1];
+ })
+};
+
+console.log(booksOrderedByReleaseYearDesc(books))
