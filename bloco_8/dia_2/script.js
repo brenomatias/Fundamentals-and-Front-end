@@ -1,3 +1,4 @@
+const { equal } = require('assert');
 const assert = require('assert');
 
 const books = [
@@ -75,8 +76,29 @@ function getKeyByValue(object, value) {
       if (key.author.birthYear === value){
     name = key.author.name;
       console.log(name)
-      } 
+      return name 
 
+      }
   });
 }
 console.log(getKeyByValue(books, 1947));
+
+//2 
+function smallerName(array) {
+  let nameBook;
+  
+  array.forEach((element, i) => {
+    let nameLenght = Object.keys(element.name);
+    let lenght = 5;
+    if (nameLenght.length < lenght){
+      nameBook = element.name;
+    }
+  });
+  return nameBook;
+  
+}
+
+console.log(smallerName(books));
+assert.strictEqual(smallerName(books), 'Duna');
+
+// 3

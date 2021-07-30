@@ -1,1 +1,1 @@
-o
+   let name = ''
