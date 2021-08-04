@@ -59,13 +59,21 @@ function countAnimals(species) {
     }, {}); // que é definido pelo valor valor do accumulator
     return everyAnimal;
   }
-  const specificAnimal = data.species.find((element) => element.name === species); // essa parte é para se tiver 
+  const specificAnimal = data.species.find(element => element.name === species); // essa parte é para se tiver 
   const quantity = specificAnimal.residents.length; // entrada válida
   return quantity;
 }
 console.log(countAnimals('lions'))
 // Your reducer function's returned value is assigned to the accumulator, whose value is remembered across each iteration 
 // throughout the array, and ultimately becomes the final, single resulting value
+
+function calculateEntry(entrants) {
+  if (!entrants) { 
+    return 0;
+  }
+  const { adult = 0, child = 0, senior = 0 } = entrants; // define o valor inicial do parâmetro
+  return (adult * prices.adult + senior * prices.senior + child * prices.child);
+}
 
 function getAnimalMap(options) {
   // seu código aqui
