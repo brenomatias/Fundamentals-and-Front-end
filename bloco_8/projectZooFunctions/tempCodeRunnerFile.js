@@ -1,9 +1,8 @@
-
 function getEmployeeByName(employeeName) {
     if (employeeName === undefined) {
       return {};
     }
-    return employees.find((i) => i.firstName === employeeName || i.lastName === employeeName);
+    return employees.find((name) => name.firstName === employeeName || name.lastName === employeeName);
   }
   
-console.log(getEmployeeByName('Nigel'))
+console.log(getEmployeeByName('Nelson'))
