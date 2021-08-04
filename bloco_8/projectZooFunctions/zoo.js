@@ -1,9 +1,6 @@
 const data = require('./data');
 const { species, employees, prices, hours } = require('./data');
 
-// function getSpeciesByIds(...ids) {
-//     const speciesById = species.filter((specie) => ids.includes(specie.id));
-//     return speciesById;
 function getSpeciesByIds(...ids) { 
  let speciesArray = []; // define array de retorno
  ids.forEach(element => speciesArray.push(species.find(specie => specie.id === element)));
@@ -19,8 +16,8 @@ console.log(getSpeciesByIds('0938aa23-f153-4937-9f88-4858b24d6bce','533bebf3-6bb
 
 function getAnimalsOlderThan(animal, age) {
  const nameAndAge = species.find(animalName => animalName.name === animal); // constante para armazenar o valor da chave name em species
- return nameAndAge.residents.every(element => element.age > age);
-}
+ return nameAndAge.residents.every(element => element.age > age); // animalName será o nome dentro da array specie para comparar
+} // ta retornando valores em comparação a species.residents.age
 //The find() method returns the value of the first element in the provided array that satisfies the provided testing function
 // o find vai localizar o animal pelo nome passado
 // residents e o subgrupo de species, por isso foi passado no nameAndAge;
@@ -31,7 +28,7 @@ function getEmployeeByName(employeeName) {
     if (employeeName === undefined) {
       return {};
     }
-    return employees.find((employeeName) => employeeName.firstName === employeeName ||employeeName.lastName === employeeName);
+    return employees.find(employeeName => employeeName.firstName === employeeName ||employeeName.lastName === employeeName);
   } // employeeName aqui poderia ser qualquer nome mas se refere ao parametro recebido 
   
 console.log(getEmployeeByName('Nelson'))
@@ -43,8 +40,12 @@ function createEmployee(personalInfo, associatedWith) {
 //Spread syntax can be used when all elements from an object or array need to be included in a list
 
 function isManager(id) {
-  // seu código aqui
+  return employees.some(employee => employee.managers.includes(id));
 }
+// The some() method tests whether at least one element in the array passes the test implemented by the provided function
+// The includes() method determines whether an array includes a certain value among its entries, returning true or false as appropriate
+// includes é a condição de some (vai verificar se algum elemento )
+console.log(isManager('9e7d4524-363c-416a-8759-8aa7e50c0992'))
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
   // seu código aqui
