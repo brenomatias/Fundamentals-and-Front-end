@@ -71,8 +71,9 @@ function calculateEntry(entrants) {
   if (!entrants) { 
     return 0;
   }
-  const { adult = 0, child = 0, senior = 0 } = entrants; // define o valor inicial do parâmetro
-  return (adult * prices.adult + senior * prices.senior + child * prices.child);
+  entrants = { adult = 0, senior= 0, child = 0 }; // define os valores iniciais do parâmetro
+  return (adult * prices.Adult + senior * prices.senior + child * prices.child); // retorna os valores das chaves
+  // de preço em prices
 }
 
 function getAnimalMap(options) {
@@ -80,7 +81,18 @@ function getAnimalMap(options) {
 }
 
 function getSchedule(dayName) {
-  // seu código aqui
+  const schedule = {
+    Tuesday: 'Open from 8am until 6pm',
+    Wednesday: 'Open from 8am until 6pm',
+    Thursday: 'Open from 10am until 8pm',
+    Friday: 'Open from 10am until 8pm',
+    Saturday: 'Open from 8am until 10pm',
+    Sunday: 'Open from 8am until 8pm',
+    Monday: 'CLOSED',
+  };
+ 
+  if (!dayName) return schedule;
+  return { [dayName]: schedule[dayName] };
 }
 
 function getOldestFromFirstSpecies(id) {
