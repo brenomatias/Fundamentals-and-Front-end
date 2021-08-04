@@ -52,17 +52,20 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function countAnimals(species) {
-    if (!species) { // !x will return true for every "falsy" value 
-      const every = species.reduce((acc, cur) => {
-        acc[cur.name] = cur.residents.length;
-        return acc;
-      }, {});
-      return every;
-    }
-    const qual = data.species.find((element) => element.name === species);
-    const quant = qual.residents.length;
-    return quant;
+  if (!species) { // !x will return true for every "falsy" value (empty string, 0, null, false, undefined, NaN)
+    const everyAnimal = data.species.reduce((accumulator, currentValue) => {
+      accumulator[currentValue.name] = currentValue.residents.length; // aqui define as propriedades do objeto
+      return accumulator; // accumulator pega o valor chave inicialmente, e o valor é current value
+    }, {}); // que é definido pelo valor valor do accumulator
+    return everyAnimal;
   }
+  const specificAnimal = data.species.find((element) => element.name === species); // essa parte é para se tiver 
+  const quantity = specificAnimal.residents.length; // entrada válida
+  return quantity;
+}
+console.log(countAnimals('lions'))
+// Your reducer function's returned value is assigned to the accumulator, whose value is remembered across each iteration 
+// throughout the array, and ultimately becomes the final, single resulting value
 
 function getAnimalMap(options) {
   // seu código aqui
