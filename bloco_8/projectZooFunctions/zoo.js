@@ -52,12 +52,17 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function countAnimals(species) {
-  // seu código aqui
-}
-
-function calculateEntry(entrants) {
-  // seu código aqui
-}
+    if (!species) { // !x will return true for every "falsy" value 
+      const every = species.reduce((acc, cur) => {
+        acc[cur.name] = cur.residents.length;
+        return acc;
+      }, {});
+      return every;
+    }
+    const qual = data.species.find((element) => element.name === species);
+    const quant = qual.residents.length;
+    return quant;
+  }
 
 function getAnimalMap(options) {
   // seu código aqui
