@@ -47,8 +47,8 @@ function isManager(id) {
 // includes é a condição de some (vai verificar se algum elemento )
 console.log(isManager('9e7d4524-363c-416a-8759-8aa7e50c0992'))
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  data.employees.push({ id, firstName, lastName, managers, responsibleFor });
 }
 
 function countAnimals(species) {
