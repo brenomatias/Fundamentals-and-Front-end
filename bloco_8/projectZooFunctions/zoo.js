@@ -31,14 +31,16 @@ function getEmployeeByName(employeeName) {
     if (employeeName === undefined) {
       return {};
     }
-    return employees.find((name) => name.firstName === employeeName || name.lastName === employeeName);
-  }
+    return employees.find((employeeName) => employeeName.firstName === employeeName ||employeeName.lastName === employeeName);
+  } // employeeName aqui poderia ser qualquer nome mas se refere ao parametro recebido 
   
 console.log(getEmployeeByName('Nelson'))
 
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  return { ...personalInfo, ...associatedWith,
+  };
 }
+//Spread syntax can be used when all elements from an object or array need to be included in a list
 
 function isManager(id) {
   // seu código aqui
