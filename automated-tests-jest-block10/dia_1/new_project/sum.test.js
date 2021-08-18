@@ -1,6 +1,6 @@
 // so arquivos criados depois da instalação do Jest receberão o test automatizado
-const sum = (a, b) => a + b;
+const sum = require('./sum'); // importar a função
 
-test('sums two values', () => { // A função test espera três argumentos
-  expect(sum(2, 3)).toEqual(5);
+test('sums two values', () => {
+  expect(sum(2, 3)).toBe(5);
 });
