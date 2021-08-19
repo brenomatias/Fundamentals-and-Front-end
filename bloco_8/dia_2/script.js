@@ -1,3 +1,4 @@
+const { equal } = require('assert');
 const assert = require('assert');
 
 const books = [
@@ -73,10 +74,82 @@ function getKeyByValue(object, value) {
    let name = ''
    object.find((key) => {
       if (key.author.birthYear === value){
-      name 
-      } 
+    name = key.author.name;
+      console.log(name)
+      return name 
 
+      }
   });
 }
 console.log(getKeyByValue(books, 1947));
+
+//2 
+function smallerName(array) {
+  let nameBook;
+  
+  array.forEach((element, i) => {
+    let nameLenght = Object.keys(element.name);
+    let lenght = 5;
+    if (nameLenght.length < lenght){
+      nameBook = element.name;
+    }
+  });
+  return nameBook;
+  
+}
+
+console.log(smallerName(books));
+assert.strictEqual(smallerName(books), 'Duna');
+
+// 3
+const expectedResult = {
+  author: {
+    birthYear: 1948,
+    name: 'George R. R. Martin',
+  },
+  genre: 'Fantasia',
+  id: 1,
+  name: 'As Crônicas de Gelo e Fogo',
+  releaseYear: 1991,
+};
+
+function getNamedBook(array, value) {
+  let book;
+  array.find(element => {
+    let nameLenght = Object.keys(element.name);
+    if (nameLenght.length === value){
+      book = element.name;
+    }
+  });
+  return book;
+}
+
+console.log(getNamedBook(books, 26));
+
+// 4
+function booksOrderedByReleaseYearDesc(array) {
+
+    var sortable=[];
+    for(var book in books)
+      if(book.hasOwnProperty(book.name))
+        sortable.push([book, books[book]]); 
+  
+    sortable.sort(function(a, b)
+    {
+      return a[1]-b[1]; 
+    });
+    return sortable; 
+  };
+
+  console.log(booksOrderedByReleaseYearDesc(books));
+
+  // 5
+  
+  let birthYear2 = (birth) => {
+    birth = books[author];
+    return birth > 0;
+  }
+
+  console.log(books.every(birthYear2));
+   
 
