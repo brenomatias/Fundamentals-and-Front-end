@@ -3,3 +3,7 @@ ReactDOM because it hasn’t been initialized yet.
 Most likely, you forgot to import it from the package react-dom:
 
 import ReactDOM from 'react-dom'
+
+***** depois que usar comando npx creat-react-app name
+nmp install
+npm start
