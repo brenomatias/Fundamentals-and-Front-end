@@ -1,0 +1,5 @@
+When you encounter an error saying ‘ReactDOM’ is not defined, it means that your application is can’t find the variable 
+ReactDOM because it hasn’t been initialized yet.
+Most likely, you forgot to import it from the package react-dom:
+
+import ReactDOM from 'react-dom'
