@@ -1,3 +1,0 @@
-Problema com a dependência de babel-jest ao executar o npm start em um aplicativo React
-
-solução: Esse problema pode ocorrer se houver node_modules em um diretório pai da pasta em que você executa o aplicativo. Resolvi o problema excluindo o diretório node_modules.
