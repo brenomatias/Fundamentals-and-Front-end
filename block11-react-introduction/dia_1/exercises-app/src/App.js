@@ -1,25 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
 
+const appointments = ['boxe', 'trybe', 'lionbridge', 'test']
+
+
+const Task = (value) => { // referencia: https://stackoverflow.com/questions/41374572/how-to-render-an-array-of-objects-in-react
+    const listItems = appointments.map((appointment) => <li> {appointment} </li>);
+  return ( // a funçao map vai retorna uma nova array mas no formato de lista pela sintax JSX
+        <div>{listItems}</div>
+  )
+}
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return Task(appointments);
 }
 
 export default App;
+
+// The map() method creates a new array populated with the results of calling a provided function on every element in the calling array.
