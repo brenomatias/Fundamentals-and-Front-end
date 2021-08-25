@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react'
 
-class Components extends Component {
+class Components extends Component { // outro jeito de criar componente 
     render(){ // função que faz renderizar o conteúdo na tela
         return ( 
         <div className="div"> 
@@ -13,6 +13,11 @@ class Components extends Component {
 }
 
 export default Components
+
+function Welcome(props) { // outra maneira de definir um componente no 
+    return <h1>Hello, world</h1>;
+  }
+
 
 // primeiro componente de classe react.
 
