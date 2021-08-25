@@ -18,7 +18,6 @@ function Welcome(props) { // outra maneira de definir um componente no
     return <h1>Hello, world</h1>;
   }
 
-
 // primeiro componente de classe react.
 
 
