@@ -1,0 +1,1 @@
+// este componente representa um pokemon.
