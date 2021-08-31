@@ -5,7 +5,7 @@ import React from 'react'; // JSX transform turns it into regular JavaScript:
 
 class Pokemon extends React.Component { // component estilo class
     render() { // fator fundamental na construção de classe component
-        const { name, type, averageWeight, image } = this.props.pokemon; // define a prop
+        const { name, type, averageWeight, image } = this.props.pokemon; // define a prop. a prop chama-se pokemon
         // estes valores sao relacionados ao data. O que queremos exibir dos dados
         //'pokemon' é o valor da prop que definimos que será usada em outro codigo. (nome da proprieda)
 
