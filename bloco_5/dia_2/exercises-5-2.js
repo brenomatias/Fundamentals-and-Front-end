@@ -52,3 +52,30 @@ for (let i = 0; i < 3; i += 1){ // loop para criar os elementos h3
 let h3 = document.createElement('h3');
 document.querySelector('.main-content').appendChild(h3);
 }
+
+
+
+
+
+
+
+// 4. Crie uma função que, ao clicar duas vezes em 'Meu top 3 do Spotrybefy', ele
+// redirecione para alguma página;
+// 4.1. Que tal redirecionar para seu portifólio?
+
+let clickSportry = document.getElementById("mySpotrybefy");
+clickSportry.addEventListener("dblclick", receberClick);
+
+function receberClick (){
+   // window.location.href = "https://brenomatias.github.io/"; // https://www.w3schools.com/howto/howto_js_redirect_webpage.asp
+   window.open("https://brenomatias.github.io/", "blank"); // redireciona para página em branco https://www.codegrepper.com/code-examples/javascript/redirect+target+_blank+javascript
+}
+
+//5. Crie uma função que, ao passar o mouse sobre 'Meu top 3 do Spotrybefy', altere
+// a cor do mesmo;
+
+let hoverSportry = document.getElementById("mySportrybefy");
+hoverSportry.addEventListener("mouseover", mouseOver)
+function mouseOver () {
+    document.getElementById("mySportrynefy").style.backgroundColor = "red";
+}
