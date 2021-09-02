@@ -1,0 +1,9 @@
+body {
+    background-color: red;
+}
+
+#paragraph {
+    color: aqua;
+    font-size: 30px;
+    line-height: 1.9;
+}
