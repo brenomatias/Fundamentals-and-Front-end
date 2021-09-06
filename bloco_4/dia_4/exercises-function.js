@@ -146,5 +146,4 @@ function confirmEnding(word, ending) {
     return false;
   }
   }
-
   console.log(confirmEnding(word, ending));

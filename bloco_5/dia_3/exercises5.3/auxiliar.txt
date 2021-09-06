@@ -1,0 +1,27 @@
+function createDaysOfTheWeek() {
+    const weekDays = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado']
+    const weekDaysList = document.querySelector('.week-days');
+  
+    for (let index = 0; index < weekDays.length; index += 1) {
+      const days = weekDays[index];
+      const dayListItem = document.createElement('li');
+      dayListItem.innerHTML = days;
+  
+      weekDaysList.appendChild(dayListItem);
+    };
+  };
+  
+  createDaysOfTheWeek();
+
+  // exercicio 2
+
+  const myDiv = document.querySelector(".buttons-container"); 
+ // create the button object and add the text to it
+ const button = document.createElement("button");
+ button.innerHTML = "Feriados";
+ // add the button to the div
+ myDiv.appendChild(button);
+ button.setAttribute("id", "btn-holiday"); // set attribute https://www.w3schools.com/jsref/met_element_setattribute.asp
+
+ const holidayClick = document.getElementById("btn-holiday");
+ holidayClick.addEventListener("click", receberClick);
