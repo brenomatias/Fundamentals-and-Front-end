@@ -1,0 +1,42 @@
+ .ordenada {
+     background-color: yellow;
+ }
+  .par {
+    color:green;
+  }
+
+  .impar {
+      text-transform: uppercase; 
+  }
+
+   h1, h3 {
+       color:red;
+   }
+
+  .titulo {
+      font-size: 40px;
+      border: 1px solid black;
+  }
+
+   .font {
+       font-size: 20px;
+       font-weight: bold;
+   }
+
+   .font2 {
+       color:blue
+   }
+
+   .java {
+       background-color: papayawhip;
+   }
+
+   .stack:hover {
+       font-weight: bold;
+       color: orange;
+   }
+
+   .w3:hover {
+    font-weight: bold;
+    color: green;
+   }
