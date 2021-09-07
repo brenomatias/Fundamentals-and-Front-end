@@ -1,0 +1,62 @@
+
+.podium li {
+    display: inline;
+    padding: 14px 140px;
+    
+
+}
+
+.lista-premi li {
+    display: inline;
+    left: 220px;
+    font-size: 20px;
+    position: relative;
+}
+
+
+h1 {
+    font-size: 55px;
+    margin-left: 425px;
+    margin-bottom: 0px;
+  }
+
+.premiacao {
+    font-size: 22px;
+    margin-left: 530px;
+    margin-top: 25px;
+
+}
+  .first {
+    background-color: rgb(235, 200, 84);
+    font-size: 20px;
+    height: 50px;
+    text-align: center;
+    width: 400px;
+    margin-left: 450px;
+    border-bottom: 0;
+    margin-bottom: 0;
+    
+    
+  }
+
+  .second {
+    background-color: rgb(219, 219, 219);
+    font-size: 20px;
+    height: 50px;
+    text-align: center;
+    width: 300px;
+    margin-left:220px;
+
+    
+  }
+
+  .third {
+    background-color: rgb(170, 142, 106);
+    font-size: 20px;
+    height: 50px;
+    text-align: center;
+    width: 300px;
+  }
+
+ 
+  
