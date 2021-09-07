@@ -22,13 +22,13 @@ class Pokedex extends React.Component {
     })); // esta atribuição será responsável por passar pelos pokemons da lista
   }
 
-  fetchFilteredPokemons() {
-    const {pokemons} = this.props;
+  fetchFilteredPokemons() { // essa função serve para acessar os pokemons a partir do filtro selecionado
+    const {pokemons} = this.props; // define a props do componente Pokedex
     const {filteredType} = this.state;
 
     return pokemons.filter(pokemon => {
       if (filteredType === 'all') return true;
-      return pokemon.type === filteredType;
+      return pokemon.type === filteredType; // 'pokemon' é o que a função filter irá receber como parametro
     });
   }
 
@@ -47,7 +47,7 @@ class Pokedex extends React.Component {
       <div className="pokedex">
         <Pokemon pokemon={pokemon} /> 
         <div className="pokedex-buttons-panel"> 
-          <Button
+          <Button // esta funçao e responsavel por aplicar "all" ao filtro dos pokemons
             onClick={() => this.filterPokemons('all')}
             className="filter-button">
             All
@@ -70,7 +70,7 @@ class Pokedex extends React.Component {
     );
   }
 }
-
+// <Button    > </Button> traz o componente para ser usado em todos os botoes de todas as classes
 export default Pokedex;
 
 

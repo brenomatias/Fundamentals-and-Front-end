@@ -1,6 +1,8 @@
 import React from 'react';
 import './pokemon.css';
 
+//este componente e responsavel pela construçao individual de cada pokemon
+
 class Pokemon extends React.Component {
   render() {
     const { pokemon: {name, type, averageWeight, image}} = this.props;
