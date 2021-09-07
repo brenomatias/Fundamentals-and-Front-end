@@ -24,9 +24,9 @@ class Pokedex extends React.Component {
 
   fetchFilteredPokemons() { // essa função serve para acessar os pokemons a partir do filtro selecionado
     const {pokemons} = this.props; // define a props do componente Pokedex
-    const {filteredType} = this.state;
+    const {filteredType} = this.state; // define o estado 
 
-    return pokemons.filter(pokemon => {
+    return pokemons.filter(pokemon => { // The filter() method creates a new array with all elements that pass the test implemented by the provided function.
       if (filteredType === 'all') return true;
       return pokemon.type === filteredType; // 'pokemon' é o que a função filter irá receber como parametro
     });
@@ -37,6 +37,7 @@ class Pokedex extends React.Component {
 
     return [...new Set(pokemons.reduce((types, {type}) => [...types, type], []))];
   } // The Set constructor lets you create Set objects that store unique values of any type
+// reduce() method in JavaScript is used to reduce the array to a single value and executes a provided function for each value of the array (from left-to-right) 
 
   render() {
     const filteredPokemons = this.fetchFilteredPokemons();
@@ -45,7 +46,7 @@ class Pokedex extends React.Component {
 
     return ( // Pokemon é componente criado em Pokemon.js que vai receber como propriedade o estado inicial do index(pokemonIdex:0)
       <div className="pokedex">
-        <Pokemon pokemon={pokemon} /> 
+        <Pokemon pokemon={pokemon} />
         <div className="pokedex-buttons-panel"> 
           <Button // esta funçao e responsavel por aplicar "all" ao filtro dos pokemons
             onClick={() => this.filterPokemons('all')}
@@ -61,9 +62,9 @@ class Pokedex extends React.Component {
             </Button> // este {type} é responśavel por renderizar os tipos de pokemons na tela para serem filtrados
           ))} 
         </div>
-        <Button
+        <Button // em nextPokemon o parametro (valor e passado no evento onClick)
           className="pokedex-button" // os pokemons serão filtrados de acordo com o tipo aqui tambem ou em all pokemons
-          onClick={() => this.nextPokemon(filteredPokemons.length)}>
+          onClick={() => this.nextPokemon(filteredPokemons.length)}> 
           Próximo pokémon
         </Button>
       </div>
