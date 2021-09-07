@@ -32,15 +32,15 @@ class Pokedex extends React.Component {
     });
   }
 
-  fetchPokemonTypes() {
-    const {pokemons} = this.props;
+  fetchPokemonTypes() { // esta funçao e utilizada para acessar o tipo dos pokemons (vai adicionar os pokemons em cada tipo em uma array)
+    const {pokemons} = this.props; // essa funçao so retorna um objeto mas nao cria um
 
     return [...new Set(pokemons.reduce((types, {type}) => [...types, type], []))];
-  }
+  } // The Set constructor lets you create Set objects that store unique values of any type
 
   render() {
     const filteredPokemons = this.fetchFilteredPokemons();
-    const pokemonTypes = this.fetchPokemonTypes();
+    const pokemonTypes = this.fetchPokemonTypes(); // armazena os valores dos tipos dos pokemons em uma constante
     const pokemon = filteredPokemons[this.state.pokemonIndex]; // inicia um pokemon de cada vez (recebe o estado inicial)
 
     return ( // Pokemon é componente criado em Pokemon.js que vai receber como propriedade o estado inicial do index(pokemonIdex:0)
