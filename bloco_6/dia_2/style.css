@@ -1,0 +1,11 @@
+body {
+    padding: 50px;
+}
+label {
+    display: inline-block; 
+    width: 30%;
+}
+.real {
+    width: 45%;
+    background-color: aqua;
+}
