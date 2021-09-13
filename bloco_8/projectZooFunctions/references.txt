@@ -1,0 +1,17 @@
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every
+
+function getSpeciesByIds(...ids) { 
+    const newArray = species.filter((specie) => ids.includes(specie.id));
+  return newArray;
+ // let speciesArray = []; // define array de retorno
+ // ids.forEach(element => speciesArray.push(data.species.find(specie => specie.id === element)));
+ // return speciesArray;
+  }
+// explanation:
+// foreach executes a provided function once for each array element (vai executar a funçao de acordo com o tamanho de id)
+// vai executar o push e o find que sao as funções que a funçao foreach recebe por ids.lenght vezes
+// The find() method returns the value of the first element in the provided array that satisfies the provided testing 
+// function. If no values satisfy the testing function, undefined is returned
