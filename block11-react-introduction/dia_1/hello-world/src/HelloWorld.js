@@ -8,7 +8,7 @@
 
 import React, { Component } from 'react'
 
-class elloWorld extends Component {
+class HelloWorld extends Component {
     render(){ // função que faz renderizar o conteúdo na tela
         return <span>helloWorld</span>
     }
