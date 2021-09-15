@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+// uso de React Router permite tornar sua aplicação React navegável
 
 function App() {
   return (
