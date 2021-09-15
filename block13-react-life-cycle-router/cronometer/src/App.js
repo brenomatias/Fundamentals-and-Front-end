@@ -1,25 +1,39 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import Cronometer from './components/Cronometer';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+class App extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      showCronometer: true,
+    };
+  }
+
+  toggleDisplayCronometer = () => {
+    this.setState((prevState) => ({
+      showCronometer: !prevState.showCronometer,
+    }));
+  }
+
+  render() {
+    const { showCronometer } = this.state;
+    return (
+      <main className="App">
+        <section className="App-header">
+          { showCronometer ? <Cronometer /> : ''}
+        </section>
+
+        <button
+          type="button"
+          onClick={ this.toggleDisplayCronometer }
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+          { showCronometer ? 'Desligar cronometro' : 'Ligar cronometro'}
+        </button>
+      </main>
+    );
+  }
 }
 
 export default App;
