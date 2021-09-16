@@ -22,3 +22,5 @@ class App extends React.Component {
 }
 
 export default App;
+
+// SPA - aplicaçao de pagina unica
