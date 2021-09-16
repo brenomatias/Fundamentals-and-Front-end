@@ -27,3 +27,5 @@ export default App;
 // SPA - aplicaçao de pagina unica
 // varias rotas que nao recarregam a página
 // react router pra fazer roteamento do conteúdo
+// "react-router-dom": "^5.3.0" package.json 
+// conexão com o router, pode ser um problema as vezes
