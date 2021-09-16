@@ -9,6 +9,7 @@ import LiveLecture from '../pages/LiveLecture';
 import Solutions from '../pages/Solutions';
 import TrybeTalks from '../pages/TrybeTalks';
 import NotFound from '../pages/NotFound';
+import Solution from '../pages/Solution';
 
 class Content extends React.Component {
   // rotaParaComparar: '/' => urlAual: http://localhost:3000/calendar/dia13.2
@@ -37,6 +38,10 @@ class Content extends React.Component {
           <Route path="/calendar">
             <Calendar />
           </Route>
+
+          <Route path="/solutions/:solutionID"  
+          render= { (props) => <Solution {...props } allSolutions= {solutions}/>}/>
+
           <Route path="/live-lecture">
             <LiveLecture />
           </Route>
