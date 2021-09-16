@@ -1,5 +1,5 @@
 
-import React, { Component } from 'react';
+import React, { Component } from 'react'; // desconstruir components
 
 class Calendar extends Component {
   render() {
