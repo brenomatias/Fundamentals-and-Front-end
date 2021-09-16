@@ -56,3 +56,4 @@ export default Content;
 // Route recebe o caminho criado em Link to em SideBar.js 
 // Switch leitura de cima pra baixo
 // Switch -> rota mais especifica
+// Content é modificado conforme troca a rota
