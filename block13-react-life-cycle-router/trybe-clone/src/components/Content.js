@@ -12,6 +12,16 @@ import NotFound from '../pages/NotFound';
 
 class Content extends React.Component {
   // rotaParaComparar: '/' => urlAual: http://localhost:3000/calendar/dia13.2
+  constructor (){
+    super();
+    this.state = { // define estado para compor Rota Alinhada 
+      solutions: [
+        {id: '11.1', name: 'Hello World no React'},
+        {id: '11.2', name: 'Components React'},
+      ],
+    }
+  }
+// definiçao de rota mais interna apos acessar Gabarito (ROTAS ALINHADAS)
 
   render() {
     return (
