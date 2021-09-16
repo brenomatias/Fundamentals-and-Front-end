@@ -16,6 +16,7 @@ class Content extends React.Component {
     super();
     this.state = { // define estado para compor Rota Alinhada 
       solutions: [
+        {id: 'test', name: 'Aplicando rotas alinhadas'},
         {id: '11.1', name: 'Hello World no React'},
         {id: '11.2', name: 'Components React'},
       ],
@@ -24,8 +25,11 @@ class Content extends React.Component {
 // definiçao de rota mais interna apos acessar Gabarito (ROTAS ALINHADAS)
 
   render() {
+    const { solutions } = this.state
     return (
       <main className="Content">
+       <span> Main content </span>
+       <p> Filhos do Route </p>
         <Switch>
           <Route path="/calendar/dia13.2">
             <TrybeTalks />
@@ -36,9 +40,12 @@ class Content extends React.Component {
           <Route path="/live-lecture">
             <LiveLecture />
           </Route>
-          <Route path="/solutions">
-            <Solutions />
-          </Route>
+          <Route path="/solutions" 
+          render= {(propsRouterDom)=> <Solutions
+            match={propsRouterDom.match}
+            allSolutions= {solutions} />}
+          />
+
           <Route path="/trybe-talks">
             <TrybeTalks />
           </Route>
@@ -67,3 +74,5 @@ export default Content;
 // Switch leitura de cima pra baixo
 // Switch -> rota mais especifica
 // Content é modificado conforme troca a rota
+// Route com render: permite passar outras propriedades
+// Rotas alinhas de Solutions, altera arquivo

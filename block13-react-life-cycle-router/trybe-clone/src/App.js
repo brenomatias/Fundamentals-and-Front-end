@@ -33,3 +33,4 @@ export default App;
 // conexão com o router, pode ser um problema as vezes
 // BrowserRouter deve ficar acima e receber filhos
 // pages = renderizados de acordo com a rota
+// aula até minuto 59
