@@ -12,6 +12,7 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <div>
+          lalala
           <Header />
           <Sidebar />
           <Content />
@@ -24,3 +25,5 @@ class App extends React.Component {
 export default App;
 
 // SPA - aplicaçao de pagina unica
+// varias rotas que nao recarregam a página
+// react router pra fazer roteamento do conteúdo
