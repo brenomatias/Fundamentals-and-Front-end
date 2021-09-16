@@ -9,7 +9,6 @@ class Solution extends Component {
             <>
             <h1>{ currentSolution.name }</h1>
             <p>{`Retorno de ${currentSolution.id}`}</p>
-          
             </>
         )
     }
