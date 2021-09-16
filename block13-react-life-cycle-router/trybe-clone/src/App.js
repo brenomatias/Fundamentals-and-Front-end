@@ -11,7 +11,7 @@ import Sidebar from './components/Sidebar';
 
 class App extends React.Component {
   render() {
-    return (
+    return ( // dizer para o BrowserRouter o que ele deve renderizar(qual a rota)
       <BrowserRouter>
         <div>
           Filhos do BrowserRouter
@@ -33,4 +33,3 @@ export default App;
 // conexão com o router, pode ser um problema as vezes
 // BrowserRouter deve ficar acima e receber filhos
 // pages = renderizados de acordo com a rota
-// parei no minuto 28:35 da aula

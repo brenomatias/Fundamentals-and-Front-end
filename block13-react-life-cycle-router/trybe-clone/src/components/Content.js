@@ -1,6 +1,8 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-
+// Router é o roteador, Route é a rota que eu quero
+// o que renderizar de acordo com a rota
+// importa todos components
 import Calendar from '../pages/Calendar';
 import Home from '../pages/Home';
 import LiveLecture from '../pages/LiveLecture';
@@ -43,3 +45,14 @@ class Content extends React.Component {
 }
 
 export default Content;
+// <Route path="/pageLocal">
+// < PageImported />
+// <Route /> 
+// * como path not found = qualquer rota que nao foi mapeada
+// <Switch>
+// Renders the first child <Route> or <Redirect> that matches the location.
+// <Switch> is unique in that it renders a route exclusively.
+// In contrast, every <Route> that matches the location renders inclusively.
+// Route recebe o caminho criado em Link to em SideBar.js 
+// Switch leitura de cima pra baixo
+// Switch -> rota mais especifica
