@@ -6,7 +6,7 @@ body{
     bottom: auto;  
 }
 
-.nav {
+#nav {
     font-size: 30px;
     padding: 5px;
     border: 3px solid black;
@@ -20,82 +20,93 @@ body{
     
 }
 
-.mainSection{
-    display: flex;
-    flex-direction: row;
-    margin-top:4px;
-}
-
-header {
+#header {
     padding: 10px;
     border: 4px solid red;
     background-color: rgb(174, 240,172);
     margin-bottom: 1px;
     text-align: center;
 }
-
+#mainSection {
+    display: flex;
+    flex-direction: row;
+    margin-top:4px;
+    width: 55%;
+}
+    
 main {    
     border: 4px solid rgb(3, 1, 5);
     background-color: rgb(29, 141, 29);
     margin-top:2px;
-    width:65%;
+    width:60%;
     height:auto;
     
 }
 
-article {
+#article {
     border: 4px solid red;
     background-color: aqua;
     width: 100%;
-    margin-left: 0px;
+    margin-left: -640px;
     height: auto;
-    margin-top:50px;
+    margin-top:180px;
 }
 
 aside {
+    position: absolute;
+    top: 330px;
+    right: 0px;
     font-size: 50px;
     background-color: gold;
     height: auto;
-    width: 35%;
-    margin-top: 1px;
+    width: 45%;
+    margin-left: auto;
+
 }
 
-.video {
+#video {
     font-size: 30px;
     margin-left: 39px;
     
 }
 
-.p3 {
+h2 {
     font-size: 30px;
     margin-left: 39px;
     margin-top: -5px;
     
 }
 
-.img1 {
+#img1 {
     width: 625px;
     margin-left: 10px;
     height: 700px;
     margin-top: -10px;
 }
 
-.img2 {
+#img2 {
     width: 625px;
     margin-left: 10px;
     height: 550px;
 }
 
-.figCaption {
+#img3 {
+    width: 625px;
+    margin-left: 10px;
+    height: 470px;
+}
+
+#figCaption {
     font-size: 15px;
     text-align: center;
     margin-top: -10px;
     margin-bottom: 10px;
+    display: flex;
+    margin-left: 30px;
 }
-.paragrah {
+#paragrah {
     font-size: 30px;
-    margin-top: -30px;
-    
+    margin-top: -30px;  
 }
 
 h1 {
@@ -103,32 +114,35 @@ h1 {
     padding: 5px
 }
 
-h3 {
-  font-size: 55px;
+h3, h4  {
+    font-size: 55px;
 }
 
-h4, h5  {
-    font-size: 40px;
-}
-
-h6 {
+h5 {
     font-size: 40px;
     margin-top:60px;
     margin-bottom: 60px;
 }
 
-.footer {
+#footer {
     padding: 30px;
     background-color: green;
     font-size: 25px;
     text-align: center;
 }
 
-.nav2 {
+#nav2 {
     font-size: 30px;
 }
 
-.p2 {
+h6 {
     font-size: 30px;
 }
+<<<<<<< HEAD:block3-html-css-introduction/dia_4/style.css
+=======
 
+#section5 {
+    padding: 10px;
+    border: 1px solid beige;
+}
+>>>>>>> exercises/3.1:bloco_3/dia_4/style.css
