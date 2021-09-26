@@ -1,4 +1,4 @@
-PASSO 1: (CRIAR INPUT DE PESQUISA)
+*****PASSO 1: (CRIAR INPUT DE PESQUISA)
 
 Criar a página principal:
 cria Main.js
@@ -44,7 +44,9 @@ onChange= {this.handlerInputQuery}
 // Parte de pesquisa da página feita
 
 
-PASSO 2: (FAZER A CHAMADA DA API)
+
+*****PASSO 2: (FAZER A CHAMADA DA API)
+
 Fazer chamada da API (botão faz chamada da API)
 Faz isso dentro de um botão 
 Cria botão abaixo do input
@@ -93,7 +95,8 @@ passa função fetchData dentro do botão onClick= {this.fetchData}
   *****
 
 
-  // Passo 3: (EXIBIR NA TELA AS INFORMAÇOES )
+  // *****PASSO 3: (EXIBIR NA TELA AS INFORMAÇOES )
+
   traz "cocktails" para dentro de render
   const { cocktails } = this.state (declara estado fora de return)
   tendo acesso a cocktails:
@@ -112,7 +115,8 @@ passa função fetchData dentro do botão onClick= {this.fetchData}
 o nome da bebida está guardado dentro da chahve "strDrink" dentro do objeto
 
 
-PASSO 4: (criar resposta caso o valor do input nao esteja na API)
+*****PASSO 4: (criar resposta caso o valor do input nao esteja na API)
+
 para nao quebrar o código:
 caso "cocktails" seja nulo (nao existe dentro da API)
     { cocktails && cocktails.map((cocktail) => {
@@ -122,7 +126,8 @@ caso "cocktails" seja nulo (nao existe dentro da API)
 muda cocktails em estado para "null"
 
 
-PASSO 5: (cria respota de loading)
+*****PASSO 5: (cria respota de loading)
+
 cria chave "loading" no estado
     loading: false,
 quando clica no botao o evento dispara a função fetchData
@@ -138,8 +143,7 @@ quando a requisiçao terminar, tira o loading
 composiçao final do codigo depois de alterar
 
   fetchData = () => {
-    this.setState({
-      loading: true}, () => {       // essa funçao quer dizer: roda loading, depois que acessar a API executa a funçao
+    this.setState({ loading: true}, () => {       // essa funçao quer dizer: roda loading, depois que acessar a API executa a funçao
       const { query } = this.state;
       fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${query}`)
         .then((response) => response.json())
@@ -175,9 +179,13 @@ espera de fato os estados serem atualizados para depois executar a callback
 
 
 
-PASSO 6: (cria msg notFound)
+*****PASSO 6: (cria msg NotFound)
 
 joga o setState da versao anterior da fetchData para dentro da func. (abre { } e joga ele pra dentro)
+passa o estado "notFound" dentro do constructor
+   NotFound: false,
+
+atualização da funçao fetchData:
 
   fetchData = () => {
     this.setState({ loading: true, cocktails: null, NotFound: false, }, () => {
@@ -201,3 +209,116 @@ joga o setState da versao anterior da fetchData para dentro da func. (abre { } e
         .catch((error) => console.error(error));
     });
   }
+
+
+reseta estado de NotFound dentro de fetchData para ele sumir depois que a func rodar
+   fetchData = () => {
+       this.setState ( {..., NotFound: false})
+   }
+dentro render traz o estado:
+   const { ..., NotFound, } = this.state
+dentro do return do render:
+    { NotFound && <di>Nenhuma Bebida encontrada. </div>}
+
+
+// TUDO DA MAIN PAGE FEITO ATÉ AQUI (Main.js *****PASSOs de 1 a 6)
+
+
+// INICIANDO página de Details.js
+
+*******PASSO 7: (cria link para redirecionar para página de Detail)
+
+dentro da função map em Main.js cria o Link: (em Main.js)
+para cada bebida o map vai gerar um link tambem
+
+    <Link
+       key={ cocktail.idDrink } 
+       to={`/details/${cocktail.idDrink}`} >    // string literals para acessar a chave
+    <h1> ....</h1>
+    <img .... />
+    </Link>
+
+idDrink está dentro do objeto retornado da API
+ou seja, este link irá levar para o id especifico de cada bebida
+
+depois: criar rota do Link 
+cria <BrowserRouter> em App.js
+   return (
+       <BrowserRouter>
+         <Switch>
+
+        <Route exact path="/" component= { Main } />   // na rota "/" renderiza o component Main
+        <Route exact path="/details/:id" component= { Details }>     //:id é dinâmico (id=parametro)
+
+         </Switch>
+       </BrowserRouter>
+   )
+
+
+
+****PASSO 8: (trazer informaçoes da receita da bebida -> fazer nova aquisçao da API)
+cria: 
+   constructor() {
+    super();
+    this.state = {
+        cocktail: [], // define o estado para a array do resultado especifico retornado
+    }
+}
+
+   componentDidMount (){
+
+}
+
+criar função para chamar dentro do DidMount:
+chamar a API para guardar os dados
+
+   assync fetchData() { 
+        
+       const { match: { params: {id} }} = this.props;   // dentro de match pega o params e dentro de params pega o id
+// este id vai estar relacionado com o Link criado em 
+        <Route exact path="/details/:id" component={ Details } />
+
+    try {
+        const fetchCocktail = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`);
+        const fetchCocktailJson = await fetchCocktail.json(); 
+        this.setState ({
+            cocktail: fetchCocktailJson.drinks[0]
+        })
+
+     } catch(error) {
+
+     }
+
+a informaçao necessaria= id. Usa este endpoint agora: www.thecocktaildb.com/api/json/v1/1/lookup.php?i=11007
+traz a bebida daquele id especifico
+component recebe "match" como props (padrão) (abri extensao de components e ver o componente Details)
+dentro do "match" tem o "params"
+dentro de "params" existe "id" como parametro definido dentro da Rota em App.js
+faz o fetch da API e passa o parametro que foi pego em match(id) (requisicao da API)
+transforma resposta em json
+pega informaçao de json
+(bind se nao for arrow function, que este o caso)
+
+salva a informação dentro do estado this.setState para atualizar estado de cocktail
+
+depois passa a funçao dentro de componentDidMount
+    componentDidMount() {
+        this.fetchData
+    }
+
+
+
+*****PASSO 10:
+
+renderizar os detalhes (nao precisa de map porque e so uma receita)
+trazer dados da receita pra tela  
+traz o estado para dentro do render: const { cocktail } = this.state
+
+   render () {
+      const { cocktail } = this.state
+    return (
+      <>
+      <h1> {cocktail.strDrink} </h1>  // renderiza nome
+      <p> { cocktail.strInstructions} </p>  // busca as instruçoes da receita
+    )
+   }

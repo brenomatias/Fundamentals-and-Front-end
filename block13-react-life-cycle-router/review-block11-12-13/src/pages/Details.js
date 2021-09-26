@@ -20,7 +20,7 @@ class Details extends React.Component {
     } = this.props;
     try {
       const fetchCocktail = await fetch(
-        `https://www.thxecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`,
+        `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`,
       );
       const fetchCocktailJson = await fetchCocktail.json();
       this.setState({
@@ -36,7 +36,6 @@ class Details extends React.Component {
     return (
       <>
         <h1>{cocktail.strDrink}</h1>
-        <p>sadadsa</p>
         <img src={ cocktail.strDrinkThumb } alt={ cocktail.strDrink } />
         <p>{cocktail.strInstructions}</p>
       </>
