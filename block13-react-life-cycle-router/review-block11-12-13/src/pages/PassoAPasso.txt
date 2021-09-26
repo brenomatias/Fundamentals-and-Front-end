@@ -302,6 +302,7 @@ pega informaçao de json
 salva a informação dentro do estado this.setState para atualizar estado de cocktail
 
 depois passa a funçao dentro de componentDidMount
+
     componentDidMount() {
         this.fetchData
     }
