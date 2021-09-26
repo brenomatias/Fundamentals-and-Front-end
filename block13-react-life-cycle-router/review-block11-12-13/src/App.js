@@ -3,14 +3,22 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Details from './pages/Details';
 import Main from './pages/Main';
 
+
+
+
+
 function App() {
   return (
+
+    <div>
+      <p>Lalala</p>
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={ Main } />
         <Route exact path="/details/:id" component={ Details } />
       </Switch>
     </BrowserRouter>
+    </div>
   );
 }
 
