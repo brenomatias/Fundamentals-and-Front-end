@@ -36,6 +36,7 @@ class Details extends React.Component {
     return (
       <>
         <h1>{cocktail.strDrink}</h1>
+        <p>sadadsa</p>
         <img src={ cocktail.strDrinkThumb } alt={ cocktail.strDrink } />
         <p>{cocktail.strInstructions}</p>
       </>
