@@ -7,7 +7,7 @@ import App from '../App';
 
 describe('Testa a aplicação meu portfolio', () => {
   test('se exibi o titulo da página', () => {
-    renderWithRouter(<App />);
+    renderWithRouter(<App />);             // incialmente essa parte utiliza apenas render(<App />)
 
     const title = screen.getByRole('heading', {
       level: 1,
@@ -23,15 +23,15 @@ describe('Testa a aplicação meu portfolio', () => {
 // screen.getByRole('role', {objeto de configuraçao(level, name)})
 
 
-  test('se ao clicar no link `projetos` renderiza a página de projetos', () => {
+  test('se ao clicar no link `Projetos` renderiza a página de projetos', () => {
     const { history } = renderWithRouter(<App />);
 
-    const linkProjects= screen.getByRole('link', { name: 'Projetos'})
+    const linkProjects= screen.getByRole('link', { name: 'Projetos'}) // elemento para clicar
 
-    userEvent.click(linkProjects);
+    userEvent.click(linkProjects); // chamar o evento de clique para teste
 
     const title = screen.getByRole('heading', {
-      level: 1,
+      level: 1,    // se é h1 o nivel é 1
       name: 'Página de projetos',
      })
 
@@ -40,6 +40,7 @@ describe('Testa a aplicação meu portfolio', () => {
     expect(title).toBeInTheDocument();
   });
 
+// mesma ideia do teste acima. parei no minuto 33:13
   test('se ao clicar no link `deixe um comentário` renderiza a página de comentário', () => {
     const { history } = renderWithRouter(<App />);
     
@@ -56,6 +57,9 @@ describe('Testa a aplicação meu portfolio', () => {
 
     expect(title).toBeInTheDocument();
   });
+
+
+
 
   test('se a rota `comments` exibe o input e o botão', () => {
     const { history } = renderWithRouter(<App />);
