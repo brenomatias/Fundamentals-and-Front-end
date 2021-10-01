@@ -17,6 +17,12 @@ describe('Testa a aplicação meu portfolio', () => {
     expect(title).toBeInTheDocument();
   });
 
+// level é "nivel" do component a ser testado. Essa informação e necessaria 
+// para buscarmos o texto exato. Por ex: h1, tem level 1.
+// name: '' é o que se espera buscar, o texto especifico
+// screen.getByRole('role', {objeto de configuraçao(level, name)})
+
+
   test('se ao clicar no link `projetos` renderiza a página de projetos', () => {
     const { history } = renderWithRouter(<App />);
 

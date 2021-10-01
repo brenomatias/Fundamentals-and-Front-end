@@ -1,0 +1,86 @@
+Testar e manipular rotas
+
+* PASSO 1
+Estruturação 
+
+function App () {
+    return (
+    <main>
+          <header>
+            <nav>
+               <ul>
+                   <a href='' >  </a>      // com essa implementaçao simples a pagina recarrega quando vai para o link
+                   <a href= ''>   </a>
+               </ul>
+            </nav>
+          </header>
+        </main>
+        <section>
+           <h1> </h1>
+        </section>
+    </main>
+
+    )
+}
+
+
+
+* PASSO 2 
+(deixa a navegaçao dinamica usando react router)
+
+observar se o react router está instalado (por padrão nao). Fica em package.json as informaçoes
+instalar react router (npm install react-router-dom)
+importar a biblioteca: import { Link, BrowserRouter, Route, Switch } from 'react-router-dom'
+  * com Switch renderiza apenas uma rota
+  * Switch engloba as rotas
+
+trocar tags <a> por Link (nao precisa remover a tag nav)
+<BrowserRouter> </BrowserRouter> deve englobar toda a aplicação
+
+function App() {
+    return (
+    <BrowserRouter>
+        <main>
+        ...
+          <nav>
+            <ul> 
+               <Link >
+              <Link >
+            <ul>
+        </nav>
+        ...
+        </main>
+    </BrowserRouter>
+
+    );
+}
+
+
+* PASSO 3  -> min 20:03
+(criar as rotas)
+aplicar o Switch e os Route (note que o Switch tem que estar dentro de BrowserRouter)
+
+<BrowserRouter>
+   <main> 
+   ....
+   <ul>
+    <Link to='/'> Sobre mim</Link>
+   <ul>
+   ....
+   ....
+   <Switch>
+
+     <Route path='/'>                       // essa forma de renderizar é CRIANDO FILHOS PARA O ROUTE
+        <section>                           // section e h1 sao filhos da rota
+          <h1> Página sobre mim <h1>          
+          <AboutMe /> (se tivesse um componente com esse nome)
+        </section>
+     <Route> 
+
+   <Switch>
+
+</BrowserRouter>
+
+
+** Criar pasta para teste individual (tests)
+Explicação detalhada dos testes em App.tests.js
