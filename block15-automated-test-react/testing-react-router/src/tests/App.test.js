@@ -1,13 +1,18 @@
 import { getByRole, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Router } from 'react-router-dom';
+// Router: componente que permite criar proprio roteador aqui dentro de App.test.js
 import { createMemoryHistory } from 'history';
+// createMemoryHisoty biblioteca que permite lidar com o historico de navegação, variáveis, funçoes
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
+// é possivel acessar o historico de navegação do BrowserRouter 
+// BrowserRouter faz sentido no Browser, aqui nos testes é preciso criar um roteador
+
 describe('Testa a aplicação meu portfolio', () => {
   test('se exibi o titulo da página', () => {
-    renderWithRouter(<App />);             // incialmente essa parte utiliza apenas render(<App />)
+    renderWithRouter(<App />);             // busca a função dentro da funçao generica em RenderWithRouter
 
     const title = screen.getByRole('heading', {
       level: 1,
@@ -25,6 +30,7 @@ describe('Testa a aplicação meu portfolio', () => {
 
   test('se ao clicar no link `Projetos` renderiza a página de projetos', () => {
     const { history } = renderWithRouter(<App />);
+// abstrai os codigos de renderizaçao do app
 
     const linkProjects= screen.getByRole('link', { name: 'Projetos'}) // elemento para clicar
 
@@ -36,6 +42,7 @@ describe('Testa a aplicação meu portfolio', () => {
      })
 
     expect(history.location.pathname).toBe('/projects')
+// define a rota esperada
 
     expect(title).toBeInTheDocument();
   });
@@ -54,16 +61,18 @@ describe('Testa a aplicação meu portfolio', () => {
      })
     
     expect(history.location.pathname).toBe('/comments')
+// define qual rota a ser analisada
 
     expect(title).toBeInTheDocument();
   });
-
+// basicamente o mesmo teste do de cima (teste página de projetos)
 
 
 
   test('se a rota `comments` exibe o input e o botão', () => {
     const { history } = renderWithRouter(<App />);
     history.push('/comments');
+// push e usado para definir em qual rota vai
 
     const input = screen.getByRole('textbox')
     expect(input).toBeInTheDocument();
@@ -71,6 +80,9 @@ describe('Testa a aplicação meu portfolio', () => {
     const button = screen.getByRole('button')
     expect(button).toBeInTheDocument();
   });
+
+
+
 
   test('se a página `não encontrada` é exibida na tela quando não uma rota correspondente', () => {
     const { history } = renderWithRouter(<App />);
@@ -85,3 +97,7 @@ describe('Testa a aplicação meu portfolio', () => {
 
   });
 })
+
+// depois do minuto 1:01
+
+// Cria arquivor renderWithRouter.js

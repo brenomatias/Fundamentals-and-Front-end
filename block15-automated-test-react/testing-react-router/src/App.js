@@ -14,6 +14,7 @@ function App() {
             </ul>
           </nav>
         </header>
+        
         <Switch>
           <Route exact path='/'>
             <section>

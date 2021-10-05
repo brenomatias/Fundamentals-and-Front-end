@@ -7,7 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <React.StrictMode> 
     <BrowserRouter>
       <App />    
     </BrowserRouter>
@@ -19,3 +19,6 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+//    <React.StrictMode> 
+// ajuda a evitar erros, mas nao precisa dele para funcionar a aplicação

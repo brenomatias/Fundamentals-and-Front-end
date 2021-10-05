@@ -90,3 +90,24 @@ aplicar o Switch e os Route (note que o Switch tem que estar dentro de BrowserRo
 
 ** Criar pasta para teste individual (tests)
 Explicação detalhada dos testes em App.tests.js
+
+* PASSO 4 -- 
+(para testar as rotas e a navegaçao é preciso tirar o BrowserRouter de dentro de App.js)
+
+App.js tem que ser filho do BrowserRouter
+
+em index.js insere o BrowserRouter como pai de App.js:
+importa o BrowserRouter em index.js
+
+    ReactDOM.render(
+      <React.StrictMode>
+        <BrowserRouter>
+         <App />    
+       </BrowserRouter>
+      </React.StrictMode>,
+     document.getElementById('root')
+      );
+
+o app fica desacoplado do roteador
+
+começa a dar um erro nos testes porque ele nao possui um roteador
