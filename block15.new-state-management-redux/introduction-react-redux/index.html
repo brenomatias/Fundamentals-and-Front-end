@@ -1,0 +1,68 @@
+<html>
+
+<head>
+  <title>Redux basic example</title>
+  <script src="https://unpkg.com/redux@latest/dist/redux.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/styles.css" />
+</head>
+
+<body>
+  <main>
+    <h1>Contador</h1>
+    <div>
+      <button id="decrement">-</button>
+      <span id="value">0</span>
+      <button id="increment">+</button>
+    </div>
+    <button id="incrementBy10">Incrementar 10</button>
+    <button id="zerar">Zerar</button>
+  </main>
+  <script>
+
+    const decrement = 'DECREMENT'
+    const increment = 'INCREMENT'
+    const zerar = 'ZERAR'
+
+    function counterReducer(state = 0, action){
+      switch(action.type){
+        case decrement: 
+          return state - action.value;
+        case increment: 
+          return state + action.value;
+        case zerar: 
+          return 0;
+        default: 
+          return state;
+      }
+    }
+
+    const store = Redux.createStore(counterReducer);  
+
+    const actionDecrement = { 
+      type: decrement, 
+      value: 1 
+    }
+    console.log(store.getState())
+
+    document.getElementById('decrement').addEventListener('click', () => {
+      // store.dispatch(actionDecrement)
+      store.dispatch({ type: decrement, value: 1 })
+    });
+    document.getElementById('increment').addEventListener('click', () => {
+      store.dispatch({ type: increment, value: 1 })
+    });
+    document.getElementById('incrementBy10').addEventListener('click', () => {
+      store.dispatch({ type: increment, value: 10 })
+    });
+    document.getElementById('zerar').addEventListener('click', () => {
+      store.dispatch({ type: zerar })
+    });
+
+    const spanCont = document.getElementById('value')
+    store.subscribe(() => {
+      spanCont.innerHTML = store.getState();
+    });
+  </script>
+</body>
+
+</html>
