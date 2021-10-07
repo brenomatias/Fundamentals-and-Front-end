@@ -3,7 +3,8 @@
 <head>
   <title>Redux basic example</title>
   <script src="https://unpkg.com/redux@latest/dist/redux.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="/styles.css" />
+  <!-- Importação CDN da biblioteca Redux-->
+  <link rel="stylesheet" type="text/css" href="/style.css" />
 </head>
 
 <body>
@@ -17,8 +18,8 @@
     <button id="incrementBy10">Incrementar 10</button>
     <button id="zerar">Zerar</button>
   </main>
-  <script>
 
+  <script>
     const decrement = 'DECREMENT'
     const increment = 'INCREMENT'
     const zerar = 'ZERAR'
@@ -63,6 +64,7 @@
       spanCont.innerHTML = store.getState();
     });
   </script>
+  
 </body>
 
 </html>

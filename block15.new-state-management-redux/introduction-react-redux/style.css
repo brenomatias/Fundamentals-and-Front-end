@@ -11,13 +11,14 @@ body {
     width: 100vw;
     font-size: 32px;
     color: #fff;
-    background-color: #1a1b1c;
+    background-color: #157de6;
 }
 main {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: rgb(8, 15, 15);
 }
 
 button {
