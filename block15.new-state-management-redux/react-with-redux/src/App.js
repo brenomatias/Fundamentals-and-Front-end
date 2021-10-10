@@ -11,7 +11,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1> TrybeFlix </h1>
-        <Provider store={store}>
+        <Provider store={store}> 
           <Player />
           <Sidebar />  
         </Provider>      
@@ -21,3 +21,6 @@ class App extends React.Component {
 }
 
 export default App;
+
+// Provider fornece informações para os component Player e Sidebar
+// Provider fornece as informaçoes da store para os components

@@ -1,3 +1,13 @@
+Redux DevTools(extesion)
+instalar no codigo:
+
+window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+pasar isso como segundo parametro de createStore em index.js na pasta store
+
+
+
+
+
 Vamos relembrar alguns conceitos:
 
 Store:
@@ -45,6 +55,172 @@ em App.js :
 
    import { Provider } from 'react-redux'
 
-Provider = auxlia em fornecer as informações para os components
 
-parei minuto 20
+importa store em App. 
+
+Provider = auxlia em fornecer as informações para os components
+Provider fornece as informaçoes da store para os components
+
+
+
+*PASSO 3
+(açoes do Redux(actions))
+
+cria pasta 'actions'
+cria arquivo 'movieActions.js'
+
+formato das actions(objeto):
+
+type é a descrição da ação
+
+ type: '(LETRA_MAISCULA)',
+        category: ,
+        movie:
+
+
+*PASSO 4
+(criar reducer(ouvir as actions))
+
+cria pasta reducers
+cria arquivo movieReducer
+
+estrutura do Reducer(funçao):
+padrão da função reducer
+
+   function movieReducer(state, action){
+       return state;
+   }
+
+(boa prática: ter um Reducer por aquivo)
+
+passar reducer para store em index.js
+importa movieReducer 
+passa movieReducer como parametro de createStore()/ createStore(movieReducer)
+
+
+
+*PASSO 5
+(fazer Reducer ouvir as actions)
+
+Em movieReducer.js
+type é a descrição da ação em movieActions
+
+    function movieReducer(state = INITIAL_STATE, action){
+        if(action.type === 'SELECT_MOVIE'){
+           return {  // retorna objeto
+
+            }
+          }
+       return state;
+    }
+
+   export default movieReducer;
+
+
+
+
+* PASSO 6 
+(cria INITIAL_STATE(estado inicial))
+
+cria(em movieReducer): 
+
+   const INITIAL_STATE = {
+       categories: categories,    // import categories from "../data"
+        selectedCategory: {},  // iniciar com uma categoria selecionada
+        selectedMovie: {},  // filme incialmente selecionado
+   }     
+
+passa para o Reuducer:
+
+   function movieReducer(state = INITIAL_STATE, action){
+
+
+
+*PASSO 7
+(toda vez que ação SELECT_MOVIE for disparada, eu quero trocar 
+selectedCategory e trocar selectedMovie)
+
+Redux trabalha com imutabilidade(joga estado antigo fora e cria novo)
+
+ Retorna m novo Objeto (o estado é um objeto)
+
+            return {
+            ...state,                         // para garantir que vai mudar apenas os selected (criar novas propriedades com o mesmo nome)
+            selectedCategory: action.category,
+            selectedMovie: action.movie,
+        }
+   
+(a action nao chega efetivamente aqui ainda, precisa disparar no React)
+ 
+
+
+
+*PASSO 8
+(conectar tudo(do Redux) com React)
+
+fazer conexao dos componentes com a store
+
+em Sidebar.js
+
+   import { connect } from 'react-redux';
+
+para conectar: 
+     export default connect(mapStateToProps, mapDispatchToProps)(Sidebar); // chama funçao conect que retorna uma funçao (parametro como component)
+
+prametros func 'connect':
+    mapStateToProps, mapDispatchToProps (funções)
+
+
+define função mapStateToProps:
+(esta função recebe por parametro o estado global)
+retornar quais informações o component Sidebar precisa 
+retornar um objeto com as informaçoes necessarias (com a propriedade 'categories')
+
+   function mapStateToProps(state){
+       return {
+       categories(qualquer nome): state.categories,  // informaçoes necessarias do estado global (propriedade 'categories' do estado global)
+     }
+    }
+
+(ESTADO GLOBAL DEFINIDO NO REDUCER (movieReducer))
+
+
+
+*PASSO 9 
+(acessar categories de mapStateToProps)
+mapear informaçoes do estado global para virar propriedade do componente
+
+passa categories de mapStateToProps como propriedade de Sidebar
+
+ render() {
+    const { categories } = this.props;
+    return(){
+
+agora é possivel acessar estado global de qualquer component
+
+para acessar o estado em qualquer componente (3 passos):
+
+1- importar conect    import { connect } from 'react-redux'
+2- fazer chamada do connet     export default connect(mapStateToProps, mapDispatchToProps)(Sidebar)
+3- criar funçao mapStateToProps
+
+
+
+*PASSO 10 
+(disparar as ações)
+
+importa açoes: import * as movieActions from '../actions/movieActions';
+
+(o que eu quero? diparar um evento no clique)
+
+                  category.movies.map(movie => (
+                    <li key={movie.id}>
+                      <button type='button' onClick=()
+                        {movie.title} was released in {movie.released}
+                      </button>
+
+(cada filme está dentro de um botão)
+
+
+
+Fui até 1:09
