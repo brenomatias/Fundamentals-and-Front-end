@@ -1,0 +1,50 @@
+Vamos relembrar alguns conceitos:
+
+Store:
+É onde vamos armazenar todos os dados compartilhados da aplicação 
+e é representado por um objeto JavaScript . O State é armazenado no Store do Redux .
+
+Action:
+É um objeto JavaScript que representa alguma mudança/alteração que precisa acontecer no State .
+
+Reducer:
+É uma função JavaScript que recebe o estado atual ( current state ) e a ação corrente
+ ( current action ) e retorna um novo estado ( new state ). 
+ É responsabilidade dessa função decidir o que acontecerá com o estado dada uma ação( action ).
+
+Dispatch:
+É uma função que envia uma ação ( action ) para processamento.
+
+
+* PASSO 1 
+
+npm install
+npm install react-redux  (conecta redux com react)
+npx create-react-app my-app
+npm install --save redux react-redux
+
+* PASSO 2
+(aplicar redux para gerenciar o estado da aplicaçao) / redux = gerenciador de estados
+(redux auxilia na passagem de informações entre diversos components)
+
+primeiro passo redux: 
+   criar store
+
+   cria folder store -> index.js para criar store
+
+importa redux 
+   import { createStore } from 'redux';  // Redux.createStore();
+
+cria store
+   const store = createStore();
+
+   export default store;
+
+dar visibilidade de store para o react que estão na store utilizando o App.js
+em App.js :
+
+   import { Provider } from 'react-redux'
+
+Provider = auxlia em fornecer as informações para os components
+
+parei minuto 20
