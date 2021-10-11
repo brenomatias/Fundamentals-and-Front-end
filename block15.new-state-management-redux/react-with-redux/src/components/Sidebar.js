@@ -7,10 +7,9 @@ import * as movieActions from '../actions/movieActions';
 class Sidebar extends React.Component {
 
   render() {
-    const { categories, dispararAcaoSelecionarFilme, test1, test2 } = this.props;
+    const { categories, dispararAcaoSelecionarFilme } = this.props;
     return (
       <aside>
-       <p> {test1} </p>
         {
           categories.map(category => ( // categories é recebida pelo Provider através da store em App.js
             <div key={category.id}>
@@ -37,8 +36,6 @@ class Sidebar extends React.Component {
 function mapStateToProps(state){
   return {
     categories: state.movie.categories,
-    test1: state.selectedCategory,
-    test2: state.selectedMovie
   }
 }
 

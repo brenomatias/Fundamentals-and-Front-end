@@ -223,4 +223,165 @@ importa açoes: import * as movieActions from '../actions/movieActions';
 
 
 
-Fui até 1:09
+*PASSO 11
+(criar a propriedade mapDispatchToProps de connect)
+(quais açoes/disparos vao virar propriedades)
+
+
+   function mapDispatchToProps(dispatch){
+      return {
+         dispararAcaoSelecionarFilme: () => dispatch(movieActions.selectMovie())
+      }
+    }
+
+
+a função recebe o dispatch do redux e recebe um objeto (quais ações disparar )
+
+quando dispararAcaoSelecionarFilme for executada ela vai disparar a funçao () => dispatch
+a ação esta em movieActions.js  
+
+passar dispararAcaoSelecionarFilme para props de Sidebar
+        const { categories, dispararAcaoSelecionarFilme } = this.props;
+
+
+
+*PASSO 12
+(Transformar action estática em funçao que retorna objeto) -> precisa receber a categoria e o filme de forma dinamica
+(sem funçao fica estatico)
+transformar action em funçao movieActions
+para os valores virarem dinamicos:
+
+
+    export function selectMovie(category, movie){
+    return {
+        type: 'SELECT_MOVIE',
+        category: category,
+        movie: movie
+    }
+}
+
+
+
+*PASSO 13
+(passar os parametros da ação em movieActions para mapDispatchToProps e para ação dispatch )
+
+
+  function mapDispatchToProps(dispatch){
+     return {
+      dispararAcaoSelecionarFilme: (category, movie) => dispatch(movieActions.selectMovie(category, movie))
+     }
+   }
+
+
+
+*PASSO 14 
+(chamar a função dispararAcaoSelecionarFilme no botão de cada elemento de filme)
+                
+           category.movies.map(movie => (
+              <li key={movie.id}>
+                  <button type='button' onClick={() => dispararAcaoSelecionarFilme(category, movie)}>
+                     {movie.title} was released in {movie.released}
+                </button>
+            </li>
+
+
+em dispararAcaoSelecionarFilme(category, movie)
+   category vem do primeiro map de Sidebar
+   movie vem do segundo map
+
+
+
+*PASSO 15
+(passar informaçoes que estao no estado global para o Player.js)
+
+1- Fazer connect      
+       export default connect(mapStateToProps)(Player);
+(so quer ler o estado, entao so usa mapStateToProps);
+
+2 - cria funçao  mapStateToProps
+       function mapStateToProps(state)
+
+3- chama category e moive de mapStateToProps como propreidade de Player.js
+    const { category, movie } = this.props; 
+
+
+
+
+*PASSO 16
+(cria outro reducer (userReducer))
+
+  const INITIAL_STATE = {
+    name: 'Luanderson',
+    idade: 'X'
+   }
+
+    function userReducer(state = INITIAL_STATE, action){
+    return state;
+    }
+
+    export default userReducer;
+
+
+
+*PASSO 17 (OU PODE SER NO INICIO)
+(cria file para os reducers)
+na pasta reducers cria file index.js para armazenar os reducers
+ preciso utilizar combineReducers)
+    
+      import { combineReducers } from "redux";
+      import movieReducer from "./movieReducer";
+      import userReducer from "./userReducer";
+
+      const rootReducer = combineReducers({
+          movie: movieReducer,
+          user: userReducer
+      });
+
+     export default rootReducer;
+
+
+
+*PASSO 18
+( coloca rootReducer na store em store/index.js (que é o estado global)) 
+
+
+    import { createStore } from 'redux'; // Redux.createStore();
+    import rootReducer from '../reducers';
+
+    const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+
+   export default store;
+
+
+
+*PASSO 19, em Sidebar:
+(agora nao acessa diretamente selectedCategory, tem que mudar o acesso do estado atraves de 'movie' do reducer acima) 
+
+   function mapStateToProps(state){
+      return {
+      categories: state.movie.categories,
+     }
+  }
+
+
+
+*PASSO 19, em Player.js
+(mesma ideia do passo 18)
+
+   function mapStateToProps(state){
+       return {
+       category: state.movie.selectedCategory.name,
+       movie: state.movie.selectedMovie.title,
+  }
+}
+
+
+
+   
+   
+
+   O data.js é importado no Reducer, é o estado inicial categories
+   mapStateToProps acessa o estado global do Reducer a partir do connect (connect pega os dados de Reducer)
+   em mapDispatchToProps -> esta propriedade sempre ira receber uma função
+
+   mapDispatchToProps e mapDispatchToProps podem possuir qualquer nome
