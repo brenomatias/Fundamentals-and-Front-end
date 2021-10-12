@@ -2,3 +2,7 @@ https://reactjs.org/docs/forms.html
 https://www.npmjs.com/package/react-router
 https://stackoverflow.com/questions/50584641/invariant-violation-you-should-not-use-switch-outside-a-router/50584746
 (error: You should not use <Switch> outside a <Router>)
+https://stackoverflow.com/questions/45917365/const-can-only-be-used-in-a-ts-file-react-native/50392303
+(error: The 'const' modifier can only be used in TypeScript files)
+https://exerror.com/react-button-onclick-redirect-page/
+(botao de redirecionar com hook)

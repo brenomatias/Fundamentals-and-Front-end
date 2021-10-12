@@ -17,7 +17,7 @@ function App() {
         <Route exact path="/professionalForm">
           <ProfessionalForm />
         </Route>
-        <Route exact path="/professionalForm">
+        <Route exact path="/formDisplay">
           <FormDataDisplay />
         </Route>
       </Switch>

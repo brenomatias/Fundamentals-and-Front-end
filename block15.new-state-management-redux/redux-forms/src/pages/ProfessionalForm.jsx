@@ -1,9 +1,35 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-export default class ProfessionalForm extends React.Component{
+
+export default class ProfissionalForm extends React.Component{
+
     render(){
         return(
-            <p>ProfessionalForm</p>
+            <form>
+              <fieldset>
+                <label>
+                   <textarea>
+                       Text area
+                   </textarea>
+                </label>
+                <label>
+                    Cargo:
+                    <input type="text" />
+                </label>
+                <label>
+                   <textarea>
+                       Text area
+                   </textarea>
+                </label>
+                <Link to="formDisplay">
+                <button>
+                    Enviar
+                </button>
+                </Link>
+              </fieldset>
+            </form>
+            
         );
     }
 }
