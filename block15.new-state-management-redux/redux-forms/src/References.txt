@@ -1,1 +1,4 @@
 https://reactjs.org/docs/forms.html
+https://www.npmjs.com/package/react-router
+https://stackoverflow.com/questions/50584641/invariant-violation-you-should-not-use-switch-outside-a-router/50584746
+(error: You should not use <Switch> outside a <Router>)

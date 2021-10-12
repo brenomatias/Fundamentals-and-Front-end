@@ -1,12 +1,28 @@
 import './App.css';
+import React from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import PersonalForm from './pages/PersonalForm';
+import ProfessionalForm from './pages/ProfessionalForm';
+import FormDataDisplay from './pages/FormDataDisplay';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        Form exercise
-      </header>
-    </div>
+      <main className="MainContent">
+      <BrowserRouter>
+      <Switch>
+        <Route exact path="/">
+          <PersonalForm />
+        </Route>
+        <Route exact path="/professionalForm">
+          <ProfessionalForm />
+        </Route>
+        <Route exact path="/professionalForm">
+          <FormDataDisplay />
+        </Route>
+      </Switch>
+      </BrowserRouter>
+      </main>
   );
 }
 
