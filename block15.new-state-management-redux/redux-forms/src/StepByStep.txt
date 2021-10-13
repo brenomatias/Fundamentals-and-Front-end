@@ -1,0 +1,56 @@
+*Antes de começar (Redux)*
+
+- [ ] pensar como será o *formato* do seu estado global
+- [ ] pensar quais actions serão necessárias na sua aplicação
+
+(vamos precisar de pelo menos 2 locais de armazanamento (para PersonalData e ProfessionalData))
+
+funçao Reducer: A reducer is a function that determines changes to an application's state. 
+It uses the action it receives to determine this change
+
+
+Em Reducer.js estabelece o estado inicial global:
+
+    const initialState = {
+       personalInputs: {
+         nome: '',
+         email: '',
+         cpf: '',
+         endereco: '',
+         cidade: '',
+        estado: '',
+       },
+       professionalInputs: {
+         curriculo: '',
+         cargo: '',
+         descricao: '',
+      },
+    };
+
+
+Pensando na actions:
+
+actions possiveis: 1- alteraçao do texto do input
+                   2- enviar informaçoes pessoais 
+                   3- enviar informaçoes de trabalho
+
+  
+   export const SET_PERSONAL_VALUE = 'SET_PERSONAL_VALUE';
+   export const SET_PROFESSIONAL_VALUE = 'SET_PROFESSIONAL_VALUE';
+
+   export const setPersonalValue = (payload) => (    // estas funçoes sao actions criators
+      {
+    type: SET_PERSONAL_VALUE, payload,
+     });
+
+    export const setProfessionalValue = (payload) => (
+       {
+      type: SET_PROFESSIONAL_VALUE, payload,
+     });
+
+   ** type é a descrição da açao  
+   ** payload pode ser qualquer nome, é um objeto de retorno da açao
+   (aquilo que vai ser utilizado na action para definir o estado global)
+
+
+   ate minuto 27
