@@ -1,3 +1,5 @@
+codigo original
+
 npx create-react-app my-app-redux;
 npm install --save redux react-redux;
 npm install.
