@@ -2,7 +2,7 @@ import './App.css';
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import PersonalForm from './pages/PersonalForm';
-import ProfessionalForm from './pages/ProfessionalForm';
+import ProfessionalForm from './pages/ProfessionalForms';
 import FormDataDisplay from './pages/FormDataDisplay';
 
 
