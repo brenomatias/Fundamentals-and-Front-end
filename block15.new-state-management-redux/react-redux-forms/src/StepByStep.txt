@@ -163,13 +163,74 @@ poderia ficar assim o connect:
 ler as os dados da store (com mapStateToProps)
    
       import { connect } from 'react-redux';
-      export default connect(mapStateToProps, mapDispatchToProps)(ComponentName);
+      export default connect(mapStateToProps, null)(ComponentName);
 
       const { professionalInputs, personalInputs } = this.props;
 
-      const mapStateToProps = (state) => ({
+      const mapStateToProps = (state(global)) => ({
         personalInputs: state.reducer.personalInputs,
         professionalInputs: state.reducer.professionalInputs }
-      );
+      ); 
 
-   
+// essa funçao le os estado global e nao executa transformaçao de estado
+entao nao precisa do mapDispatchToProps
+
+
+
+
+*** mapDispatchToProps em PersonalForm:
+
+   const mapDispatchToProps = (dispatch) => ({
+     dispatchSetValue: (valueAndName) => dispatch(setPersonalValue(valueAndName)),
+   }
+  );
+
+mapDispatchToProps transforma a função (valueAndName) => dispatch(setPersonalValue(valueAndName))
+   em uma propriedade para o componente, com a propriedade dispatchSetValue (que ta em onSubmitForm)
+  
+essa funçao dispara a açao. o dispatch tem que disparar uma action: setPersonalValue(valueAndName)
+
+valueAndName: pode ser qualquer nome
+quando chamar a propriedade dispatchSetValue, que é uma funçao, tem que passar um valor (valueAndName)
+
+em:
+
+ onSubmitForm() {
+    const { history, dispatchSetValue } = this.props;
+    dispatchSetValue(this.state);
+    history.push('/professionalform');
+  }
+
+  this.state = valueAndName na chamada de dispatch em mapDispatchToProps
+  e o state é:
+      
+      this.state = {
+      nome: '',
+      email: '',
+      cpf: '',
+      endereco: '',
+      cidade: '',
+      estado: '',
+    };
+
+ou seja, funçao acessa o estado local e passa para a ação. 
+(passa o estado local para action enviar para o estado global)
+
+
+
+
+*** NO REDUCER 
+
+     const reducer = (state = initialState, action) => {
+  switch (action.type) {
+  case SET_PERSONAL_VALUE:
+    return { ...state, personalInputs: action.payload };
+  case SET_PROFESSIONAL_VALUE:
+    return { ...state, professionalInputs: action.payload };
+  default:
+    return state;
+  }
+};
+
+payload= formulario
+retorna um novo objeto, ...state mantem as informaçoes que ja existem(copia do estado)
