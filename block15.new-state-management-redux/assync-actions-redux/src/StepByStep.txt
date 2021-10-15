@@ -10,5 +10,30 @@ https://www.npmjs.com/package/redux-thunk
 (install redux thunk)
 npm install --save redux-thunk
 
+(biblioteca externa)
 npm install --save pigeon-maps
 (https://www.npmjs.com/package/pigeon-maps)
+
+
+******* ABOUT REDUX THUNK MIDDLEWARE 
+
+(https://github.com/reduxjs/redux-thunk)
+Redux Thunk middleware allows you to write action creators that return a function instead of an action. 
+The thunk can be used to delay the dispatch of an action, or to dispatch only if a certain condition is met. 
+The inner function receives the store methods dispatch and getState as parameters.
+
+With a plain basic Redux store, you can only do simple synchronous updates by dispatching an action. Middleware extends the store's abilities, and lets you write async logic that interacts with the store.
+
+
+
+***** O QUE JA ESTAVA PRONTO:
+
+* Provider em index.js ja configurado
+
+ISSLocation.js(component):
+  agrupa o mapa
+  agrupa o component coordenadas
+
+Configuraçao inicial Redux:
+
+parei minuto 12 aula
