@@ -34,6 +34,123 @@ ISSLocation.js(component):
   agrupa o mapa
   agrupa o component coordenadas
 
-Configuraçao inicial Redux:
+Configuraçao inicial Redux(esqueleto sem logica em action)
 
-parei minuto 12 aula
+
+
+
+****MAP STATE TO PROPS(utilizada dentro do component)
+
+(colocar os valores do component no estado global (components/ISSLocation))
+(ou colocar os valores do estado global no componente)
+// antes os valores estavam estaticos ( const { latitude, longitude } )
+
+*acessar e criar o estado inicial -> reducer: reducers/issLocation.js
+   
+    const INITIAL_ISS_LOCATION_STATE = {
+        latitude: -28.9719,
+        longitude: -52.0069,  (objeto)
+   };
+
+
+EM ISSLocation.js(/component)
+
+ *mapStateToProps -> definir propriedades do componente
+ (acessa estado global e define quais informaçoes acessar). Estrutura:
+
+    import { connect } from 'react-redux';
+
+    render() {
+        const { latitude(qualquernome1), longitude(qualquernome2  ) } = this.props;
+    return (
+            ...
+
+    const mapStateToProps = (state) => ({
+        latitude(qualquernome1): state.issLocation.latitude
+        longitude(qualquernome2): state.issLocation.longitude
+    });
+   
+
+   *state = { issLocation: { latitude, longitude } }   (o estado tem essa forma definida no Reducer)
+
+    export default connect(mapStateToProps)(ISSLocation);
+
+
+
+ ****ACESSAR API para salvar valores no estado global
+
+(services/issAPI.js -> transforma os valores em json) 
+
+*acessar API dentro do component(ISSLocation): 
+
+      componentDidMount() {
+          const { getISSLocation } = this.props;
+
+       const ONE_SECOND = 1000;
+       setInterval(() => getISSLocation(), ONE_SECOND);
+      }
+
+// componentDidMount garante que os dados chegaram 
+(componentDidMount so usa sem o thunk?)
+
+
+*tem que fazer um dispatch das informaçoes recebidas da API para 
+alterar o estado global, para que as informaçoes cheguem no reducer, 
+e o reducer escreva no estado global
+
+    const mapDispatchToProps = (dispatch) => ({
+    getISSLocation: () => dispatch(getISSLocationThunk()),
+   });
+
+
+
+**** CRIAR ACTIONS
+
+(quais actions vamos precisar? retorno da API  )
+a API nao é uma interaçao direta do usuário
+
+*ação para guardar retorno da API:
+   
+    // action creator(funçao que retorna um objeto da action)
+    // payload é o parametro que vai receber da interface(component) pro estado global(objeto)
+    // payload é como se fosse a sacola com as açoes da action 
+
+    export const GET_ISS_LOCATION_SUCCESS = 'GET_ISS_LOCATION_SUCCESS';
+
+    export const getISSLocationSuccess = (payload) => ({
+      type: GET_ISS_LOCATION_SUCCESS,
+      payload,
+    });
+
+// payload entra no return do reducer (action.payload)
+
+
+***** CRIAR O CASO DO REDUCER
+(dentro do reducers/issLocation.js)  CRLT + P
+
+colocar o caso da ação
+   
+   import { GET_ISS_LOCATION_ERROR, GET_ISS_LOCATION_SUCCESS } from '../actions';
+  
+  const issLocation = (
+    state = INITIAL_ISS_LOCATION_STATE,
+    action,
+  ) => {
+     switch (action.type) {
+   case GET_ISS_LOCATION_SUCCESS:
+     return {
+      ...state,      // spread do state(padrao para preservar dados)
+      latitude: action.payload.latitude,
+      longitude: action.payload.longitude,
+    };
+    case GET_ISS_LOCATION_ERROR:
+      return {
+      ...state,
+      error: action.payload.error,
+    };
+    default:
+    return state;
+
+
+** chama a action de fato com o dispatch
+
