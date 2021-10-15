@@ -34,12 +34,12 @@ ISSLocation.js(component):
   agrupa o mapa
   agrupa o component coordenadas
 
-Configuraçao inicial Redux(esqueleto sem logica em action)
+Configuraçao inicial Redux(esqueleto sem logica das actions e dos component)
 
 
 
 
-****MAP STATE TO PROPS(utilizada dentro do component)
+****MAP STATE TO PROPS(utilizada dentro do component) /mapStateToProps
 
 (colocar os valores do component no estado global (components/ISSLocation))
 (ou colocar os valores do estado global no componente)
@@ -152,5 +152,135 @@ colocar o caso da ação
     return state;
 
 
-** chama a action de fato com o dispatch
 
+** chama a action de fato com o dispatch
+(Com redux e action definidos)
+
+
+
+**** REDUX THUNK
+
+(funçao que retorna outra funçao () => () => { })
+entra entre a action e o dispatch
+(action que vai disparar outras actions)
+
+action que chama a API = thunk
+
+   npm install redux-thunk
+
+*em  store (store/index.js)
+
+     import { createStore, applyMiddleware } from 'redux';
+     import thunk from 'redux-thunk';
+
+    import reducer from '../reducers';
+
+    export const store = createStore(
+    reducer,
+    composeWithDevTools(
+    applyMiddleware(thunk),
+    ),
+  );
+
+   export default store;
+
+* em actions/index.js 
+(() => () => {}) / criar actions de maneira assincronas
+
+   import { getCurrentISSLocation } from '../services/issAPI';
+
+    export const getISSLocationThunk = () => async (dispatch) => {
+  // action loading
+  try {
+    const response = await getCurrentISSLocation();
+    const payload = {
+      latitude: Number(response.iss_position.latitude),
+      longitude: Number(response.iss_position.longitude),
+    };
+    dispatch(getISSLocationSuccess(payload)); // faz o dispatch da açao que esta logo acima
+  } catch (error) {
+    dispatch(getISSLocationError(error));
+  }
+ };
+
+** getISSLocationThunk será chamada dentro do component em vez de chamar
+getISSLocationSuccess diretamente
+
+
+
+
+  *** CHAMAR O THUNK DENTRO DO COMPONENT 
+  (mapDispatchToProps)
+     
+       const mapDispatchToProps = (dispatch) => ({
+          getISSLocation: () => dispatch(getISSLocationThunk()),
+         });
+
+// nao tem payload aqui (em getISSLocation: (payload viria aqui) => ) 
+porque nao recebe nada da interface, nenhum input
+        
+        export default connect(mapStateToProps, mapDispatchToProps)(ISSLocation);
+
+
+* passa para componentDidMount:
+  
+  class ISSLocation extends Component {
+
+  componentDidMount() {
+    const { getISSLocation } = this.props;
+    getISSLocation()
+  }
+
+// quando carregar a aplicaçao, vai buscar a getISSLocation
+
+
+*** ATE AQUI JA FUNCIONA a API
+
+(agora é aplicar try catch em getISSLocationThunk)
+colocar error no estado global
+
+no estado global em /reducer/issLocation.js
+   
+     const INITIAL_ISS_LOCATION_STATE = {
+     latitude: -28.9719,
+    longitude: -52.0069,
+     error: null,
+  };
+
+
+   export const GET_ISS_LOCATION_ERROR = 'GET_ISS_LOCATION_ERROR';
+
+   // action creator
+    export const getISSLocationError = (payload) => ({
+    type: GET_ISS_LOCATION_ERROR,
+    payload,
+  });
+
+  completa as acçoes de erro 
+    
+     export const getISSLocationThunk = () => async (dispatch) => {
+    // action loading
+    try {
+    const response = await getCurrentISSLocation();
+    const payload = {
+      latitude: Number(response.iss_position.latitude),
+      longitude: Number(response.iss_position.longitude),
+     };
+      dispatch(getISSLocationSuccess(payload));
+     } catch (error) {
+     dispatch(getISSLocationError(error));
+   }
+   };
+
+
+   *** DEFINE O INTERVALO DE CHAMAR A FUNC NO COMPONENT
+
+      class ISSLocation extends Component {
+       componentDidMount() {
+         const { getISSLocation } = this.props;
+
+       const ONE_SECOND = 1000;
+       setInterval(() => getISSLocation(), ONE_SECOND);
+  }
+
+(adiciona dinamismo)
