@@ -248,8 +248,11 @@ importa o contexto. createNewQuestion é produzida no texto
 
   async function createNewQuestion(ev) {
     ev.preventDefault();
-    const newQuestion = { user: name, question };
+    const newQuestion = { user: name, question }; //  nome ta como 'user'
     await createNewQuestionApi(newQuestion);
     history.push('/');
   }
 
+
+cria contexto
+cria provider com estados
