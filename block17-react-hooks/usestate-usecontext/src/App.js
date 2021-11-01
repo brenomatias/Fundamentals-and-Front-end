@@ -1,24 +1,35 @@
-import logo from './logo.svg';
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
+
+import QuestionListPage from './pages/QuestionListPage';
+import NewQuestionPage from './pages/NewQuestionPage';
+
 import './App.css';
+import QuestionsProvider from './context/QuestionsProvider';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <QuestionsProvider>
+      <main className="App">
+        <header className="main-header">
+          <section className="main-header-title">
+            <h3>Trybe Questions - 14ALL </h3>
+          </section>
+        </header>
+        <section className="main-section">
+          <Switch>
+            <Route
+              path="/new-question"
+              render={ (props) => <NewQuestionPage { ...props } /> }
+            />
+            <Route
+              path="/"
+              render={ (props) => <QuestionListPage { ...props } /> }
+            />
+          </Switch>
+        </section>
+      </main>   
+    </QuestionsProvider>
   );
 }
 

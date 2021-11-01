@@ -1,0 +1,35 @@
+Context API React
+
+Context provides a way to pass data through 
+the component tree without having to pass props down manually at every level.
+
+
+But what is a Hook?
+Hooks are functions that let you “hook into” React state and lifecycle 
+features from function components. Hooks don’t work inside classes — 
+they let you use React without classes
+
+Rules of Hooks:
+Only call Hooks at the top level. Don’t call Hooks inside loops, conditions, or nested functions.
+Only call Hooks from React function components
+
+
+**** useState is a Hook 
+call it inside a function component to add some local state to it
+
+useState returns a pair: the current state value and a function that lets you update it
+You can call this function from an event handler or somewhere else
+   
+      const [state, funcToUpdateState] = useState(0);
+
+   const [count, setCount] = useState(0);
+   <button onClick={() => setCount(count + 1)}>
+
+
+****  useContext is a hook 
+lets you subscribe to React context without introducing nesting
+
+
+
+**** <BrowserRouter>
+Em index.js
