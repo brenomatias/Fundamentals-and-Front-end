@@ -1,23 +1,22 @@
-import logo from './logo.svg';
+import React, { useContext } from 'react';
 import './App.css';
+import ISSLocation from './components/ISSLocation';
+import PeopleInSpace from './components/PeopleInSpace';
+import ISSContext from './context/ISSContext';
 
 function App() {
+  const { showMap, toggleMap } = useContext(ISSContext);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>
+        Space Station
+        {' '}
+        <span className="purple-font">Tracker</span>
+      </h1>
+      <button type="button" onClick={ toggleMap }>Remover o Mapa</button>
+      {showMap && <ISSLocation />}
+      <PeopleInSpace />
     </div>
   );
 }

@@ -1,0 +1,245 @@
+USEEFECT
+
+The Effect Hook lets you perform side effects in function components:
+simula os efeitos de ciclo de vida 
+
+  // useEffect(() => {}); => componentDidUpdate
+  // useEffect(() => {}, []); => componentDidMount  // did mount é executado apenas uma vez
+  // useEffect(() => { return () => {} }, []); => componentWillUnmount
+  // useEffect(() => {}, [var1, var2]); => componentDidUpdate
+
+por parametro pode receber 2 valores:
+
+    useEffect(callback, arrayOfDependencies)
+
+0) colocar provider no index.js
+
+ReactDOM.render(
+  <ISSProvider><App /></ISSProvider>, document.getElementById('root'),
+);
+
+
+1) Aplicar contexto da aplicaçao
+(no ISSLocation.js)
+
+    import ISSContext from '../context/ISSContext';
+    function ISSLocation() {
+    const { latitude, longitude, getISSLocation } = useContext(ISSContext);
+
+
+2) Aplicando useEffect
+
+2.1
+    useEffect(()=> {
+       getISSLocation();
+    }, ONE_SECOMD);
+    });
+
+(desse jeito o useEffect esta atuando como componentDidUpdate e 
+nao queremos isso)
+
+Para ser o equivalente do componentDidMount é preciso passar o array de dependencias
+como parametro ( [] )
+
+       useEffect(()=> {
+       getISSLocation();
+    }, ONE_SECOMD);
+    }, []);
+
+
+2.2
+ é possivel ter varios useEffect
+(aplicando o useEffect para data)
+  
+    useEffect(() => {
+    document.title = new Date().toLocaleTimeString();
+  }); // componentDidUpdate
+
+sem o array de dependencias tem comportamento de componentDidUpdate 
+(até aqui é tudo no ISSLocation.js)
+
+3) Botão de remoçao do mapa
+em App.js cria o Botão
+
+3.1 
+adiciona no contexto o estado de aparecer ou nao o mapa
+
+em ISSProvider.js
+       
+       this.state = {
+         showMap: true,
+
+criar funçao de toggle:
+
+     toggleMap() {
+    this.setState(({ showMap(valor atual) }) => ({ showMap: !showMap }));
+  }
+
+
+ showMap: !showMap = quando chamar a funçao showMap é diferente de true(false)
+ e vice versa
+
+ 3.2
+passar a funçao para o contexto a partir do provider e value
+
+    render() {
+    const { children } = this.props;
+    return (
+      <ISSContext.Provider
+        value={ {
+          ...this.state,
+          ... 
+          toggleMap: this.toggleMap,
+        } }
+      >
+        {children}
+      </ISSContext.Provider>
+
+
+3.3
+chama a toggleMap atraves do contexto em App.js
+
+   function App() {
+  const { showMap, toggleMap } = useContext(ISSContext);
+
+
+3.4 
+logica para mostrar ou nao o map
+  
+         {showMap && <ISSLocation />}
+
+se showMap for true renderiza ISSLocation
+
+3.5
+componentWillUnmount para parar de atualizar quando remover mapa
+(em ISSLocation.js )
+
+    useEffect(() => { return () => {
+        clearInterval();
+    } }, []);            //componentWillUnmount (quando tem return)
+
+esta funçao tem o mesmo comportamento de 
+
+       useEffect(()=> {
+       getISSLocation();
+    }, ONE_SECOMD);
+    }, []);
+
+entao podemos passar a funçao dentro deste useEffect
+   
+  const interval useEffect(()=> {  
+       getISSLocation();
+    }, ONE_SECOMD);
+
+      return((=> {
+          clearInterval(interval)
+      }))
+    }, []);
+   
+
+4)
+Aplicar a quantidade de pessoas no espaço
+
+4.1 
+
+Em App.js
+      <PeopleInSpace />
+
+4.2
+
+PeopleInSpace.js
+
+4.3
+configurar a logica de chamada da API e configurar no contexto (no Provider)
+em ISSProvider
+
+  
+    this.state = {
+      peopleInSpace: [],
+    };
+
+cria a funçao de retorno
+
+    getPeopleInSpace() {
+    this.setState({ isFetching: true }, async () => {
+      const { people } = await getPeopleInSpaceApi(); // people e um dos retornos da API
+      this.setState({
+        peopleInSpace: people, // retorno da API
+        isFetching: false,
+      });
+    });
+  }
+
+  disponibilizar no provider a funçao e o estado 
+
+       render() {
+    const { children } = this.props;
+    return (
+      <ISSContext.Provider
+        value={ {
+          ...this.state,
+          getISSLocation: this.getISSLocation,
+        } }
+      >
+        {children}
+      </ISSContext.Provider>
+    );
+  }
+}
+
+
+4.4 
+pegar a informação do contexto e utilizar em PeopleInSpace.js
+(em peopleInSpace.js)
+
+  import ISSContext from '../context/ISSContext';
+  const { peopleInSpace, getPeopleInSpace } = useContext(ISSContext);
+
+4.5
+useEffect para ciclo de vida da chamada da API
+
+  useEffect(()=> {
+      getPeopleInSpace
+  }, [])    //componentDidMount
+
+se quiser esperar por um intervalo de tempo   
+
+       const interval useEffect(()=> {  
+       getPeopleInSpace();
+    }, ONE_SECOMD);
+
+      return((=> {
+          clearInterval(interval)
+      }))
+    }, []);
+   
+
+
+5) 
+criar hook customizado para o timer de retorno da API
+em hooks/useTimer
+(todo hook começa com use)
+
+   import { useEffect } from 'react';
+
+function useTimer(callback, intervalTime) {
+  useEffect(() => {
+    const interval = setInterval(() => {
+      callback();
+    }, intervalTime);
+
+    return (() => { // return = componentWillUnmount
+      clearInterval(interval);
+    });
+  }, []);
+}
+
+export default useTimer;
+
+5.1
+repassa useTimer para os components
+ 
+    useTimer(getISSLocation, ONE_SECOND); // ISSLocation.js
+
+      useTimer(getPeopleInSpace, TEN_SECONDS);
+
