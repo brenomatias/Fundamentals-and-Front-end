@@ -1,0 +1,325 @@
+*****PASSO 1: (CRIAR INPUT DE PESQUISA)
+
+Criar a página principal:
+cria Main.js
+Criar input com uma label para busca:
+Cria label: htmlFor conecta com id
+É necessário que o final da URL da api seja dinâmico na busca
+www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita
+(a parte de "margarita" precisa ser dinamica para realizar a busca)
+Para ela ser diâmica cria um estado (guardar o valor do input dentro de um estado):
+para usar estado, precisa criar um constructor e super (antes de render)
+constructor () {
+    super();
+    this.state = {
+        query: ''    // chave query iniciando como uma string vazia
+    }
+}
+o value do input será o valor do estado definido (query).   value = { query }
+precisa trazer o valor do estado para dentro do render:
+descontruir o valor do estado e trazer ele para o render:
+const { query } = this.state -> agora o render tem acesso a query do estado
+"toda vez que tem uma alteraçao no estado o componente é renderizado de novo"
+
+Para alterar o estado é necessário criar uma função
+para alterar o estado precisa de duas informações: o nome, que está no target 
+adiciona o quesito "name" no input (name="query)
+adiciona esse nome para pegar dentro da funçao handlerInputQuery
+
+handlerInputQuery(target: { name, value}) {     // quer alterar a chave "query"
+   this.setState({          // alterar o estado
+       [name]: value       // name é o que vem do input
+   })                     // recebe o valor do input
+}                         // funçao deixa de maneira dinâmica e pode ser usada para outros inputs
+
+(target: {name, value}) desconstroi o target que já vem por padrão na funçao
+target é o que dispara o evento
+targert possui as informaçoes de quem disparou o evento evento (name, value)
+
+bind se nao for arrow function
+
+Disparar funçao dentro do input (quando digitar alguma caoisa):
+onChange= {this.handlerInputQuery}
+
+// Parte de pesquisa da página feita
+
+
+
+*****PASSO 2: (FAZER A CHAMADA DA API)
+
+Fazer chamada da API (botão faz chamada da API)
+Faz isso dentro de um botão 
+Cria botão abaixo do input
+Pela extensão JSON viewer é possivel ver o objeto de retorno da API
+https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita
+O que eu vou trabalhar: um objeto que traz uma chave drinks que é um array com os objetos de cada bebida
+Cria função de requisição:
+
+fetchData() => {  // o que eu quero fazer quando clicar no botão (quero trazer o que foi digitado dentro do input)
+  const { query } = this.state   // pega o valor de "query" do estado (pega a chave query)
+  fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${ query }`) // fetch para acessar a api
+    .then((response) => response.json())       // transforma dado em json 
+    .then((response) => this.setState({       // guardar a informação dentro da chave
+        cocktails: response.drinks            // pega as respostas da API e passa pra chave. Como a resposta é um objeto e so interessa o que está dentro de "drinks" (objeto) coloca response.drinks
+    }))                                      // na chave "cocktails" so guarda o que está dentro de drinks 
+    .catch((error) => console.error(error)) 
+}
+
+tem que ser string literals para conseguir pegar o valor de "query" (pesquisar pelo que digitou)
+sempre ter https: antes
+.then(resposta da API) =>   // o que eu quero que seja feito depois de buscar a api (o fetch retorna algo)
+
+
+cria a chave "cocktails" dentro do estado
+"cocktails" será para lidar com o retorno da API. Como a api retorna array -> cocktails: [] começa como uma array vazia
+"cocktails" guarda o retorno da API dentro do estado
+assim temos o que é preciso para renderizar o retorno da API
+
+passa função fetchData dentro do botão onClick= {this.fetchData}
+
+** se a função estiver em outro arquivo, importa e faz a funçao receber um parametro
+** criar uma função que vai chamar ela, dentro da funçao pega o estado e passa o parametro para ela
+** e ela vai retornar algo. ex aqui:
+****
+  handleClick = async () => {
+    this.setState({
+      loading: true,
+    });
+    const { searchInput } = this.state;
+    const result = await searchAlbumsAPI(searchInput);
+
+    this.setState({
+      searchInput: '',
+    });
+  }
+  *****
+
+
+  // *****PASSO 3: (EXIBIR NA TELA AS INFORMAÇOES )
+
+  traz "cocktails" para dentro de render
+  const { cocktails } = this.state (declara estado fora de return)
+  tendo acesso a cocktails:
+  faz um map dentro de return (map do retorno da api):
+
+  { cocktails.map((cocktail)) => (
+      <>
+  <h1 key={cocktail.idDrink}>{ cocktail.strDrink } </h1>     // para trazer o nome da bebida
+  <img src={ cocktail.strDrinkThumb} 
+   alt={ cocktail.strDrinkThumb}
+   width="200"
+   />
+      </>
+  ))}
+
+o nome da bebida está guardado dentro da chahve "strDrink" dentro do objeto
+
+
+*****PASSO 4: (criar resposta caso o valor do input nao esteja na API)
+
+para nao quebrar o código:
+caso "cocktails" seja nulo (nao existe dentro da API)
+    { cocktails && cocktails.map((cocktail) => {
+        ....
+    })
+&& = os dois valores precisam ser verdadeiros 
+muda cocktails em estado para "null"
+
+
+*****PASSO 5: (cria respota de loading)
+
+cria chave "loading" no estado
+    loading: false,
+quando clica no botao o evento dispara a função fetchData
+então define o estado de loading dentro da funçao fetchData
+   this.setState({loading: true})
+
+quando a requisiçao terminar, tira o loading
+   .the(response) => this.setState ({
+       cocktails: response.drinks,
+       loading: false,
+   })
+
+composiçao final do codigo depois de alterar
+
+  fetchData = () => {
+    this.setState({ loading: true}, () => {       // essa funçao quer dizer: roda loading, depois que acessar a API executa a funçao
+      const { query } = this.state;
+      fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${query}`)
+        .then((response) => response.json())
+        .then((response) => this.setState({
+            cocktails: response.drinks,
+            loading: false,
+          });
+        })
+        .catch((error) => console.error(error));
+    });
+  }
+
+  aí depois chama "loading" dentro de render:
+     const { query, cocktails, loading } = this.state;
+  adiciona um retorno
+     return (
+         ....
+         </button>
+        {loading && <div>Loading...</div>}
+        {cocktails && cocktails.map((cocktail))=> (
+            ....
+        )}
+      )
+
+depois reseta cocktails em fetchData para Loading... sumir em uma nova requisição
+     fetchData = () => {
+         this.setState({ loading: true, cocktails: null}, () => {
+             ...
+         })
+     }
+qando dispara um setState ele é uma funçao assincrona por isso chama os estados e depois uma callback
+espera de fato os estados serem atualizados para depois executar a callback
+
+
+
+*****PASSO 6: (cria msg NotFound)
+
+joga o setState da versao anterior da fetchData para dentro da func. (abre { } e joga ele pra dentro)
+passa o estado "notFound" dentro do constructor
+   NotFound: false,
+
+atualização da funçao fetchData:
+
+  fetchData = () => {
+    this.setState({ loading: true, cocktails: null, NotFound: false, }, () => {
+      const { query } = this.state;
+      fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${query}`)
+        .then((response) => response.json())
+        .then((response) => {          // tira o setState da funçao anterior
+        
+          if (!response.drinks) {     // se a API nao trouxer nada
+            return this.setState({    // retorna uma estado diferente
+              NotFound: true,         // pq return no setState? se nao tiver return roda as duas atualizaçoes de estado. com o return passa por ele primeiro
+              loading: false,
+            });
+          }
+
+          this.setState({
+            cocktails: response.drinks,
+            loading: false,
+          });
+        })
+        .catch((error) => console.error(error));
+    });
+  }
+
+
+reseta estado de NotFound dentro de fetchData para ele sumir depois que a func rodar
+   fetchData = () => {
+       this.setState ( {..., NotFound: false})
+   }
+dentro render traz o estado:
+   const { ..., NotFound, } = this.state
+dentro do return do render:
+    { NotFound && <di>Nenhuma Bebida encontrada. </div>}
+
+
+// TUDO DA MAIN PAGE FEITO ATÉ AQUI (Main.js *****PASSOs de 1 a 6)
+
+
+// INICIANDO página de Details.js
+
+*******PASSO 7: (cria link para redirecionar para página de Detail)
+
+dentro da função map em Main.js cria o Link: (em Main.js)
+para cada bebida o map vai gerar um link tambem
+
+    <Link
+       key={ cocktail.idDrink } 
+       to={`/details/${cocktail.idDrink}`} >    // string literals para acessar a chave
+    <h1> ....</h1>
+    <img .... />
+    </Link>
+
+idDrink está dentro do objeto retornado da API
+ou seja, este link irá levar para o id especifico de cada bebida
+
+depois: criar rota do Link 
+cria <BrowserRouter> em App.js
+   return (
+       <BrowserRouter>
+         <Switch>
+
+        <Route exact path="/" component= { Main } />   // na rota "/" renderiza o component Main
+        <Route exact path="/details/:id" component= { Details }>     //:id é dinâmico (id=parametro)
+
+         </Switch>
+       </BrowserRouter>
+   )
+
+
+
+****PASSO 8: (trazer informaçoes da receita da bebida -> fazer nova aquisçao da API)
+cria: 
+   constructor() {
+    super();
+    this.state = {
+        cocktail: [], // define o estado para a array do resultado especifico retornado
+    }
+}
+
+   componentDidMount (){
+
+}
+
+criar função para chamar dentro do DidMount:
+chamar a API para guardar os dados
+
+   assync fetchData() { 
+        
+       const { match: { params: {id} }} = this.props;   // dentro de match pega o params e dentro de params pega o id
+// este id vai estar relacionado com o Link criado em 
+        <Route exact path="/details/:id" component={ Details } />
+
+    try {
+        const fetchCocktail = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`);
+        const fetchCocktailJson = await fetchCocktail.json(); 
+        this.setState ({
+            cocktail: fetchCocktailJson.drinks[0]
+        })
+
+     } catch(error) {
+
+     }
+
+a informaçao necessaria= id. Usa este endpoint agora: www.thecocktaildb.com/api/json/v1/1/lookup.php?i=11007
+traz a bebida daquele id especifico
+component recebe "match" como props (padrão) (abri extensao de components e ver o componente Details)
+dentro do "match" tem o "params"
+dentro de "params" existe "id" como parametro definido dentro da Rota em App.js
+faz o fetch da API e passa o parametro que foi pego em match(id) (requisicao da API)
+transforma resposta em json
+pega informaçao de json
+(bind se nao for arrow function, que este o caso)
+
+salva a informação dentro do estado this.setState para atualizar estado de cocktail
+
+depois passa a funçao dentro de componentDidMount
+
+    componentDidMount() {
+        this.fetchData
+    }
+
+
+
+*****PASSO 10:
+
+renderizar os detalhes (nao precisa de map porque e so uma receita)
+trazer dados da receita pra tela  
+traz o estado para dentro do render: const { cocktail } = this.state
+
+   render () {
+      const { cocktail } = this.state
+    return (
+      <>
+      <h1> {cocktail.strDrink} </h1>  // renderiza nome
+      <p> { cocktail.strInstructions} </p>  // busca as instruçoes da receita
+    )
+   }
