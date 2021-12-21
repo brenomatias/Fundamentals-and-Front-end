@@ -1,0 +1,387 @@
+Redux DevTools(extesion)
+instalar no codigo:
+
+window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+pasar isso como segundo parametro de createStore em index.js na pasta store
+
+
+
+
+
+Vamos relembrar alguns conceitos:
+
+Store:
+É onde vamos armazenar todos os dados compartilhados da aplicação 
+e é representado por um objeto JavaScript . O State é armazenado no Store do Redux .
+
+Action:
+É um objeto JavaScript que representa alguma mudança/alteração que precisa acontecer no State .
+
+Reducer:
+É uma função JavaScript que recebe o estado atual ( current state ) e a ação corrente
+ ( current action ) e retorna um novo estado ( new state ). 
+ É responsabilidade dessa função decidir o que acontecerá com o estado dada uma ação( action ).
+
+Dispatch:
+É uma função que envia uma ação ( action ) para processamento.
+
+
+* PASSO 1 
+
+npm install
+npm install react-redux  (conecta redux com react)
+npx create-react-app my-app
+npm install --save redux react-redux
+
+* PASSO 2
+(aplicar redux para gerenciar o estado da aplicaçao) / redux = gerenciador de estados
+(redux auxilia na passagem de informações entre diversos components)
+
+primeiro passo redux: 
+   criar store
+
+   cria folder store -> index.js para criar store
+
+importa redux 
+   import { createStore } from 'redux';  // Redux.createStore();
+
+cria store
+   const store = createStore();
+
+   export default store;
+
+dar visibilidade de store para o react que estão na store utilizando o App.js
+em App.js :
+
+   import { Provider } from 'react-redux'
+
+
+importa store em App. 
+
+Provider = auxlia em fornecer as informações para os components
+Provider fornece as informaçoes da store para os components
+
+
+
+*PASSO 3
+(açoes do Redux(actions))
+
+cria pasta 'actions'
+cria arquivo 'movieActions.js'
+
+formato das actions(objeto):
+
+type é a descrição da ação
+
+ type: '(LETRA_MAISCULA)',
+        category: ,
+        movie:
+
+
+*PASSO 4
+(criar reducer(ouvir as actions))
+
+cria pasta reducers
+cria arquivo movieReducer
+
+estrutura do Reducer(funçao):
+padrão da função reducer
+
+   function movieReducer(state, action){
+       return state;
+   }
+
+(boa prática: ter um Reducer por aquivo)
+
+passar reducer para store em index.js
+importa movieReducer 
+passa movieReducer como parametro de createStore()/ createStore(movieReducer)
+
+
+
+*PASSO 5
+(fazer Reducer ouvir as actions)
+
+Em movieReducer.js
+type é a descrição da ação em movieActions
+
+    function movieReducer(state = INITIAL_STATE, action){
+        if(action.type === 'SELECT_MOVIE'){
+           return {  // retorna objeto
+
+            }
+          }
+       return state;
+    }
+
+   export default movieReducer;
+
+
+
+
+* PASSO 6 
+(cria INITIAL_STATE(estado inicial))
+
+cria(em movieReducer): 
+
+   const INITIAL_STATE = {
+       categories: categories,    // import categories from "../data"
+        selectedCategory: {},  // iniciar com uma categoria selecionada
+        selectedMovie: {},  // filme incialmente selecionado
+   }     
+
+passa para o Reuducer:
+
+   function movieReducer(state = INITIAL_STATE, action){
+
+
+
+*PASSO 7
+(toda vez que ação SELECT_MOVIE for disparada, eu quero trocar 
+selectedCategory e trocar selectedMovie)
+
+Redux trabalha com imutabilidade(joga estado antigo fora e cria novo)
+
+ Retorna m novo Objeto (o estado é um objeto)
+
+            return {
+            ...state,                         // para garantir que vai mudar apenas os selected (criar novas propriedades com o mesmo nome)
+            selectedCategory: action.category,
+            selectedMovie: action.movie,
+        }
+   
+(a action nao chega efetivamente aqui ainda, precisa disparar no React)
+ 
+
+
+
+*PASSO 8
+(conectar tudo(do Redux) com React)
+
+fazer conexao dos componentes com a store
+
+em Sidebar.js
+
+   import { connect } from 'react-redux';
+
+para conectar: 
+     export default connect(mapStateToProps, mapDispatchToProps)(Sidebar); // chama funçao conect que retorna uma funçao (parametro como component)
+
+prametros func 'connect':
+    mapStateToProps, mapDispatchToProps (funções)
+
+
+define função mapStateToProps:
+(esta função recebe por parametro o estado global)
+retornar quais informações o component Sidebar precisa 
+retornar um objeto com as informaçoes necessarias (com a propriedade 'categories')
+
+   function mapStateToProps(state){
+       return {
+       categories(qualquer nome): state.categories,  // informaçoes necessarias do estado global (propriedade 'categories' do estado global)
+     }
+    }
+
+(ESTADO GLOBAL DEFINIDO NO REDUCER (movieReducer))
+
+
+
+*PASSO 9 
+(acessar categories de mapStateToProps)
+mapear informaçoes do estado global para virar propriedade do componente
+
+passa categories de mapStateToProps como propriedade de Sidebar
+
+ render() {
+    const { categories } = this.props;
+    return(){
+
+agora é possivel acessar estado global de qualquer component
+
+para acessar o estado em qualquer componente (3 passos):
+
+1- importar conect    import { connect } from 'react-redux'
+2- fazer chamada do connet     export default connect(mapStateToProps, mapDispatchToProps)(Sidebar)
+3- criar funçao mapStateToProps
+
+
+
+*PASSO 10 
+(disparar as ações)
+
+importa açoes: import * as movieActions from '../actions/movieActions';
+
+(o que eu quero? diparar um evento no clique)
+
+                  category.movies.map(movie => (
+                    <li key={movie.id}>
+                      <button type='button' onClick=()
+                        {movie.title} was released in {movie.released}
+                      </button>
+
+(cada filme está dentro de um botão)
+
+
+
+*PASSO 11
+(criar a propriedade mapDispatchToProps de connect)
+(quais açoes/disparos vao virar propriedades)
+
+
+   function mapDispatchToProps(dispatch){
+      return {
+         dispararAcaoSelecionarFilme: () => dispatch(movieActions.selectMovie())
+      }
+    }
+
+
+a função recebe o dispatch do redux e recebe um objeto (quais ações disparar )
+
+quando dispararAcaoSelecionarFilme for executada ela vai disparar a funçao () => dispatch
+a ação esta em movieActions.js  
+
+passar dispararAcaoSelecionarFilme para props de Sidebar
+        const { categories, dispararAcaoSelecionarFilme } = this.props;
+
+
+
+*PASSO 12
+(Transformar action estática em funçao que retorna objeto) -> precisa receber a categoria e o filme de forma dinamica
+(sem funçao fica estatico)
+transformar action em funçao movieActions
+para os valores virarem dinamicos:
+
+
+    export function selectMovie(category, movie){
+    return {
+        type: 'SELECT_MOVIE',
+        category: category,
+        movie: movie
+    }
+}
+
+
+
+*PASSO 13
+(passar os parametros da ação em movieActions para mapDispatchToProps e para ação dispatch )
+
+
+  function mapDispatchToProps(dispatch){
+     return {
+      dispararAcaoSelecionarFilme: (category, movie) => dispatch(movieActions.selectMovie(category, movie))
+     }
+   }
+
+
+
+*PASSO 14 
+(chamar a função dispararAcaoSelecionarFilme no botão de cada elemento de filme)
+                
+           category.movies.map(movie => (
+              <li key={movie.id}>
+                  <button type='button' onClick={() => dispararAcaoSelecionarFilme(category, movie)}>
+                     {movie.title} was released in {movie.released}
+                </button>
+            </li>
+
+
+em dispararAcaoSelecionarFilme(category, movie)
+   category vem do primeiro map de Sidebar
+   movie vem do segundo map
+
+
+
+*PASSO 15
+(passar informaçoes que estao no estado global para o Player.js)
+
+1- Fazer connect      
+       export default connect(mapStateToProps)(Player);
+(so quer ler o estado, entao so usa mapStateToProps);
+
+2 - cria funçao  mapStateToProps
+       function mapStateToProps(state)
+
+3- chama category e moive de mapStateToProps como propreidade de Player.js
+    const { category, movie } = this.props; 
+
+
+
+
+*PASSO 16
+(cria outro reducer (userReducer))
+
+  const INITIAL_STATE = {
+    name: 'Luanderson',
+    idade: 'X'
+   }
+
+    function userReducer(state = INITIAL_STATE, action){
+    return state;
+    }
+
+    export default userReducer;
+
+
+
+*PASSO 17 (OU PODE SER NO INICIO)
+(cria file para os reducers)
+na pasta reducers cria file index.js para armazenar os reducers
+ preciso utilizar combineReducers)
+    
+      import { combineReducers } from "redux";
+      import movieReducer from "./movieReducer";
+      import userReducer from "./userReducer";
+
+      const rootReducer = combineReducers({
+          movie: movieReducer,
+          user: userReducer
+      });
+
+     export default rootReducer;
+
+
+
+*PASSO 18
+( coloca rootReducer na store em store/index.js (que é o estado global)) 
+
+
+    import { createStore } from 'redux'; // Redux.createStore();
+    import rootReducer from '../reducers';
+
+    const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+
+   export default store;
+
+
+
+*PASSO 19, em Sidebar:
+(agora nao acessa diretamente selectedCategory, tem que mudar o acesso do estado atraves de 'movie' do reducer acima) 
+
+   function mapStateToProps(state){
+      return {
+      categories: state.movie.categories,
+     }
+  }
+
+
+
+*PASSO 19, em Player.js
+(mesma ideia do passo 18)
+
+   function mapStateToProps(state){
+       return {
+       category: state.movie.selectedCategory.name,
+       movie: state.movie.selectedMovie.title,
+  }
+}
+
+
+
+   
+   
+
+   O data.js é importado no Reducer, é o estado inicial categories
+   mapStateToProps acessa o estado global do Reducer a partir do connect (connect pega os dados de Reducer)
+   em mapDispatchToProps -> esta propriedade sempre ira receber uma função
+
+   mapDispatchToProps e mapDispatchToProps podem possuir qualquer nome

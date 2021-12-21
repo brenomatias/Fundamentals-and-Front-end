@@ -1,0 +1,236 @@
+npm install --save redux-devtools-extension
+
+***** PROVIDER
+Provider = auxlia em fornecer as informações para os components
+Provider fornece as informaçoes da store para os components
+
+o Provider pode vir em App.js ou Index.js, neste caso foi em index.js em srtc
+
+   import React from 'react';
+   import { Provider } from 'react-redux';
+   import ReactDOM from 'react-dom';
+   import store from './redux/store/store';
+   import App from './App';
+   import './index.css';
+
+   ReactDOM.render(
+     <React.StrictMode>
+       <Provider store={ store }>
+        <App />
+      </Provider>
+    </React.StrictMode>,
+    document.getElementById('root'),
+  );
+
+
+  ***** ACTIONS
+
+   export const SET_PERSONAL_VALUE = 'SET_PERSONAL_VALUE';
+   export const SET_PROFESSIONAL_VALUE = 'SET_PROFESSIONAL_VALUE';
+
+   export const setPersonalValue = (payload) => (
+     {
+       type: SET_PERSONAL_VALUE, payload,
+     });
+
+   export const setProfessionalValue = (payload) => (
+     {
+    type: SET_PROFESSIONAL_VALUE, payload,
+    });
+
+
+type: descrição da ação
+payload: objeto a ser retornado
+
+
+*** REDUCER:
+É uma função JavaScript que recebe o estado atual ( current state ) e a ação corrente
+ ( current action ) e retorna um novo estado ( new state ). 
+ É responsabilidade dessa função decidir o que acontecerá com o estado dada uma ação( action ).
+
+   
+import { SET_PROFESSIONAL_VALUE, SET_PERSONAL_VALUE } from '../action/action';
+
+const initialState = {
+  personalInputs: {
+    nome: '',
+    email: '',
+    cpf: '',
+    endereco: '',
+    cidade: '',
+    estado: '',
+  },
+  professionalInputs: {
+    curriculo: '',
+    cargo: '',
+    descricao: '',
+  },
+};
+
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+  // Caso o tipo da action seja SET_PERSONAL_VALUE,
+  // retorne o que já existe no estado e atualize
+  // o personalInputs com a informação trazida pela action case.
+  case SET_PERSONAL_VALUE:
+    return { ...state, personalInputs: action.payload };
+  case SET_PROFESSIONAL_VALUE:
+    return { ...state, professionalInputs: action.payload };
+  default:
+    return state;
+  }
+};
+
+export default reducer;
+
+
+
+**** SEMPRE UTILIZAR ESTADO GLOBAL?
+
+nem sempre é necessário, neste exercicio por exemplo usa um estado do 
+componentes(PersonalForm e ProfessionalForms) para lidar com os inputs
+se fizer sentido, usar o estado local
+porque usar estado local neste caso? se todo vez que digitar uma letra nos inputs, vai poluir o redux
+(imagina se toda vez que digitar uma letra dispara uma ação do redux)
+faz sentido entao ter estados locais nos inputs
+   o estado local será compartilhado com o estado global no final do preenchimento(ao clicar no botao enviar)
+
+
+
+**** COMPONENTIZAÇAO DO inputs
+é possivel trocar a descriçao utilizando o Label
+é possivel acessar esses components em qualquer lugar
+
+
+*** NOS COMPONENTS(neste caso em pages)
+
+Para conectar a store com o componente devemos aplicar :
+
+   import { connect } from 'react-redux';
+
+Para conectar: 
+
+     export default connect(mapStateToProps, mapDispatchToProps)(ComponentName);
+// chama funçao conect que retorna uma funçao (parametro como component)
+
+
+Criar função mapDispatchToProps (MAPDISPATCHTOPROPS)
+mapDispatchToProps is used for dispatching actions to the store
+
+
+    import { setPersonalValue } from '../redux/action/action';
+// podemos ver em action que setPersonalValue recebe um parametro(payload)
+
+    const mapDispatchToProps = (dispatch) => ({
+      dispatchSetValue: (valueAndName) => dispatch(setPersonalValue(valueAndName)),
+    }
+    );
+
+  // dispatchSetValue é um "apelido" para executarmos a nossa action creator
+  // Nossa action creator é a função importada do arquivo actions
+  // ou seja, setPersonalValue, (setPersonalValue está em action)
+  // que vai receber um parâmetro
+  // esse parâmetro é o estado do nosso componente(valueAndName = valor do formulario)
+  // aqui estamos apenas avisando que vai existir um parâmetro
+  // mas o estado do componente é passado no momento da execução
+  // nesse caso, dentro da função onSubmitForm (em submit onSubmitForm esta a funçao dispatchSetValue)
+
+
+      
+     onSubmitForm() {
+       const { history, dispatchSetValue } = this.props;
+       dispatchSetValue(this.state);
+       history.push('/formdisplay');
+    }
+
+  // Disparamos a nossa action através da função importada
+// de actions.js, que apelidamos de dispatchSetValue
+(ou seja, passa a funçao de action dentro da ação de submeter os dados)
+
+   * nao tem mapStateToProps porque nao acessa o valor do estado global(o componente), o componente so envia os seus estados)
+no caso dos components PersonalForm e ProfessionalForms nao precisam acessar o estado global(nao precisam fazer a leitura)
+entao nao ha necessidade de usar mapStateToProps (porque esta funçao mapeia o estado global)
+poderia ficar assim o connect: 
+
+        export default connect(null, mapDispatchToProps)(ComponentName);
+
+
+
+
+**** CRIAR ESTRUTURA DE EXIBIÇAO DO ESTADO
+(FormDataDisplay)
+
+ler as os dados da store (com mapStateToProps)
+   
+      import { connect } from 'react-redux';
+      export default connect(mapStateToProps, null)(ComponentName);
+
+      const { professionalInputs, personalInputs } = this.props;
+
+      const mapStateToProps = (state(global)) => ({
+        personalInputs: state.reducer.personalInputs,
+        professionalInputs: state.reducer.professionalInputs }
+      ); 
+
+// essa funçao le os estado global e nao executa transformaçao de estado
+entao nao precisa do mapDispatchToProps
+
+
+
+
+*** mapDispatchToProps em PersonalForm:
+
+   const mapDispatchToProps = (dispatch) => ({
+     dispatchSetValue: (valueAndName) => dispatch(setPersonalValue(valueAndName)),
+   }
+  );
+
+mapDispatchToProps transforma a função (valueAndName) => dispatch(setPersonalValue(valueAndName))
+   em uma propriedade para o componente, com a propriedade dispatchSetValue (que ta em onSubmitForm)
+  
+essa funçao dispara a açao. o dispatch tem que disparar uma action: setPersonalValue(valueAndName)
+
+valueAndName: pode ser qualquer nome
+quando chamar a propriedade dispatchSetValue, que é uma funçao, tem que passar um valor (valueAndName)
+
+em:
+
+ onSubmitForm() {
+    const { history, dispatchSetValue } = this.props;
+    dispatchSetValue(this.state);
+    history.push('/professionalform');
+  }
+
+  this.state = valueAndName na chamada de dispatch em mapDispatchToProps
+  e o state é:
+      
+      this.state = {
+      nome: '',
+      email: '',
+      cpf: '',
+      endereco: '',
+      cidade: '',
+      estado: '',
+    };
+
+ou seja, funçao acessa o estado local e passa para a ação. 
+(passa o estado local para action enviar para o estado global)
+
+
+
+
+*** NO REDUCER 
+
+     const reducer = (state = initialState, action) => {
+  switch (action.type) {
+  case SET_PERSONAL_VALUE:
+    return { ...state, personalInputs: action.payload };
+  case SET_PROFESSIONAL_VALUE:
+    return { ...state, professionalInputs: action.payload };
+  default:
+    return state;
+  }
+};
+
+payload= formulario
+retorna um novo objeto, ...state mantem as informaçoes que ja existem(copia do estado)

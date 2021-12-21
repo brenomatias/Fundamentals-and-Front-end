@@ -1,0 +1,113 @@
+Testar e manipular rotas
+
+* PASSO 1
+Estruturação 
+
+function App () {
+    return (
+    <main>
+          <header>
+            <nav>
+               <ul>
+                   <a href='' >  </a>      // com essa implementaçao simples a pagina recarrega quando vai para o link
+                   <a href= ''>   </a>
+               </ul>
+            </nav>
+          </header>
+        </main>
+        <section>
+           <h1> </h1>
+        </section>
+    </main>
+
+    )
+}
+
+
+
+* PASSO 2 
+(deixar a navegaçao dinamica usando react router)
+
+observar se o react router está instalado (por padrão nao). Fica em package.json as informaçoes
+instalar react router (npm install react-router-dom)
+importar as bibliotecas: import { Link, BrowserRouter, Route, Switch } from 'react-router-dom'
+  * com Switch renderiza apenas uma rota
+  * Switch engloba as rotas
+
+trocar tags <a> por Link (nao precisa remover a tag nav)
+<BrowserRouter> </BrowserRouter> deve englobar toda a aplicação
+
+function App() {
+    return (
+    <BrowserRouter>
+        <main>
+        ...
+          <nav>
+            <ul> 
+              <li> <Link to='/'> Text </Link> </li>
+              <li> <Link to='/projects'> </li>
+            <ul>
+        </nav>
+        ...
+        </main>
+    </BrowserRouter>
+
+    );
+}
+
+
+* PASSO 3  -> min 20:03
+(criar as rotas)
+aplicar o Switch e os Route (note que o Switch tem que estar dentro de BrowserRouter)
+
+<BrowserRouter>
+   <main> 
+   ....
+   <ul>
+   <li> <Link to='/'> Sobre mim</Link> </li>
+   <ul>
+   ....
+   ....
+   <Switch>
+
+     <Route exact path='/'>                         // essa forma de renderizar é CRIANDO FILHOS PARA O ROUTE
+        <section>                                   // section e h1 sao filhos da rota
+          <h1> Página sobre mim <h1>                // sempre lembrar de usar o "exact" no route path(antes)
+          <AboutMe /> (se tivesse um componente com esse nome)
+        </section>
+     <Route> 
+
+     <Route path='/projects'>                    
+        <section>                           
+          <h1> Página de projetos <h1>          
+        </section>
+     <Route> 
+
+     <Switch>
+   </main>
+</BrowserRouter>
+
+
+** Criar pasta para teste individual (tests)
+Explicação detalhada dos testes em App.tests.js
+
+* PASSO 4 -- 
+(para testar as rotas e a navegaçao é preciso tirar o BrowserRouter de dentro de App.js)
+
+App.js tem que ser filho do BrowserRouter
+
+em index.js insere o BrowserRouter como pai de App.js:
+importa o BrowserRouter em index.js
+
+    ReactDOM.render(
+      <React.StrictMode>
+        <BrowserRouter>
+         <App />    
+       </BrowserRouter>
+      </React.StrictMode>,
+     document.getElementById('root')
+      );
+
+o app fica desacoplado do roteador
+
+começa a dar um erro nos testes porque ele nao possui um roteador
