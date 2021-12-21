@@ -1,3 +1,3 @@
 100. First list item
-     - First nested list item
-     - Second nested list item
+     1. First nested list item
+     2. Second nested list item
