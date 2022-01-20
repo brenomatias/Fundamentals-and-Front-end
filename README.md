@@ -62,7 +62,7 @@
 - 8-2: _JavaScript ES6 - Higher Order Functions - map e filter_
 - 8-3: _JavaScript ES6 - Higher Order Functions - reduce_
 - 8-4: _JavaScript ES6 - spread operator, parâmetro rest, destructuring e mais_
-- 8-5: _[Projeto 10 - JS ES6 & Higher Order Functions (Zoo Functions)](https://github.com/ana-karine/trybe-projects/tree/master/fund-dev-web/p10_zoo)_
+- 8-5: _[Projeto 10 - JS ES6 & Higher Order Functions (Zoo Functions)
 
 ##### Bloco 9: JavaScript Assíncrono e Promises
 
