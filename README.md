@@ -51,7 +51,7 @@
 - 8-3: JavaScript ES6 - spread operator, parâmeters, rest, destructuring
 - 8-4: [Project 10 - JS ES6 & Higher Order Functions (Zoo Functions)
 
-##### Block 9: JavaScript Assíncrono e Promises
+##### Block 9: Asynchronous JavaScript e Promises
 
 - 9-1: Asynchronous JavaScript and Callbacks
 - 9-2: JavaScript Promises
