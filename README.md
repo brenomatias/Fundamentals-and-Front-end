@@ -59,7 +59,7 @@
 
 
 ##
-## Desenvolvimento Front-end :whitecheckmark:
+## Front-end Development :whitecheckmark:
 ##
 
 ##### Block 11: Introdução à React
