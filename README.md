@@ -1,3 +1,5 @@
+## Fundamentos do Desenvolvimento Web :white_check_mark:
+
 ##### Bloco 1: Unix, Bash e Shell Script
 
 - 1-3: _Unix & Bash - Parte 1_
@@ -77,7 +79,7 @@
 
 
 
-## Desenvolvimento Front-end :hourglass_flowing_sand:
+## Desenvolvimento Front-end :white_check_mark:
 
 ##### Bloco 11: Introdução à React
 
