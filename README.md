@@ -1,4 +1,4 @@
-## FUNDAMENTALS OF WEB DEVELOPMENT:whitecheckmark:
+## FUNDAMENTALS OF WEB DEVELOPMENT
 
 ##### Block 1: Unix, Bash
 
@@ -59,8 +59,7 @@
 
 
 ##
-## Front-end Development :whitecheckmark:
-##
+## FRONT-END DEVELOPMENT
 
 ##### Block 11: Introdução à React
 
