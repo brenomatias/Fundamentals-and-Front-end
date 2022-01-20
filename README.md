@@ -1,4 +1,4 @@
-## FUNDAMENTALS OF WEB DEVELOPMENT :whitecheckmark:
+## FUNDAMENTALS OF WEB DEVELOPMENT:whitecheckmark:
 
 ##### Block 1: Unix, Bash
 
