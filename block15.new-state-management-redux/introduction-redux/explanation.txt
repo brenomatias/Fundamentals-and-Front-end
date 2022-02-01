@@ -1,0 +1,206 @@
+Redux is an open-source JavaScript library for managing and centralizing 
+application state
+
+
+* PASSO 1
+(Importaçao CDN do Redux)
+  <script src="https://unpkg.com/redux@latest/dist/redux.min.js"></script>
+(arquivo mimificado com todo conteúdo do Redux)
+
+Desenvolver o codigo dentro de <script> </script>
+
+
+
+* PASSO 2 
+(criar um estado global a partir do 'store' (estado global))
+   
+        const store = Redux.createStore(FUNÇAO REDUCER VAI AQUI);  
+
+A store holds the whole state tree of your application. The only way to change the state inside 
+it is to dispatch an action on it.
+    Redux é um objeto
+    createStore é usado para criar um outro objeto (const = store)
+    store é o objeto que gerencia tudo
+
+
+
+* PASSO 3
+(criar o reducer)
+
+What is a reducer in Redux? (função que modifica o estado na 'store')
+In Redux, a reducer is a pure function that takes an action and the previous state of the application
+and returns the new state. The action describes what happened and it is the reducer's job to return 
+the new state based on that action
+
+Cria uma função(pode ter qualquer nome). A função recebe dois parametros (state, action):
+Estrutura basica de uma função reducer
+
+      function counterReducer(state = 0, action ){   // ACTION esta conecatdo com DISPATCH
+          return state
+      }
+
+Colocar Reducer dentro da store
+
+    const store = Redux.createStore(counterReducer);  
+
+
+
+* PASSO 4
+(ouvir os eventos)
+localizar os botoes e passar o evento para eles
+
+          document.getElementById('decrement').addEventListener('click', () => {
+
+          })   
+--> botao de diminuir/ retorna elemento e adiciona evento de click
+
+          document.getElementById('increment').addEventListener('click', () => {
+
+          })   
+--> botao de aumentar/ retorna elemento e adiciona evento de click
+
+
+
+*PASSO 5
+(disparar evento para modificar estado)
+acessar o dispatch(action) da store -> dispara o pedido (uma action) 
+a ação(dispatch) é um objeto que precisa de um type
+
+          document.getElementById('decrement').addEventListener('click', () => {
+
+              store.dispatch({type: 'DECREMENT'})
+              
+// dispatch serve para comunicar o evento ao reducer 
+          })  
+
+
+          document.getElementById('increment').addEventListener('click', () => {
+              
+              store.dispatch({type: 'INCREMENT'})
+
+          })
+
+// type é padrao
+// nome das actions em letra maiscula para diferenciar das outras variaveis
+
+
+
+* PASSO 6
+(manipular a action do reducer)
+
+      function counterReducer(state = 0, action ){
+          if(action.type === 'DECREMENT'){
+              return state -1;
+          }
+          if(action.type === 'INCREMENT') {
+              return state +1;
+          }
+          return state
+      }
+
+// a action é um pedido, ela nao faz nada, quem faz é o reducer
+
+
+
+* PASSO 7
+A ação é um objeto entao pode receber propriedades
+value: quanto quero incrementar ou diminuir
+
+          document.getElementById('decrement').addEventListener('click', () => {
+              store.dispatch({type: 'DECREMENT', value: 1})
+          })  
+
+          document.getElementById('increment').addEventListener('click', () => {       
+              store.dispatch({type: 'INCREMENT', value: 1})
+          })
+
+          document.getElementById('incrementBy10').addEventListener('click', () => {       
+              store.dispatch({type: 'INCREMENT', value: 10})
+          })
+
+// 'type' é padrao, as demais propriedades podem ter qualquer nome
+
+
+
+* PASSO 8 
+
+altera a função reducer a partir das novas propriedades da ação
+
+      function counterReducer(state = 0, action ){
+          if(action.type === 'DECREMENT'){
+              return state - action.value;
+          }
+          if(action.type === 'INCREMENT') {
+              return state + action.value;        // vai depender se veio do valor de 1 ou de 10
+          }
+      }
+
+
+
+* PASSO 9 
+(boas praticas, refatoração)
+colocar nome dos pedidos em constantes
+nao utilizar if
+
+
+    const decrement = 'DECREMENT'
+    const increment = 'INCREMENT'
+
+             document.getElementById('decrement').addEventListener('click', () => {
+              store.dispatch({type: decrement, value: 1})
+          })  
+// dispatch serve para comunicar o evento ao reducer
+
+          document.getElementById('increment').addEventListener('click', () => {       
+              store.dispatch({type: increment, value: 1})
+          })
+
+          document.getElementById('incrementBy10').addEventListener('click', () => {       
+              store.dispatch({type: increment, value: 10})
+          })
+
+
+trocar ifs por switch/case
+
+    function counterReducer(state = 0, action){     // esta action tem conexão direta com os dispatch dos eventos
+      switch(action.type){
+        case decrement: 
+          return state - action.value;
+        case increment: 
+          return state + action.value;
+        default: 
+          return state;
+      }
+    }
+
+// REDUCER SEMPRE TEM QUE RETORNAR O ESTADO (state)
+
+
+* PASSO 10
+
+criar a função: essa função será responsável pela modificação dos elementos
+sobreescrever 
+
+    store.subscribe(() => {
+        store.getState();
+    });
+
+essa função(store.subscribe) e sua callback de parametro serao executadas
+toda vez que o estado global for modificado
+
+getState()
+Returns the current state tree of your application. It is equal to
+ the last value returned by the store's reducer.
+
+
+* PASSO 11
+(exibir o state na tela)
+
+      const spanCont = document.getElementById('value')
+
+localiza o elemento a ser alterado
+
+    store.subscribe(() => {
+        store.getState();
+        spanCont.innerHTML = store.getState()
+    });

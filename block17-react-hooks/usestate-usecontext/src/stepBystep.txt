@@ -1,0 +1,258 @@
+Context API React
+
+Context provides a way to pass data through 
+the component tree without having to pass props down manually at every level.
+
+
+But what is a Hook?
+Hooks are functions that let you “hook into” React state and lifecycle 
+features from function components. Hooks don’t work inside classes — 
+they let you use React without classes
+
+Rules of Hooks:
+Only call Hooks at the top level. Don’t call Hooks inside loops, conditions, or nested functions.
+(parte inicial do codigo)
+Only call Hooks from React function components
+Os componentes começam com "use"
+
+
+**** useState is a Hook 
+call it inside a function component to add some local state to it
+
+useState returns a pair: the current state value and a function that lets you update it
+You can call this function from an event handler or somewhere else
+   
+      const [state, funcToUpdateState] = useState(0);
+
+   const [count, setCount] = useState(0);
+   <button onClick={() => setCount(count + 1)}>
+
+
+****  useContext is a hook 
+lets you subscribe to React context without introducing nesting
+
+
+
+**** <BrowserRouter>
+Em index.js
+
+
+
+
+1) Salvar as informações no contexto (context + provider)
+(enviar informaçoes e compartilhar com os outros components/ é o estado global)
+
+1.1 QuestionContext.js // criar contexto global
+import { createContext } from 'react';
+
+const QuestionsContext = createContext();
+
+export default QuestionsContext;
+
+
+1.2 QuestionsProvider.js // criar provider
+
+  import QuestionsContext from './QuestionsContext'; (importa o contexto)
+
+no return: englobar todas as informaçoes usando o Provider
+
+    return(
+    <QuestionsContext(contexto).Provider>
+      {children}
+    </QuestionsContext.Provider>
+    );
+
+Receber a children: via parametro
+(componente funcional sempre recebe props)
+usando destructuring 
+
+   function QuestionsProvider({ children }) {
+             .....  
+  return(
+    <QuestionsContext.Provider >
+      {children}
+    </QuestionsContext.Provider>
+    );
+}
+
+1.3 receber o estado. O estado é local no componente mas global na app
+**** useState 
+
+  import React, { useState } from 'react';
+
+   useState(); [state, setState] // sempre retorna array
+
+   function QuestionsProvider({ children }) {
+  const [ question, setQuestion ] = useState([]);
+  const [ isLoading, setIsLoading ] = useState(false); // false incia o valor com false
+
+1.4 Passar as informaçoes para outros components atraves do provider atraves do value
+
+  return(
+    <QuestionsContext.Provider value={ { question, isLoading }}>
+      {children}
+    </QuestionsContext.Provider>
+    );
+}
+
+1.5 (encapsular app com as informaçoes do provider)
+para que os componentes recebam os dados do Provider
+em App.js 
+
+  Function App() {
+    return (
+     <QuestionsProvider>
+      ... aqui tudo é children para o Provider e tem acesso ao contexto
+      </QuestionsProvider>
+   );
+  }
+
+
+
+2) Chamar retorno de API simulada
+(onde deixa a chamada a API? NO CONTEXTO )
+
+ 2.1 requisiçao da API onde vai ser renderizado os dados
+ em QuestionListPage.js
+    
+  class QuestionListPage extends React.Component {
+    componentDidMount() {
+  }
+
+// chamar API para atualizar estado global
+
+2.2 PASSAR DADOS DA API PARA O PROVIDER
+No provider faz a funçao de requisiçao da API e disponibiliza para os outros components
+Em QuestionsProvider
+ 
+    async function fetchQuestions() {              // chamar a API e setar o resultado no estado
+    setIsLoading(true);
+    const questions = await getQuestions();   // getQuestions é funçao que chama a API, em services/api.js
+    setQuestion(questions);                   // guarda o resultado do retorno
+    setIsLoading(false);                    
+  }
+
+setQuestion é a funçao usada para manipular o estado de question
+  const [ question, setQuestion ] = useState([]);
+
+entao em setQuestion(questions), o estado "question" recebe as informaçoes trazidas
+da api que foi armazenado em "questions"
+e depois passa a funçao como valor do provider
+
+    return(
+    <QuestionsContext.Provider value={ { question, isLoading, fetchQuestions }}>
+      {children}
+    </QuestionsContext.Provider>
+    );
+}
+
+
+2.3 
+fetchQuestions será executada realmente em outro componente: QuestionListPage.js
+pegar a função via contexto
+
+  import QuestionsContext from '../context/QuestionsContext';
+
+  QuestionListPage.contextType = QuestionsContext; // contexto padrão 
+
+(antes de export default)
+
+  class QuestionListPage extends React.Component {
+     componentDidMount() {
+      const { fetchQuestions } = this.context; // chamar provider em component de classe
+      fetchQuestions();
+  }
+
+
+3 
+(pegar informaçoes do contexto para utilizar )
+em QuestionList.js
+
+
+3.1
+(acessar o contexto)
+(USECONTEXT) QuestionList.js
+    
+   import React, { useContext } from 'react';
+
+   const { question } = useContext(QuestionsContext); // assim so pega o valor "question" do value
+
+// useContext retorna o value do provider
+
+
+4
+(criar funçao que gera nova pergunta)
+em NewQuestionPage.js
+
+4.1 
+(criar estado local para componente de formulario para tambem se 
+comunicar com o estado global)
+
+é preciso guardar a questão e o nome da pessoa
+   
+    function NewQuestionPage() {
+      const [name, setName] = useState('');
+      const [question, setQuestion] = useState('');
+
+
+                <textarea
+            onChange={ (ev) => setQuestion(ev.target.value)} // evento de disparo de mudança, setQuestion
+            value={question} // variavel do estado
+
+               <input
+            onChange={ ev => setName(ev.target.value)}
+            value={name}
+
+           <form onSubmit={ () => {} } > // submeter informaçoes do form para o provider
+
+4.2 
+(submeter as informaçoes do form)
+
+    
+  async function createNewQuestion(ev) {
+    ev.preventDefault();                      // nao envia para a url
+    const newQuestion = { user: name, question };
+    await createNewQuestionApi(newQuestion);
+    history.push('/');
+  }
+
+4.3 
+
+  const history = useHistory(); // outro hook
+
+4.5 
+(cria funçao no provider para acessar API )
+QuestionsProvider.js 
+  
+  import { createQuestion } from '../services/api';
+
+  const createNewQuestion = async (newQuestion) => {
+    setIsLoading(true);
+    await createQuestion(newQuestion);
+    setQuestion([ ...question, newQuestion]);
+    setIsLoading(false);
+  }
+
+  // enviar para api novo estado
+
+        <QuestionsContext.Provider value={ { ..., createNewQuestion }}>
+
+
+5
+(Em NewQuestionPage)
+
+  const { createNewQuestion: createNewQuestionApi } = useContext(QuestionsContext);
+// redefine o nome de createNewQuestion para createNewQuestionApi
+
+importa o contexto. createNewQuestion é produzida no texto
+
+  async function createNewQuestion(ev) {
+    ev.preventDefault();
+    const newQuestion = { user: name, question }; //  nome ta como 'user'
+    await createNewQuestionApi(newQuestion);
+    history.push('/');
+  }
+
+
+cria contexto
+cria provider com estados
